@@ -1,12 +1,13 @@
 .details{
     display: flex;
     justify-content: center;
+    height: 100%;
     .list{
         display: flex;
         flex-direction: column;
         width: calc(100% - 4rem);
+        margin-bottom: 2rem;
         overflow: scroll;
-        margin: 2rem;
         .head{
             display: flex;
             justify-content: space-between;
