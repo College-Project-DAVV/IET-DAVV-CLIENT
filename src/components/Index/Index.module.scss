@@ -1,13 +1,16 @@
 .indexContainer{
     display: flex;
     height: 100%;
+    .leftContainer{
+        width: 285px;
+    }
     .rightContainer{
-        width: 100%;
+        width: calc(100% - 285px);
         .searchbar{
             height: 100px;
         }
         .target{
-            height: 85%;
+            height: calc(100% - 100px);
         }
     }
 }

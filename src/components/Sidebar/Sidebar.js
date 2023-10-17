@@ -35,6 +35,22 @@ export default function Sidebar() {
         </div>
         <div className={styles.element}>
             <img src={home} alt="icon"/>
+            <p>Dashboard</p>
+        </div>
+        <div className={styles.element}>
+            <img src={home} alt="icon"/>
+            <p>Dashboard</p>
+        </div>
+        <div className={styles.element}>
+            <img src={home} alt="icon"/>
+            <p>Dashboard</p>
+        </div>
+        <div className={styles.element}>
+            <img src={home} alt="icon"/>
+            <p>Dashboard</p>
+        </div>
+        <div className={styles.element}>
+            <img src={home} alt="icon"/>
             <p>All Students</p>
         </div>
         

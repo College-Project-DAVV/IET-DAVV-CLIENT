@@ -6,7 +6,9 @@ import StudentList from '../studentList/StudentList'
 export default function Index() {
   return (
     <div className={styles.indexContainer}>
+      <div className={styles.leftContainer}>
       <Sidebar/>
+      </div>
       <div className={styles.rightContainer}>
       <div className={styles.searchbar}>
       <Searchbar/>
