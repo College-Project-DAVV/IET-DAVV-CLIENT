@@ -1,7 +1,23 @@
 .indexContainer{
     display: flex;
+    height: 100%;
+    .leftContainer{
+        width: 285px;
+        @media screen and (max-width : 768px) {
+            display: none;
+        }
+    }
     .rightContainer{
-        width: 100%;
+        width: calc(100% - 285px);
+        @media screen and (max-width:768px) {
+            width: 100%;
+        }
+        .searchbar{
+            height: 100px;
+        }
+        .target{
+            height: calc(100% - 100px);
+        }
     }
     
 }

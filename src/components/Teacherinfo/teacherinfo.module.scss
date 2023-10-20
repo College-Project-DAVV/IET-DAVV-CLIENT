@@ -1,9 +1,12 @@
 
 
 .teacherGrid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(calc(50% - 10px), 1fr));
+  gap: 0px;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
    
   }
   

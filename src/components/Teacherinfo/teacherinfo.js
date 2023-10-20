@@ -29,6 +29,8 @@ const teacherData = [
         researchArea: "Data Mining, Information Retrieval, Software Engineering",
       },
       
+      
+      
   
   ];
 
