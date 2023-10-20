@@ -53,9 +53,6 @@ export default function Sidebar() {
             <img src={home} alt="icon"/>
             <p>All Students</p>
         </div>
-        
-        
-       
         </div>
         
       </div>
