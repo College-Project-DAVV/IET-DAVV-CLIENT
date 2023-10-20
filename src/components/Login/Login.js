@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 import { GoogleLogin } from "@react-oauth/google";
-import styles from "./Login.module.scss";
-import logo from "../../assets/logo2.svg";
+import styles from './Login.module.scss';
+import logo from '../../assets/logo2.svg'
 const Login = () => {
   const [code, setCode] = useState("");
   const redirectToExternalUrl = () => {
@@ -46,21 +47,32 @@ const Login = () => {
         <p>IET-DAVV</p>
         <div className={styles.GoogleLogin}>
         <GoogleLogin
-          color="primary"
-          fullWidth
-          variant="contained"
-          
-          onSuccess={() => {
-            redirectToExternalUrl();
-          }}
-          cookiePolicy="single_host_origin"
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
+        color="primary"
+        fullWidth
+        variant="contained"
+        onSuccess={(credentialResponse) => {
+          var decoded = jwt_decode(credentialResponse.credential);
+          const result = {
+            result: decoded,
+            token: credentialResponse.credential,
+          };
+          redirectToExternalUrl();
+          localStorage.setItem("profile", JSON.stringify(result));
+        }}
+        cookiePolicy="single_host_origin"
+        onError={() => {
+          console.log("Login Failed");
+        }}
+      />
         </div>
       </div>
     </div>
   );
 };
 export default Login;
+
+
+
+
+
+
