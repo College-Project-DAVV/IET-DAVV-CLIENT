@@ -48,8 +48,10 @@ const Login = () => {
         <div className={styles.GoogleLogin}>
         <GoogleLogin
         color="primary"
-        fullWidth
+        fullWidth="true"
+        shape="pill"
         variant="contained"
+        size="large"
         onSuccess={(credentialResponse) => {
           var decoded = jwt_decode(credentialResponse.credential);
           const result = {
