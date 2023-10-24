@@ -23,7 +23,7 @@
         font-weight: 600;
     }
     .loginContent{
-        margin: 2rem 0rem 4rem 0;
+        margin: 2rem 0rem 2rem 0;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -40,6 +40,12 @@
         }
         .GoogleLogin{
             margin: 0 1rem;
+            margin-bottom: 2px;
+        }
+        .loginUnsucess{
+            font-size: .8rem;
+            font-weight: 400;
+            color: #E33629;
         }
     }
 }

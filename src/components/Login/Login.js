@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
+import { fetchDataFromAPI } from './FetchAllData';
 import { GoogleLogin } from "@react-oauth/google";
 import styles from './Login.module.scss';
 import logo from '../../assets/logo2.svg'
 const Login = () => {
   const [code, setCode] = useState("");
+  const [isLoginUnsucessfull, setLoginStatus] = useState(false);
   const redirectToExternalUrl = () => {
     window.location.href =
       "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/admin.directory.user https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/classroom.courses.readonly&access_type=offline&redirect_uri=http://localhost:3000&response_type=code&client_id=891307349200-9khqe8cua5pvifevggim1mg6eg6a1cct.apps.googleusercontent.com";
@@ -24,8 +25,10 @@ const Login = () => {
         // Handle the response data here
         localStorage.setItem("FetchUserToken", JSON.stringify(data));
         console.log(data);
+        fetchDataFromAPI();
       })
       .catch((error) => {
+        setLoginStatus(true);
         console.error("Error:", error);
       });
   };
@@ -52,21 +55,18 @@ const Login = () => {
         shape="pill"
         variant="contained"
         size="large"
-        onSuccess={(credentialResponse) => {
-          var decoded = jwt_decode(credentialResponse.credential);
-          const result = {
-            result: decoded,
-            token: credentialResponse.credential,
-          };
+        onSuccess={() => {
           redirectToExternalUrl();
-          localStorage.setItem("profile", JSON.stringify(result));
+          
         }}
         cookiePolicy="single_host_origin"
         onError={() => {
+          setLoginStatus(true);
           console.log("Login Failed");
         }}
       />
         </div>
+      {isLoginUnsucessfull && <p className={styles.loginUnsucess}>Login unsuccessful! Try Again.</p>}
       </div>
     </div>
   );
