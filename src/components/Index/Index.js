@@ -4,7 +4,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Teacherinfo from '../Teacherinfo/teacherinfo'
 import styles from './Index.module.scss'
 // import StudentList from '../studentList/StudentList'
-import Dashboard from '../Dashboard/Dashboard'
+// import Dashboard from '../Dashboard/Dashboard'
 export default function Index() {
   return (
     <div className={styles.indexContainer}>
@@ -19,7 +19,7 @@ export default function Index() {
       </div>
       <div className={styles.target}>
       {/* <StudentList/> */}
-      <Dashboard/>
+     
       </div>
       </div>
     </div>
