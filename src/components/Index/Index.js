@@ -19,7 +19,7 @@ export default function Index() {
       </div>
       <div className={styles.target}>
       {/* <StudentList/> */}
-      {/* <Dashboard/> */}
+      <Dashboard/>
       </div>
       </div>
     </div>
