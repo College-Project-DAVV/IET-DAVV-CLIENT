@@ -14,9 +14,9 @@ export default function Index() {
       <div className={styles.rightContainer}>
       <div className={styles.searchbar}>
       <Searchbar/>
-      <div className={styles.indexContainer}>
+      {/* <div className={styles.indexContainer}>
       <Teacherinfo/>
-      </div>
+      </div> */}
       <div className={styles.target}>
       {/* <StudentList/> */}
       <Dashboard/>
