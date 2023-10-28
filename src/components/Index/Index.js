@@ -1,7 +1,7 @@
 import React from 'react'
 import Searchbar from '../searchbar/Searchbar'
 import Sidebar from '../Sidebar/Sidebar'
-import Teacherinfo from '../Teacherinfo/teacherinfo'
+// import Teacherinfo from '../Teacherinfo/teacherinfo'
 import styles from './Index.module.scss'
 // import StudentList from '../studentList/StudentList'
 import Dashboard from '../Dashboard/Dashboard'
