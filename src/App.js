@@ -33,7 +33,7 @@ const App = () => {
             <Route
               path="dashboard"
               element={
-                // token ? (
+                token ? (
                   <div className={styles.indexContainer}>
                     <div className={styles.leftContainer}>
                       <Sidebar />
@@ -47,9 +47,9 @@ const App = () => {
                       </div>
                     </div>
                   </div>
-                // ) : (
-                //   navigate("/")
-                // )
+                ) : (
+                  navigate("/")
+                )
               }
             >
               <Route index element={<Dashboard />} />

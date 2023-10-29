@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
-import styles from './Login.module.scss';
-import logo from '../../assets/logo2.svg'
-import { useNavigate } from 'react-router-dom';
+import styles from "./Login.module.scss";
+import logo from "../../assets/logo2.svg";
+import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+
 const Login = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState("");
@@ -26,7 +28,7 @@ const Login = () => {
       .then((data) => {
         // Handle the response data here
         localStorage.setItem("FetchUserToken", JSON.stringify(data));
-        navigate('/dashboard');
+        navigate("/dashboard");
       })
       .catch((error) => {
         setLoginStatus(true);
@@ -41,10 +43,10 @@ const Login = () => {
     if (decodedCodeValue) {
       setCode(decodedCodeValue);
       generateToken(decodedCodeValue);
-      if(localStorage.getItem("FetchUserToken")){
-        navigate('/dashboard');
+      if (localStorage.getItem("FetchUserToken")) {
+        navigate("/dashboard");
+      }
     }
-  }
   }, [code]);
   return (
     <div className={styles.loginContainer}>
@@ -53,32 +55,35 @@ const Login = () => {
         <img src={logo} alt="IET-DAVV Logo" />
         <p>IET-DAVV</p>
         <div className={styles.GoogleLogin}>
-        <GoogleLogin
-        color="primary"
-        fullWidth="true"
-        shape="pill"
-        variant="contained"
-        size="large"
-        onSuccess={() => {
-          redirectToExternalUrl();
-          
-        }}
-        cookiePolicy="single_host_origin"
-        onError={() => {
-          setLoginStatus(true);
-          console.log("Login Failed");
-        }}
-      />
+          <GoogleLogin
+            color="primary"
+            fullWidth="true"
+            shape="pill"
+            variant="contained"
+            size="large"
+            onSuccess={(credentialResponse) => {
+              var decoded = jwt_decode(credentialResponse.credential);
+              const result = {
+                result: decoded,
+                token: credentialResponse.credential,
+              };
+              localStorage.setItem("profile", JSON.stringify(result));
+              if (result) {
+                redirectToExternalUrl();
+              }
+            }}
+            cookiePolicy="single_host_origin"
+            onError={() => {
+              setLoginStatus(true);
+              console.log("Login Failed");
+            }}
+          />
         </div>
-      {isLoginUnsucessfull && <p className={styles.loginUnsucess}>Login unsuccessful! Try Again.</p>}
+        {isLoginUnsucessfull && (
+          <p className={styles.loginUnsucess}>Login unsuccessful! Try Again.</p>
+        )}
       </div>
     </div>
   );
 };
 export default Login;
-
-
-
-
-
-

@@ -10,23 +10,25 @@
     display: flex;
     height: 100vh;
     width: 100vw;
+    background-color: #EFF1F7;
+    
     .leftContainer{
         width: 285px;
+        
         @media screen and (max-width : 768px) {
             display: none;
         }
     }
     .rightContainer{
+        background-color: #EFF1F7;
         width: calc(100% - 285px);
+        max-height: 100vh;
+        overflow: scroll;
         @media screen and (max-width:768px) {
             width: 100%;
         }
-        .searchbar{
-            height: 100px;
-        }
-        .target{
-            height: calc(100% - 100px);
-        }
     }
-    
+    .rightContainer::-webkit-scrollbar{
+        display: none;
+    }
 }
