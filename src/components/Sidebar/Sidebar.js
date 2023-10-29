@@ -2,9 +2,14 @@ import React from "react";
 import styles from "./Sidebar.module.scss";
 import logo from "../../assets/logo2.svg";
 import home from "../../assets/home.svg";
-import logout from "../../assets/logout.svg";
-import { Link } from "react-router-dom";
+import logoutimg from "../../assets/logout.svg";
+import { Link,useNavigate } from "react-router-dom";
 export default function Sidebar() {
+  const navigate = useNavigate();
+  const Logout=()=>{
+      localStorage.clear();
+      navigate("/");
+  }
   return (
     <div className={styles.head}>
       <div className={styles.institute}>
@@ -37,8 +42,8 @@ export default function Sidebar() {
           </Link>
         </div>
       </div>
-      <div className={styles.logout}>
-        <img src={logout} alt="logout" />
+      <div className={styles.logout} onClick={Logout}>
+        <img src={logoutimg} alt="logout" />
         <p>Logout</p>
       </div>
     </div>
