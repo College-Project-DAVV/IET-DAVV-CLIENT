@@ -1,65 +1,46 @@
-import React from 'react'
-import styles from './Sidebar.module.scss'
-import logo from '../../assets/logo2.svg'
-import home from '../../assets/home.svg'
-import logout from '../../assets/logout.svg'
+import React from "react";
+import styles from "./Sidebar.module.scss";
+import logo from "../../assets/logo2.svg";
+import home from "../../assets/home.svg";
+import logout from "../../assets/logout.svg";
+import { Link } from "react-router-dom";
 export default function Sidebar() {
   return (
     <div className={styles.head}>
       <div className={styles.institute}>
-        <img src={logo} alt="icon"/>
+        <Link to="/dashboard">
+          {" "}
+          <img src={logo} alt="icon" />
+        </Link>
         <h1>IET-DAVV</h1>
       </div>
       <div className={styles.navigationContainer}>
         <p>Main Navigation</p>
         <div className={styles.elements}>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
+          <Link to="/dashboard" style={{ textDecoration:"none"}}>
+            <div className={styles.element}>
+              <img src={home} alt="icon" />
+              <p>Dashboard</p>
+            </div>
+          </Link>
+          <Link to="/dashboard/studentlist" style={{ textDecoration:"none"}}>
+            <div className={styles.element}>
+              <img src={home} alt="icon" />
+              <p>All Students</p>
+            </div>
+          </Link>
+          <Link to="/dashboard/teacherinfo" style={{ textDecoration:"none"}}>
+            <div className={styles.element}>
+              <img src={home} alt="icon" />
+              <p>Teachers Information</p>
+            </div>
+          </Link>
         </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>Dashboard</p>
-        </div>
-        <div className={styles.element}>
-            <img src={home} alt="icon"/>
-            <p>All Students</p>
-        </div>
-        </div>
-        
       </div>
       <div className={styles.logout}>
-          <img src={logout} alt="logout"/>
-            <p>Logout</p>
-        </div>
+        <img src={logout} alt="logout" />
+        <p>Logout</p>
+      </div>
     </div>
-  )
+  );
 }

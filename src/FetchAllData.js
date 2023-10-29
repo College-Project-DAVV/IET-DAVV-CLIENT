@@ -1,7 +1,7 @@
-export function fetchDataFromAPI() {
+export const fetchDataFromAPI=()=> {
     const apiUrl = `http://localhost:3001/fetchuser`;
     const data = localStorage.getItem('FetchUserToken');
-    fetch(apiUrl, {
+    return  fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Set the Content-Type header for JSON data
@@ -14,10 +14,7 @@ export function fetchDataFromAPI() {
           }
           return response.json(); // Parse the response as JSON
         })
-        .then((responseData) => {
-          // Handle the response data
-          console.log(responseData);
-        })
+       
         .catch((error) => {
           // Handle errors, if any
           console.error('Error in POST request:', error);

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { fetchDataFromAPI } from './FetchAllData';
 import { GoogleLogin } from "@react-oauth/google";
 import styles from './Login.module.scss';
 import logo from '../../assets/logo2.svg'
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+  const navigate = useNavigate();
   const [code, setCode] = useState("");
   const [isLoginUnsucessfull, setLoginStatus] = useState(false);
+
   const redirectToExternalUrl = () => {
     window.location.href =
       "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/admin.directory.user https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/classroom.courses.readonly&access_type=offline&redirect_uri=http://localhost:3000&response_type=code&client_id=891307349200-9khqe8cua5pvifevggim1mg6eg6a1cct.apps.googleusercontent.com";
   };
   const generateToken = (code) => {
-    if (!code) return;
+    if (!code) return "NAN";
     const url = `http://localhost:3001/authorization?code=${code}`;
 
     fetch(url, {
@@ -24,8 +26,7 @@ const Login = () => {
       .then((data) => {
         // Handle the response data here
         localStorage.setItem("FetchUserToken", JSON.stringify(data));
-        console.log(data);
-        fetchDataFromAPI();
+        navigate('/dashboard');
       })
       .catch((error) => {
         setLoginStatus(true);
@@ -40,7 +41,10 @@ const Login = () => {
     if (decodedCodeValue) {
       setCode(decodedCodeValue);
       generateToken(decodedCodeValue);
+      if(localStorage.getItem("FetchUserToken")){
+        navigate('/dashboard');
     }
+  }
   }, [code]);
   return (
     <div className={styles.loginContainer}>

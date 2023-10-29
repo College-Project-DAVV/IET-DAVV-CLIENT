@@ -1,8 +1,8 @@
 .details{
     display: flex;
     justify-content: center;
-    height: 100%;
-   // width: 90%;
+    height: calc(100vh - 100px);
+    margin-top: 1rem;
     .list{
         display: flex;
         flex-direction: column;
