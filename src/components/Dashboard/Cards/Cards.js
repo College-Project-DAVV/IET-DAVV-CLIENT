@@ -3,7 +3,6 @@ import styles from "./cards.module.scss";
 import { useData } from "../../../DataContext";
 const Cards = () => {
   const data = useData();
-  console.log(data);
   const items = [
     {
       head: "Total Students",

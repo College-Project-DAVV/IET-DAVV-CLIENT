@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Sidebar.module.scss";
 import logo from "../../assets/logo2.svg";
 import home from "../../assets/home.svg";
+import student from '../../assets/student.svg'
+import teacher from '../../assets/teacher.svg'
 import logoutimg from "../../assets/logout.svg";
 import { Link, useNavigate } from "react-router-dom";
 export default function Sidebar() {
@@ -30,7 +32,7 @@ export default function Sidebar() {
           </Link>
           <Link to="/dashboard/studentlist" style={{ textDecoration: "none" }}>
             <div className={styles.element}>
-              <img src={home} alt="icon" />
+              <img src={student} alt="icon" />
               <p>All Students</p>
             </div>
           </Link>
@@ -42,7 +44,7 @@ export default function Sidebar() {
           </Link> */}
           <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
             <div className={styles.element}>
-              <img src={home} alt="icon" />
+              <img src={student} alt="icon" />
               <p>BE Full Time Students</p>
             </div>
           </Link>
@@ -60,7 +62,7 @@ export default function Sidebar() {
           </Link> */}
           <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
             <div className={styles.element}>
-              <img src={home} alt="icon" />
+              <img src={teacher} alt="icon" />
               <p>Teachers Information</p>
             </div>
           </Link>
