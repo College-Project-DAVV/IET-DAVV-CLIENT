@@ -1,0 +1,39 @@
+/* Bargraph.scss */
+
+.chart-container {
+  margin-top: 3rem;
+  .chart-heading {
+    margin-top: 0;
+    margin-left: 1rem;
+    padding: 0;
+    margin-bottom: 0.8rem;
+    font-size: calc(1.1rem + .2vw);
+    font-weight: 700;
+    color: #333333;
+  }
+
+  .chart-row {
+    display: flex;
+    gap: 0.5rem; 
+    .chart {
+      background-color: #FFFFFF;
+      padding: 10px;
+      border-radius:20px;
+      box-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+      flex: 2; 
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+      min-width: calc(20% - 50px); 
+      canvas {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .chart-row {
+      flex-direction: column;
+    }
+  }
+}

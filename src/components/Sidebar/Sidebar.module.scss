@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: scroll;
+  position: fixed;
   .institute {
     height: 20%;
     min-height: 150px;
@@ -45,6 +46,7 @@
           padding-left: 1.5rem;
         }
         p {
+          text-decoration: none;
           padding-left: 0.8rem;
           color: #333333;
           font-size: 1rem;
@@ -63,7 +65,6 @@
   .logout {
     height: 4rem;
     display: flex;
-    justify-content: center;
     align-items: center;
     width: 100%;
     background-color: #eff1f7;
@@ -74,7 +75,10 @@
     display: flex;
     align-items: center;
     p {
-      margin-left: 1rem;
+      margin-left: .7rem;
+    }
+    img{
+      margin-left: 2rem;
     }
   }
   .logout:hover {

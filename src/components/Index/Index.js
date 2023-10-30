@@ -1,6 +1,7 @@
 import React from 'react'
 import Searchbar from '../searchbar/Searchbar'
 import Sidebar from '../Sidebar/Sidebar'
+// import Teacherinfo from '../Teacherinfo/teacherinfo'
 import styles from './Index.module.scss'
 // import StudentList from '../studentList/StudentList'
 import Dashboard from '../Dashboard/Dashboard'
@@ -13,12 +14,15 @@ export default function Index() {
       <div className={styles.rightContainer}>
       <div className={styles.searchbar}>
       <Searchbar/>
-      </div>
+      {/* <div className={styles.indexContainer}>
+      <Teacherinfo/>
+      </div> */}
       <div className={styles.target}>
-      {/* <StudentList/> */}
       <Dashboard/>
       </div>
       </div>
+      
     </div>
+  </div>
   )
 }
