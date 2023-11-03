@@ -5,6 +5,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import styles from './Index.module.scss'
 // import StudentList from '../studentList/StudentList'
 import Dashboard from '../Dashboard/Dashboard'
+import Filter from '../filter/filter'
 export default function Index() {
   return (
     <div className={styles.indexContainer}>
@@ -20,6 +21,13 @@ export default function Index() {
       <div className={styles.target}>
       <Dashboard/>
       </div>
+      {/* <div className={styles.target}>
+      {/* <StudentList/> */}
+      {/* <Dashboard/>
+      </div> */} 
+      <div className={styles.filter}>
+            <Filter />
+          </div>
       </div>
       
     </div>
