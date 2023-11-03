@@ -98,6 +98,7 @@ const StudentList = () => {
                       <span>
                         Section: {selectedRow.section || "Not Available"}
                       </span>
+                      
                     </div>
                   </div>
                 )}
