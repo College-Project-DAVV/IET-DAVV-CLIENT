@@ -13,12 +13,14 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { DataProvider } from "./DataContext";
+import { GroupDataProvider } from "./GroupDataContext";
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
   const navigate = useNavigate();
 
   return (
     <DataProvider>
+      <GroupDataProvider>
       <div className={styles.indexContainer}>
         <Routes>
           <Route
@@ -30,10 +32,9 @@ const App = () => {
             }
           />
           {
-            <Route
+             token && <Route
               path="dashboard"
               element={
-                token ? (
                   <div className={styles.indexContainer}>
                     <div className={styles.leftContainer}>
                       <Sidebar />
@@ -47,10 +48,8 @@ const App = () => {
                       </div>
                     </div>
                   </div>
-                ) : (
-                  navigate("/")
-                )
               }
+              
             >
               <Route index element={<Dashboard />} />
               <Route path="teacherinfo" element={<Teacherinfo />} />
@@ -59,6 +58,7 @@ const App = () => {
           }
         </Routes>
       </div>
+      </GroupDataProvider>
     </DataProvider>
   );
 };
