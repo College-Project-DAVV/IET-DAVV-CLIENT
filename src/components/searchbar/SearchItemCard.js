@@ -6,9 +6,9 @@ export default function SearchItemCard(props) {
     <div className={styles.cardContainer}>
       <div className={styles.name}>{item.name}</div>
       <div className={styles.email}>{item.email}</div>
-      <div className={styles.roll}>{item.rollNumber}</div>
-      <div className={styles.department}>{item.department}</div>
-      <div className={styles.department}>{item.year}</div>
+      <div className={styles.roll}>{item.phone?item.phone:"Not Available"}</div>
+      <div className={styles.department}>{item.designation?item.designation:"Staff"}</div>
+      {/* <div className={styles.department}>{item.year}</div> */}
     </div>
   )
 }

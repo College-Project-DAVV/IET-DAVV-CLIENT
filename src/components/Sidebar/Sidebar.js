@@ -45,7 +45,7 @@ export default function Sidebar() {
           <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
             <div className={styles.element}>
               <img src={student} alt="icon" />
-              <p>BE Full Time Students</p>
+              <p>Groupwise Information</p>
             </div>
           </Link>
           {/* <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>

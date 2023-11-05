@@ -7,9 +7,9 @@ const Card = ({ teacher }) => {
   return (
     <div className={styles.card}>
       <h2>{teacher.name}</h2>
-      <p className={styles.boldHeading}><b>Email:</b> {teacher.email}</p>
-      <p className={styles.boldHeading}><b>Phone:</b> {teacher.phone}</p>
-      <p className={styles.boldHeading}><b>Research Area:</b> {teacher.researchArea}</p>
+      <p className={styles.boldHeading}><b>Email:</b> {teacher.email?teacher.email:"Not Yet Added"}</p>
+      <p className={styles.boldHeading}><b>Phone:</b> {teacher.phone?teacher.phone:"Not Yet Added"}</p>
+      <p className={styles.boldHeading}><b>Research Area:</b> {teacher.researchArea?teacher.researchArea:"Not Yet Added"}</p>
     </div>
   );
 };

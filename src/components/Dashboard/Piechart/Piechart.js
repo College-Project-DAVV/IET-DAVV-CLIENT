@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./Piechart.module.scss";
 import Chart from "chart.js/auto";
-import { useData } from "../../../DataContext";
+import { useAllUsers } from "../../../DataContext";
 export default function Piechart() {
   const chartRef1 = useRef(null);
   const chartRef2 = useRef(null);
   const chartInstance1 = useRef(null);
   const chartInstance2 = useRef(null);
-  const data = useData();
+  const data = useAllUsers();
   useEffect(() => {
     if (chartInstance1.current) {
       chartInstance1.current.destroy();

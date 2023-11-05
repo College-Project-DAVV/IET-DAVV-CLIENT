@@ -2,7 +2,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { fetchGroupWiseDataFromAPI } from "./fetchGroupwiseData";
 const DataContext = createContext();
-export const useData = () => {
+export const useGroups = () => {
   return useContext(DataContext);
 };
 export const GroupDataProvider = ({ children }) => {

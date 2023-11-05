@@ -1,27 +1,44 @@
 import React from "react";
 import styles from "./Searchbar.module.scss";
 import { useState } from "react";
-import { useData } from "../../DataContext";
+import { useAllUsers } from "../../DataContext";
 import SearchItemCard from "./SearchItemCard";
+import StudentModal from "../Modal/StudentModal/StudentModal";
 export default function Searchbar() {
-  const data = useData();
+  const data = useAllUsers();
   const profileData = JSON.parse(localStorage.getItem("profile"));
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("studInfo");
+  const openModal = (item) => {
+    setSelectedRow(item);
+    setActiveTab("studInfo");
+    setIsModalOpen(true);
+  };
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const handleSearch = (query) => {
     const results = [];
-    for (const category in data["All Students"]["Students"]["BE"]["Branches"]) {
-      for (const item of data["All Students"]["Students"]["BE"]["Branches"][
-        category
-      ]) {
-        if (item.name.toLowerCase().includes(query) ||item.email.toLowerCase().includes(query)||item.rollNumber.toLowerCase().includes(query) || item.department.toLowerCase().includes(query)) {
+    if (data) {
+      for (const item of data) {
+        if (
+          item.name.toLowerCase().includes(query) ||
+          item.email.toLowerCase().includes(query) ||
+          (item.rollNumber && item.rollNumber.toLowerCase().includes(query)) ||
+          (item.department && item.department.toLowerCase().includes(query))
+        ) {
           results.push(item);
         }
       }
     }
     setSearchResults(results);
   };
-
   const handleInputChange = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
@@ -40,16 +57,32 @@ export default function Searchbar() {
           />
         </form>
         <div className={styles.profileContainer}>
-          <img src={profileData&&profileData.result.picture} alt={profileData&& profileData.result.name} title={profileData&& profileData.result.name}/>
+          <img
+            src={profileData && profileData.result.picture}
+            alt={profileData && profileData.result.name}
+            title={profileData && profileData.result.name}
+          />
         </div>
       </div>
-      {searchQuery &&<div className={styles.searchresult}>
-        {searchResults.map((element,index)=>{
-         return(
-          <SearchItemCard item={element} key={index}/>
-         );
-        })}
-      </div>}
+      {searchQuery && (
+        <div className={styles.searchresult}>
+          {searchResults.map((element, index) => {
+            return (
+              <div onClick={() => openModal(element)}>
+                <SearchItemCard item={element} key={index} />
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {isModalOpen && (
+        <StudentModal
+          selectedRow={selectedRow}
+          activeTab={activeTab}
+          handleTabChange={handleTabChange}
+          closeModal={closeModal}
+        />
+      )}
     </div>
   );
 }
