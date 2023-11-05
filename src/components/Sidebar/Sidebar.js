@@ -66,6 +66,12 @@ export default function Sidebar() {
               <p>Teachers Information</p>
             </div>
           </Link>
+          <Link to="/dashboard/groupinfo" style={{ textDecoration: "none" }}>
+            <div className={styles.element}>
+              <img src={teacher} alt="icon" />
+              <p> Group Information</p> 
+            </div>
+          </Link>
         </div>
       </div>
       <div className={styles.logout} onClick={Logout}>

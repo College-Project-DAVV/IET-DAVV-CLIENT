@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./StudentClassModal.module.scss";
+import styles from "./studentClassModal.module.scss";
 import {fetchDataFromAPI} from "./fetchcourses"
 const ClassInfoModal = ({email}) => {
   // const courses = 

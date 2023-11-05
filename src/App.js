@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Teacherinfo from "./components/Teacherinfo/teacherinfo";
 import Dashboard from "./components/Dashboard/Dashboard";
 import StudentList from "./components/studentList/StudentList";
+// import ProfileImage from "./ProfileImage";
 import {
   Routes,
   Route,
@@ -14,6 +15,7 @@ import {
 } from "react-router-dom";
 import { DataProvider } from "./DataContext";
 import { GroupDataProvider } from "./GroupDataContext";
+import GroupData from "./components/GroupData/GroupData";
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
   const navigate = useNavigate();
@@ -54,6 +56,7 @@ const App = () => {
               } />
               <Route path="teacherinfo" element={<Teacherinfo />} />
               <Route path="studentlist" element={<StudentList />} />
+              <Route path="groupinfo" element={<GroupData />} />
             </Route>
           }
         </Routes>

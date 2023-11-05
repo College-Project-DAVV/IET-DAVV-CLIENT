@@ -68,7 +68,7 @@ export default function Searchbar() {
         <div className={styles.searchresult}>
           {searchResults.map((element, index) => {
             return (
-              <div onClick={() => openModal(element)}>
+              <div onClick={() => openModal(element)} key={index}>
                 <SearchItemCard item={element} key={index} />
               </div>
             );

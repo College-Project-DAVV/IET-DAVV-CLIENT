@@ -13,6 +13,7 @@ const StudentList = () => {
     setActiveTab("studInfo");
     setIsModalOpen(true);
   };
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
