@@ -1,0 +1,10 @@
+.modalContent{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    padding-left: 2rem;
+    .row2{
+        display: flex;
+        column-gap: 6rem;
+    }
+}
