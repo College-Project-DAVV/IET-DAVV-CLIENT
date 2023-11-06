@@ -5,6 +5,7 @@ import home from "../../assets/home.svg";
 import student from '../../assets/student.svg'
 import teacher from '../../assets/teacher.svg'
 import logoutimg from "../../assets/logout.svg";
+import groupimg from "../../assets/groupicon.svg"
 import { Link, useNavigate } from "react-router-dom";
 export default function Sidebar() {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ export default function Sidebar() {
           </Link>
           <Link to="/dashboard/groupinfo" style={{ textDecoration: "none" }}>
             <div className={styles.element}>
-              <img src={teacher} alt="icon" />
+              <img src={groupimg} alt="icon" />
               <p> Group Information</p> 
             </div>
           </Link>
