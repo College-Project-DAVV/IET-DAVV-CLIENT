@@ -10,6 +10,7 @@ const ClassInfoModal = ({email}) => {
     fetchDataFromAPI(email).then((courses)=>{
       setCourses(courses);
       setSignal(true);
+      console.log(courses);
     });
   }
   },[email])

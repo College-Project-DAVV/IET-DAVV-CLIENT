@@ -36,30 +36,6 @@ export default function Sidebar() {
               <p>All Students</p>
             </div>
           </Link>
-          {/* <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
-            <div className={styles.element}>
-              <img src={home} alt="icon" />
-              <p>BE Part Time Students</p>
-            </div>
-          </Link> */}
-          <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
-            <div className={styles.element}>
-              <img src={student} alt="icon" />
-              <p>Groupwise Information</p>
-            </div>
-          </Link>
-          {/* <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
-            <div className={styles.element}>
-              <img src={home} alt="icon" />
-              <p>ME Part Time Students</p>
-            </div>
-          </Link>
-          <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
-            <div className={styles.element}>
-              <img src={home} alt="icon" />
-              <p>ME Full Time Students</p>
-            </div>
-          </Link> */}
           <Link to="/dashboard/teacherinfo" style={{ textDecoration: "none" }}>
             <div className={styles.element}>
               <img src={teacher} alt="icon" />

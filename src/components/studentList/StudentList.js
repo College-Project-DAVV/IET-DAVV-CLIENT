@@ -34,7 +34,7 @@ const StudentList = () => {
               <span className={styles.year}>Year</span>
               <span className={styles.rollno}>Roll no</span>
             </div>
-
+        <div className={styles.table}>
             {data &&
               data.map((item, index) => {
                 if(!isNaN(item.email.charAt(0))){
@@ -64,6 +64,7 @@ const StudentList = () => {
               }
               else return null;
             })}
+            </div>
             {isModalOpen && (
           <StudentModal
             selectedRow={selectedRow}

@@ -11,7 +11,6 @@ export const GroupDataProvider = ({ children }) => {
   useEffect(() => {
     if (token) {
       fetchGroupWiseDataFromAPI().then((groupedData)=>{
-        console.log(groupedData);
         setData(groupedData);
       })
     }

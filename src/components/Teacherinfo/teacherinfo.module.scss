@@ -10,7 +10,7 @@
    margin-top: 1rem;
   }
   .teacherGrid::-webkit-scrollbar {
-    width: 13px;
+    width: 10px;
   }
    
   .teacherGrid::-webkit-scrollbar-track {
@@ -22,4 +22,5 @@
   .teacherGrid::-webkit-scrollbar-thumb {
     background-color: #6C74CA;
     border-radius: 10px;
+    height: 100px;
   }
