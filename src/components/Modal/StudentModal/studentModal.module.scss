@@ -28,6 +28,19 @@
                 width: 96px;
                 border-radius: 7rem;
             }
+            .imgOptional{
+                height: 96px;
+                width: 96px;
+                font-size: 2.5rem;
+                font-weight: 600;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #6C74CA;
+                border-radius: 100px;
+                color: #FFf;
+            }
         }
         .heading{
             display: flex;
@@ -63,6 +76,7 @@
             margin : 1rem 0rem;
             align-self: center;
             font-weight: 700;
+            transition: .3s;
             &:hover{
                 background-color: #6C74CA;
                 color: white;

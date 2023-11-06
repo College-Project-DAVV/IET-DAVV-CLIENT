@@ -1,48 +1,48 @@
-// .teacherGrid {
-//   display: grid; 
-//   grid-template-columns: repeat(auto-fill, minmax(calc(50% - 10px), 1fr));
-//   gap: 0px;
-//   justify-content: space-between;
-//   margin: 0 auto;
-//   width: 100%;
-//    max-height: calc(100vh - 100px);
-//    overflow-y:scroll;
-//    margin-top: 1rem;
-//   }
-//   .teacherGrid::-webkit-scrollbar {
-//     width: 10px;
-//   }
-   
-//   .teacherGrid::-webkit-scrollbar-track {
-//     background-color: #FFF;
-//     //border: 1px solid #cccccc;
-//     border-radius: 10px;
-    
-//   }
-//   .teacherGrid::-webkit-scrollbar-thumb {
-//     background-color: #6C74CA;
-//     border-radius: 10px;
-//     height: 100px;
-//   }
-
-
-.teacherGrid{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .card{
-    display: flex;
-    flex-direction: column;
-    border : 1px solid #9d9d9d;
-    border-radius: 2rem;
-    background-color: white;
-    width: 40rem;
-    margin: 2rem 0rem;
-    span{
-      padding: 1rem;
-    }
-    :hover{
-      cursor: pointer;
-    }
+.teacherGrid {
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(calc(50% - 10px), 1fr));
+  gap: 0px;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
+   max-height: calc(100vh - 100px);
+   overflow-y:scroll;
+   margin-top: 1rem;
   }
-}
+  .teacherGrid::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+  .teacherGrid::-webkit-scrollbar-track {
+    background-color: #FFF;
+    //border: 1px solid #cccccc;
+    border-radius: 10px;
+    
+  }
+  .teacherGrid::-webkit-scrollbar-thumb {
+    background-color: #6C74CA;
+    border-radius: 10px;
+    height: 100px;
+  }
+
+
+// .teacherGrid{
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   .card{
+//     display: flex;
+//     flex-direction: column;
+//     border : 1px solid #9d9d9d;
+//     border-radius: 2rem;
+//     background-color: white;
+//     width: 40rem;
+//     margin: 2rem 0rem;
+//     span{
+//       padding: 1rem;
+//     }
+//     :hover{
+//       cursor: pointer;
+//     }
+//   }
+// }

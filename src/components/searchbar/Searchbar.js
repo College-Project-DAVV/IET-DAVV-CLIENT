@@ -9,11 +9,11 @@ export default function Searchbar() {
   const profileData = JSON.parse(localStorage.getItem("profile"));
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [student, setStudent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("studInfo");
   const openModal = (item) => {
-    setSelectedRow(item);
+    setStudent(item);
     setActiveTab("studInfo");
     setIsModalOpen(true);
   };
@@ -77,7 +77,7 @@ export default function Searchbar() {
       )}
       {isModalOpen && (
         <StudentModal
-          selectedRow={selectedRow}
+          student={student}
           activeTab={activeTab}
           handleTabChange={handleTabChange}
           closeModal={closeModal}

@@ -7,6 +7,9 @@ const StudentList = () => {
   const [student, setStudent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("studInfo");
+  const [years,setYears]=useState([]);
+  const [branches,setBranches]=useState([]);
+  const [degree,setDegree]=useState([]);
   const data = useAllUsers();
   const openModal = (item) => {
     setStudent(item);
@@ -23,7 +26,7 @@ const StudentList = () => {
 
   return (
     <>
-      <Filter />
+      <Filter setYears={setYears} setBranches={setBranches} setDegrees={setDegree} years={years} branches={branches} degrees={degree}/>
       {data && (
         <div className={styles.details}>
           <div className={styles.list}>
@@ -38,6 +41,9 @@ const StudentList = () => {
             {data &&
               data.map((item, index) => {
                 if(!isNaN(item.email.charAt(0))){
+                if(years.length!==0 && years.indexOf(24-+item.year)==-1)return null;
+                if(branches.length!==0 && branches.indexOf(item.branch)==-1)return null;
+                if(degree.length!==0 && degree.indexOf(item.degree) == -1)return null;
                 return (
                   <div
                     className={styles.row}

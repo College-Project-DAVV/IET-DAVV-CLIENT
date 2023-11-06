@@ -26,3 +26,22 @@
         }
     }
 }
+.modalContent::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+  .modalContent::-webkit-scrollbar-track {
+    background-color: #FFF;
+    border-radius: 10px;
+    
+  }
+  .modalContent::-webkit-scrollbar-thumb {
+    background-color: #6C74CA;
+    border-radius: 10px;
+    height: 30px;
+  }
+ .notAvailable
+  {
+    padding: 1rem;
+    text-align: center;
+  }

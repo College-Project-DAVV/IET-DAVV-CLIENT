@@ -3,7 +3,6 @@
   align-items: center;
   background-color: #eff1f7;
   padding: 1rem 1rem;
-  position: relative;
   .filterInfo {
     display: flex;
     width: fit-content;
@@ -21,8 +20,6 @@
         padding: 1rem;
         border: 1px solid #9d9d9d;
         border-radius: 10px;
-        position: relative;
-        z-index: 2;
         div {
           margin-right: 2rem;
           margin-bottom: 0.5rem;
