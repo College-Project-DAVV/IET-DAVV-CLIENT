@@ -93,8 +93,8 @@ const Filter = ({
             <img src={filter} alt="filter" />
             <p>Year</p>
           </button>
-          {year &&
-            card(["1st year", "2nd year", "3rd year", "4th year"], "year")}
+          
+            <div style={{display:year?"block":"none"}}>{card(["1st year", "2nd year", "3rd year", "4th year"], "year")}</div>
         </div>
         <div className={styles.filter}>
           <button
@@ -108,8 +108,8 @@ const Filter = ({
             <img src={filter} alt="filter" />
             <p>Branch</p>
           </button>
-          {branch &&
-            card(["CS", "IT", "E&I", "ETC", "Mech", "Civil"], "branch")}
+          
+            <div style={{display:branch?"block":"none"}}>{card(["CS", "IT", "E&I", "ETC", "Mech", "Civil"], "branch")}</div>
         </div>
         <div className={styles.filter}>
           <button
@@ -123,7 +123,7 @@ const Filter = ({
             <img src={filter} alt="filter" />
             <p>Degree</p>
           </button>
-          {degree && card(["BE", "ME", "MSC"], "degree")}
+          <div style={{display:degree?"block":"none"}}>{card(["BE", "ME", "MSC"], "degree")}</div>
         </div>
       </div>
     </div>
