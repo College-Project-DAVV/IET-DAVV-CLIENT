@@ -3,6 +3,8 @@
   justify-content: center;
   max-height: calc(100vh - 100px);
   margin-top: 1rem;
+  z-index: 1;
+  
   .list {
     display: flex;
     flex-direction: column;
