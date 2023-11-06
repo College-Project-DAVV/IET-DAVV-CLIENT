@@ -4,12 +4,12 @@ import { useAllUsers } from "../../DataContext";
 import Filter from "../filter/filter";
 import StudentModal from "../Modal/StudentModal/StudentModal"; 
 const StudentList = () => {
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [student, setStudent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("studInfo");
   const data = useAllUsers();
   const openModal = (item) => {
-    setSelectedRow(item);
+    setStudent(item);
     setActiveTab("studInfo");
     setIsModalOpen(true);
   };
@@ -67,7 +67,7 @@ const StudentList = () => {
             </div>
             {isModalOpen && (
           <StudentModal
-            selectedRow={selectedRow}
+            student={student}
             activeTab={activeTab}
             handleTabChange={handleTabChange}
             closeModal={closeModal}
