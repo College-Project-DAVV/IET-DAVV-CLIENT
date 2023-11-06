@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styles from "./studentModal.module.scss";
+import styles from "./StudentModal.module.scss";
 import StudentInfoModal from "./StudentInfoModal/StudentInfoModal"; 
 import ClassInfoModal from "./StudentClassModal/StudentClassModal"; 
-import img1 from "../../../assets/harshimg.jpg"
 import { fetchDataFromAPI } from "../StudentModal/StudentInfoModal/fetchUserPhoto";
 const StudentModal = ({ student, activeTab, handleTabChange, closeModal }) => {
   const [imgUrl, setUrl] = useState("");
