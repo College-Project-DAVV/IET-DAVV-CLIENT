@@ -1,66 +1,38 @@
-import React from 'react'
-import styles from './groupData.module.scss';
-import email from '../../assets/groupemail.svg';
-import count from '../../assets/groupcount.svg';
+import React from "react";
+import styles from "./groupData.module.scss";
+import { useGroups } from "../../GroupDataContext";
+import GroupCard from "./GroupDataCard"
+import {fetchDataFromAPI} from "./fetchgroupmembers"
+import { useAllUsers } from "../../DataContext";
 const GroupData = () => {
-    const groupDetails = [
-        {
-            groupName : "Faculty Group Elec & Telecom",
-            desc : "Electronics and Telecommunication Faculty Group @ IET DAVV",
-            email : "tcfaculty@ietdavv.edu.in",
-            count : 15,
-        },
-        {
-            groupName : "Faculty Group Computer",
-            desc : "Computer Faculty Group @ IET DAVV",
-            email : "csfaculty@ietdavv.edu.in",
-            count : 18,
-        },
-        {
-            groupName : "1st year Computer",
-            desc : "Computer Student Group @ IET DAVV 1st year",
-            email : "1cs@ietdavv.edu.in",
-            count : 180,
-        },
-        {
-            groupName : "Faculty Group Elec & Telecom",
-            desc : "Electronics and Telecommunication Faculty Group @ IET DAVV",
-            email : "tcfaculty@ietdavv.edu.in",
-            count : 15,
-        },
-        {
-            groupName : "Faculty Group Computer",
-            desc : "Computer Faculty Group @ IET DAVV",
-            email : "csfaculty@ietdavv.edu.in",
-            count : 18,
-        },
-        {
-            groupName : "1st year Computer",
-            desc : "Computer Student Group @ IET DAVV 1st year",
-            email : "1cs@ietdavv.edu.in",
-            count : 180,
-        },
-    ]
+  const groups = useGroups();
+  const allusers = useAllUsers();
+  function findEmail(data, emailToFind) {
+    const emailLookup = {};
+    for (const item of data) {
+      emailLookup[item.email] = item;
+    }
+    // Check if the email exists in the lookup
+    if (emailLookup.hasOwnProperty(emailToFind)) {
+      return emailLookup[emailToFind];
+    }
+    return null; // Email not found
+  }
+  const fetchMembers=(email)=>{
+    fetchDataFromAPI(email).then((members)=>{
+        let x = 0;
+        for(const member of members)
+        {if(findEmail(allusers,member.email))x++}
+        console.log(x);
+    }).catch((err)=>{console.log(err);})
+  }
   return (
-    <div className = {styles.groupdata}>
-            {groupDetails.map((item, index) => (
-                <div className={styles.card} key = {index}>
-                    <span className={styles.groupHead}> {item.groupName} </span>
-                    <span className={styles.groupdesc}> {item.desc} </span>
-                    <div className={styles.email}>
-                        <img src={email} alt ='email'/>
-                        <span className={styles.groupEmail}> {item.email} </span>
-                    </div>
-                    <div className={styles.count}>
-                        <img src={count} alt ='count'/>
-                        <span className={styles.groupCount}> {item.count} </span>
-                    </div>
-                    
-                </div>
-            ))}
-      
+    <div className={styles.groupdata}>
+      {groups && groups.map((group, index) => (
+       <div onClick={()=>{fetchMembers(group.groupEmail)}} key={index}> <GroupCard group={group} /></div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default GroupData
+export default GroupData;

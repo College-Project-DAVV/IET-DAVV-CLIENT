@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./studentModal.module.scss";
+import styles from "./StudentModal.module.scss";
 import StudentInfoModal from "./StudentInfoModal/StudentInfoModal"; 
 import ClassInfoModal from "./StudentClassModal/StudentClassModal"; 
 import img1 from "../../../assets/harshimg.jpg"
@@ -28,7 +28,7 @@ const StudentModal = ({ student, activeTab, handleTabChange, closeModal }) => {
             Classroom Information
           </div>
         </div>
-        {activeTab === "studInfo" ? ( <StudentInfoModal student={student}/>) : (<ClassInfoModal/>)}
+        {activeTab === "studInfo" ? ( <StudentInfoModal student={student}/>) : (<ClassInfoModal email={student.email}/>)}
         <button className={styles.closebtn} onClick={closeModal}> Close </button>
       </div>
     </div>

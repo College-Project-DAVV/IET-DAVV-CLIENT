@@ -1,0 +1,27 @@
+.modalContent{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    padding: 0 2rem;
+    max-height: 500px;
+    overflow: scroll;
+    .row2{
+        display: flex;
+        column-gap: 6rem;
+    }
+    .allCourses{
+        background-color: #FFF;
+        padding: 1rem;
+        border-radius: 15px;
+        transition: .2s;
+    }
+    .allCourses:hover{
+        background-color: #6C74CA;
+        color: #FFF;
+        cursor: pointer;
+        scale: 1.1;
+    }
+}
+.modalContent::-webkit-scrollbar{
+    display: none;
+}

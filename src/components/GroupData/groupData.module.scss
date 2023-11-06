@@ -3,42 +3,65 @@
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     column-gap: 10rem;
     row-gap: 5rem;
-    padding: 2rem;
+    padding:  0 2rem;
+    padding-top: 2rem;
+    height: calc(100vh - 100px);
+    overflow-y: scroll;
+    //margin: 2rem 0rem;
+}
+.groupdata::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+  .groupdata::-webkit-scrollbar-track {
+    background-color: #FFF;
+    //border: 1px solid #cccccc;
+    border-radius: 10px;
     
-    .card{
-        display: flex;
-        flex-direction: column;
-        border-radius: 1.25rem;
-        background: #FFF;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        padding: 1.25rem;
-        color: #333;
-        .groupHead{
-            font-size: 1.75rem;
-            font-weight: 700;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #9A9A9A;
-        }
-        .groupdesc{
-            padding-top: 1rem;
-            font-size: 1rem;
-        }
-        .email{
-            padding: 1.5rem 0rem 0.5rem 0rem;
-            .groupEmail{
-                color : #575757;
-                font-weight: 500;
-                padding-left : 0.7rem;
-            }
-        }
-        .count{
-            display: flex;
-            align-items: center;
-            .groupCount{
-                color : #575757;
-                font-weight: 500;
-                padding-left : 0.7rem;
-            }
+  }
+  .groupdata::-webkit-scrollbar-thumb {
+    background-color: #6C74CA;
+    border-radius: 10px;
+    height: 100px;
+  }
+.card{
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.25rem;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 1.25rem;
+    color: #333;
+    transition: .2s;
+    .groupHead{
+        font-size: 1.75rem;
+        font-weight: 700;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #9A9A9A;
+    }
+    .groupdesc{
+        padding-top: 1rem;
+        font-size: 1rem;
+    }
+    .email{
+        padding: 1.5rem 0rem 0.5rem 0rem;
+        .groupEmail{
+            color : #575757;
+            font-weight: 500;
+            padding-left : 0.7rem;
         }
     }
+    .count{
+        display: flex;
+        align-items: center;
+        .groupCount{
+            color : #575757;
+            font-weight: 500;
+            padding-left : 0.7rem;
+        }
+    }
+}
+.card:hover{
+    scale: 1.05;
+    cursor: pointer;
 }

@@ -1,24 +1,22 @@
 import React from "react";
 import styles from "./cards.module.scss";
-import { useData } from "../../../DataContext";
-const Cards = () => {
-  const data = useData();
+const Cards = ({DegreeWiseData}) => {
   const items = [
     {
       head: "Total Students",
-      num: data ? data["All Students"]["count"] : 0,
+      num: DegreeWiseData[0] + DegreeWiseData[1] + DegreeWiseData[2] + DegreeWiseData[3],
     },
     {
       head: "B.E. Students",
-      num: data ? data["All Students"]["Students"]["BE"]["count"] : 0,
+      num: DegreeWiseData[1],
     },
     {
       head: "M.E. Students",
-      num: 0,
+      num: DegreeWiseData[2],
     },
     {
       head: "M.Sc. Students",
-      num: 0,
+      num: DegreeWiseData[3],
     },
   ];
   return (

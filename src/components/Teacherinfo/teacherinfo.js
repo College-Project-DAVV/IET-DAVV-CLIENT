@@ -1,45 +1,111 @@
-import React from "react";
-import Card from "./card";
+import React, {useState} from "react";
+// import Card from "./card";
 import styles from "./teacherinfo.module.scss";
-
-
-const teacherData = [
-    {
-      name: "Dr. Vaibhav Jain",
-      email: "vjain@ietdavv.edu.in",
-      phone: "91 94250 71648",
-      researchArea: "Data Mining, Information Retrieval, Software Engineering",
-    },
-    {
-      name: "Mr. Arpit Agrawal",
-      email: "aagrawal@ietdavv.edu.in",
-      phone: "91 94240 90249",
-      researchArea: "Data Mining and Algorithms",
-    },
-    {
-        name: "Mr. Arpit Agrawal",
-        email: "aagrawal@ietdavv.edu.in",
-        phone: "91 94240 90249",
-        researchArea: "Data Mining and Algorithms",
-      },
-      {
-        name: "Dr. Vaibhav Jain",
-        email: "vjain@ietdavv.edu.in",
-        phone: "91 94250 71648",
-        researchArea: "Data Mining, Information Retrieval, Software Engineering",
-      },
-      
-      
-      
-  
-  ];
-
+import img1 from "../../assets/vaibhavSir.jpg"
+import img2 from "../../assets/praveenSir.jpeg"
+import img3 from "../../assets/arpitSir.jpg"
+import TeacherModal from "../Modal/TeacherModal/TeacherModal";
+// import { useAllUsers } from "../../DataContext";
 const Teacher = () => {
+  // const data = useAllUsers();
+  const data = [
+    {
+      name : "Dr. Vaibhav Jain",
+      email : "vjain@ietdavv.edu.in",
+      secemail : "vjain@ietdavv.edu.in",
+      phone : "91 94250 71648",
+      reseach : "Data Mining, Information Retrieval, Software Engineering",
+      department : "Computer Engineering",
+      img : img1,
+    },
+    {
+      name : "Mr. Arpit Agrawal",
+      email : "aagrawal@ietdavv.edu.in",
+      secemail : "aagrawal@ietdavv.edu.in",
+      phone : "91 94240 90249",
+      reseach : "Data Mining and Algorithms",
+      department : "Computer Engineering",
+      img : img3
+    },
+    {
+      name : " Mr. Pravin Karma",
+      email : "pkarma@ietdavv.edu.in",
+      secemail : "pkarma@ietdavv.edu.in",
+      phone : "91 98263 13816",
+      reseach : "Computer Networks and its related areas.",
+      department : "Information Technology",
+      img : img2,
+    },
+    {
+      name : "Dr. Vaibhav Jain",
+      email : "vjain@ietdavv.edu.in",
+      secemail : "vjain@ietdavv.edu.in",
+      phone : "91 94250 71648",
+      reseach : "Data Mining, Information Retrieval, Software Engineering",
+      department : "Computer Engineering",
+      img : img1,
+    },
+    {
+      name : "Mr. Arpit Agrawal",
+      email : "aagrawal@ietdavv.edu.in",
+      secemail : "aagrawal@ietdavv.edu.in",
+      phone : "91 94240 90249",
+      reseach : "Data Mining and Algorithms",
+      department : "Computer Engineering",
+      img : img3
+    },
+    {
+      name : " Mr. Pravin Karma",
+      email : "pkarma@ietdavv.edu.in",
+      secemail : "pkarma@ietdavv.edu.in",
+      phone : "91 98263 13816",
+      reseach : "Computer Networks and its related areas.",
+      department : "Information Technology",
+      img : img2,
+    },
+  ]
+  const [teacher, setTeacher] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("teacherInfo");
+  const openModal = (item) => {
+    setTeacher(item);
+    setActiveTab("studInfo");
+    setIsModalOpen(true);
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div className={styles.teacherGrid}>
-      {teacherData.map((teacher, index) => (
-        <Card key={index} teacher={teacher} />
+      {/* {data && data.map((teacher, index) => {
+        if(isNaN(teacher.email.charAt(0)) && teacher.designation==="Faculty"){
+          return(
+        <Card key={index} teacher={teacher} />);
+        }
+        else return(<div key={index} style={{display:"none"}}></div>);
+})} */}
+      {data.map((item, id) =>(
+        <div className={styles.card} key = {id}>
+            <span>{item.name}</span>
+            <span>{item.email}</span>
+            <span>{item.secemail}</span>
+            <span>{item.phone}</span>
+            <span>{item.reseach}</span>
+            <span>{item.department}</span>
+        </div>
       ))}
+      {isModalOpen && (
+          <TeacherModal
+            teacher={teacher}
+            activeTab={activeTab}
+            handleTabChange={handleTabChange}
+            closeModal={closeModal}
+          />
+        )}  
     </div>
   );
 };

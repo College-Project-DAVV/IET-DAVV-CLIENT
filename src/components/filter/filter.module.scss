@@ -1,0 +1,40 @@
+.filterContainer {
+  display: flex;
+   align-items: center;
+  background-color: #eff1f7;
+  padding: 1rem 1rem;
+  overflow: scroll;
+  .filterInfo {
+    display: flex;
+    width: fit-content;
+    margin-left: calc(.2rem  + .11vw);
+    margin-right: calc(.2rem  + .1vw);
+      .filterItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 1.2rem;
+      background-color: #6c74ca;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: #ffffff;
+      max-height: 2.6rem;
+      border: 2px solid #6c74ca;
+      p {
+        font-size: 1rem;
+        margin-right: 0.5rem;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+.filterContainer::-webkit-scrollbar{
+  display: none;
+}
+// @media screen and (max-width: 756px) {
+//   .filterContainer {
+//   //justify-content: center;
+//    //align-items: center;
+//   }
+  
+// }

@@ -12,7 +12,7 @@ const Login = () => {
 
   const redirectToExternalUrl = () => {
     window.location.href =
-      "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/admin.directory.user https://www.googleapis.com/auth/admin.directory.group.readonly https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/classroom.courses.readonly &access_type=offline&redirect_uri=http://localhost:3000&response_type=code&client_id=891307349200-9khqe8cua5pvifevggim1mg6eg6a1cct.apps.googleusercontent.com";
+    "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/admin.directory.user https://www.googleapis.com/auth/admin.directory.group.readonly https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/classroom.courses.readonly &access_type=offline&redirect_uri=http://localhost:3000&response_type=code&client_id=891307349200-9khqe8cua5pvifevggim1mg6eg6a1cct.apps.googleusercontent.com";
   };
   const generateToken = (code) => {
     if (!code) return "NAN";

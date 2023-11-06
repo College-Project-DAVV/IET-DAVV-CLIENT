@@ -1,80 +1,164 @@
-.details{
+.details {
+  display: flex;
+  justify-content: center;
+  max-height: calc(100vh - 100px);
+  margin-top: 1rem;
+  .list {
     display: flex;
+    flex-direction: column;
+    width: calc(100% - 4rem);
+    margin-bottom: 2rem;
+    
+    .head {
+      display: flex;
+      justify-content: space-between;
+      border-radius: 1.9rem 1.9rem 0px 0px;
+      min-width: 768px;
+      padding: 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid #cccccc;
+      background-color: white;
+      .email {
+        width: 30%;
+        padding-left: 2rem;
+      }
+      .name {
+        width: 23%;
+      }
+      .branch {
+        width: 23%;
+      }
+      .year {
+        width: 12%;
+      }
+      .rollno {
+        width: 12%;
+      }
+    }
+    .table{
+      overflow-y: scroll;
+      border-radius: 0rem 0rem 1.9rem 1.9rem;
+      border: 1px solid #cccccc;
+      border-top: 0;
+    .row {
+      display: flex;
+      min-width: 768px;
+      padding: 1rem;
+      justify-content: space-between;
+      border: 1px solid #cccccc;
+      border-left: 0;
+      border-right: 0;
+      font-size: 0.9rem;
+      background-color: white;
+      border-top: 0px;
+      .email {
+        width: 30%;
+      }
+      .name {
+        width: 23%;
+      }
+      .branch {
+        width: 23%;
+      }
+      .year {
+        width: 12%;
+      }
+      .rollno {
+        width: 12%;
+      }
+      &:last-child {
+        border-bottom: 0;
+      }
+      &:hover {
+        background-color: #eff1f7;
+        cursor: pointer;
+      }
+    }
+  }
+  }
+  .table::-webkit-scrollbar {
+    width: 10px;
+  }
+   
+  .table::-webkit-scrollbar-track {
+    background-color: #FFF;
+    border-radius: 10px;
+    
+  }
+  .table::-webkit-scrollbar-thumb {
+    background-color: #6C74CA;
+    border-radius: 10px;
+    height: 100px;
+  }
+  .modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(2px);
     justify-content: center;
-    height: calc(100vh - 100px);
-    margin-top: 1rem;
-    .list{
+    align-items: center;
+    z-index: 1;
+    .data {
+      display: flex;
+      flex-direction: column;
+      background-color: #eff1f7;
+      width: 30rem;
+      row-gap: 1.5rem;
+      border-radius: 1.3rem;
+      border: 1px solid #cccccc;
+      .heading {
+        display: flex;
+        font-weight: 600;
+        color: #3c4389;
+        border-bottom: 2px solid #cccccc;
+        .tab1 {
+          border-right: 2px solid #cccccc;
+        }
+        div {
+          display: flex;
+          justify-content: center;
+          width: 50%;
+          padding: 1rem 0rem;
+          &:hover {
+            cursor: pointer;
+          }
+          &.activeTab {
+            border-bottom: 3px solid #54cefb;
+          }
+        }
+      }
+      .modalContent {
         display: flex;
         flex-direction: column;
-        width: calc(100% - 4rem);
+        row-gap: 1.5rem;
+        padding-left: 2rem;
+        .row2 {
+          display: flex;
+          column-gap: 6rem;
+        }
+      }
+      .closebtn {
+        background-color: white;
+        border: 1px solid #cccccc;
+        padding: 0.8rem;
+        width: 10rem;
         margin-bottom: 2rem;
-        overflow: scroll;
-        .head{
-            display: flex;
-            justify-content: space-between;
-            border-radius: 1.9rem 1.9rem 0px 0px;
-            width: calc(100% - 4rem);
-            min-width: 1048px;     
-            padding: 1rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid #CCCCCC;   
-            background-color: white;       
-            font-family: 'Poppins', sans-serif;
-            .email{
-                width: 28%;
-                padding-left: 2rem;
-            }
-            .name{
-                width: 28%;
-            }
-            .branch{
-                width: 20%;
-            }
-            .year{
-                width: 12%;
-            }
-            .rollno{
-                width: 12%;
-            }
+        align-self: center;
+        font-weight: 700;
+        transition: .4s;
+        &:hover {
+          background-color: #6c74ca;
+          color: white;
+          cursor: pointer;
+          border-radius: 200px;
+          border: 0px;
         }
-        .row{
-            width: calc(100% - 4rem);
-            display: flex;
-            min-width: 1048px;
-            padding: 1rem;
-            justify-content: space-between;
-            border: 1px solid #CCCCCC;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
-            background-color: white;
-            border-top: 0px;
-            .email{
-                width: 28%;
-            }
-            .name{
-                width: 28%;
-            }
-            .branch{
-                width: 20%;
-            }
-            .year{
-                width: 12%;
-            }
-            .rollno{
-                width: 12%;
-            }
-            &:last-child {
-                border-radius: 0px 0px 1.9rem 1.9rem;
-            }
-            &:hover{
-                background-color: #EFF1F7;
-                cursor: pointer;
-            }
-        }
+      }
     }
-    .list::-webkit-scrollbar{
-        display: none;
-    }
-    
+  }
 }

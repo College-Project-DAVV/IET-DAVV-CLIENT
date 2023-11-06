@@ -1,12 +1,12 @@
-export const fetchGroupWiseDataFromAPI=()=> {
-    const apiUrl = `http://localhost:3001/groups`;
+export const fetchDataFromAPI=(groupid)=> {
+    const apiUrl = `http://localhost:3001/groupmembers`;
     const data = localStorage.getItem('FetchUserToken');
     return  fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Set the Content-Type header for JSON data
         },
-        body: JSON.stringify({"token":data}), // Convert the data to a JSON string
+        body: JSON.stringify({"token":data,"groupid":groupid}), // Convert the data to a JSON string
       })
         .then((response) => {
           if (!response.ok) {

@@ -2,7 +2,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { fetchDataFromAPI } from "./FetchAllData";
 const DataContext = createContext();
-export const useData = () => {
+export const useAllUsers = () => {
   return useContext(DataContext);
 };
 export const DataProvider = ({ children }) => {

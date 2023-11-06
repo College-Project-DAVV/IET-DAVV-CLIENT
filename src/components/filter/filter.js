@@ -1,22 +1,22 @@
 import React from "react";
-import "./filter.scss";
-import filter from '../../assets/filter.svg'
+import styles from "./filter.module.scss";
+import filter from "../../assets/filter.svg";
 
 const Filter = () => {
   return (
-    <div className="filter-container">
-      <div className="filter-info">
-        <button className="filter-item">
-        <img src={filter} alt="filter"/>
-          <div className="text-wrapper">Year</div>
+    <div className={styles.filterContainer}>
+      <div className={styles.filterInfo}>
+        <button className={styles.filterItem} style={{marginLeft:"0"}}>
+          <img src={filter} alt="filter" />
+          <p>Year</p>
         </button>
-        <button className="filter-item">
-        <img src={filter} alt="filter"/>
-          <div className="text-wrapper">Branch</div>
+        <button className={styles.filterItem}>
+          <img src={filter} alt="filter" />
+          <p>Branch</p>
         </button>
-        <button className="filter-item">
-        <img src={filter} alt="filter"/>
-          <div className="text-wrapper">Degree</div>
+        <button className={styles.filterItem}>
+          <img src={filter} alt="filter" />
+          <p>Degree</p>
         </button>
       </div>
     </div>

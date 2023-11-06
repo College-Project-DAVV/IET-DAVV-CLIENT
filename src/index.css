@@ -6,6 +6,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
 }
+body::-webkit-scrollbar {
+  width: 13px;
+}
+body::-webkit-scrollbar-track {
+  background-color: #FFF;
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #6C74CA;
+  border-radius: 10px;
+}
 :root {
   font-family: 'Poppins', sans-serif;
 }
@@ -16,9 +27,7 @@ h4,
 h5 {
   font-family: 'Poppins', sans-serif;
 }
-body::-webkit-scrollbar{
-  display: none;
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

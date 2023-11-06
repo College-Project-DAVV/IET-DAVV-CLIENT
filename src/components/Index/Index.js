@@ -19,15 +19,13 @@ export default function Index() {
       <Teacherinfo/>
       </div> */}
       <div className={styles.target}>
+      <Filter/>
       <Dashboard/>
       </div>
       {/* <div className={styles.target}>
       {/* <StudentList/> */}
       {/* <Dashboard/>
       </div> */} 
-      <div className={styles.filter}>
-            <Filter />
-          </div>
       </div>
       
     </div>

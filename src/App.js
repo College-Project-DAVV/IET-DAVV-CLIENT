@@ -19,7 +19,6 @@ import GroupData from "./components/GroupData/GroupData";
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
   const navigate = useNavigate();
-
   return (
     <DataProvider>
       <GroupDataProvider>
@@ -43,8 +42,7 @@ const App = () => {
                     </div>
                     <div className={styles.rightContainer}>
                       <div className={styles.searchbar}>
-                        <Searchbar />
-                        {/* <ProfileImage/> */}
+                        <Searchbar/>
                         <div className={styles.target}>
                           <Outlet />
                         </div>
@@ -54,7 +52,8 @@ const App = () => {
               }
               
             >
-              <Route index element={<Dashboard />} />
+              <Route index element={<Dashboard />
+              } />
               <Route path="teacherinfo" element={<Teacherinfo />} />
               <Route path="studentlist" element={<StudentList />} />
               <Route path="groupinfo" element={<GroupData />} />
