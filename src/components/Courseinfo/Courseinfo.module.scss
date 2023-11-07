@@ -1,0 +1,193 @@
+.courseInfo {
+  background-color: #eff1f7;
+  padding: 0.5rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2rem;
+  justify-content: center;
+}
+
+.circle {
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  margin-right: 1rem;
+  margin-left: 2rem;
+  flex: 1;
+}
+
+.element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -1rem;
+}
+
+.element1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 4rem;
+  margin-top: -1rem;
+}
+
+.circle1 {
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  width: 30px;
+  height: 30px;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.circleInner {
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
+  flex: 1;
+}
+
+.textWrapper {
+  text-align: left;
+
+  h2 {
+    color: #6c74ca;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: -1rem;
+  }
+
+  p {
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 0.8rem;
+  }
+
+  .text {
+    color: #6a6969;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-left: 1rem;
+    
+  }
+}
+
+.group2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 15rem;
+  .button:first-child {
+    margin-right: 24px;
+  }
+  margin-top: auto;
+}
+
+.button {
+  background-color: #ffffff;
+  color: #9a9a9a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 2px solid #9a9a9a;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.4rem 0.4rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+.StudentList{
+  margin-top: 8%;
+}
+@media (max-width: 537px) {
+  .group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .circle,
+  .circleInner {
+    width: 150px;
+    height: 150px;
+    align-items: center;
+    margin-left: 5%;
+    margin-bottom:1%;
+  }
+
+  .element {
+    flex-direction: column;
+    align-items: center;
+    margin-top: -1rem;
+    
+  }
+
+  .element1 {
+    margin-top: -0.2rem;
+    align-items: center;
+    margin-left: 10%;
+  }
+
+  .circle1 {
+    width: 20px;
+    height: 20px;
+
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .textWrapper {
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 0.2rem;
+      margin-left: 25%;
+      }
+    text{
+      margin-bottom: 2%;
+    }
+    
+  }
+  .group2 {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-top: 1rem; 
+    .button {
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width:530px) {
+  .group2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+  }
+  .button {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
