@@ -6,18 +6,21 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Teacherinfo from "./components/Teacherinfo/teacherinfo";
 import Dashboard from "./components/Dashboard/Dashboard";
 import StudentList from "./components/studentList/StudentList";
-// import ProfileImage from "./ProfileImage";
+import ProgressBar from "./components/progressbar/ProgressBar";
+import studentsvg from "./assets/student.svg";
+import { DataProvider } from "./DataContext";
+import { GroupDataProvider } from "./GroupDataContext";
 import {
   Routes,
   Route,
   Outlet,
   useNavigate,
 } from "react-router-dom";
-import { DataProvider } from "./DataContext";
-import { GroupDataProvider } from "./GroupDataContext";
 import GroupData from "./components/GroupData/GroupData";
+import {useGroups} from "./GroupDataContext"
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
+  const groups = useGroups();
   const navigate = useNavigate();
   return (
     <DataProvider>
@@ -44,7 +47,8 @@ const App = () => {
                       <div className={styles.searchbar}>
                         <Searchbar/>
                         <div className={styles.target}>
-                          <Outlet />
+                          {/* {groups ? <Outlet /> :<div className={styles.progressBar}> <ProgressBar url={studentsvg}/></div> } */}
+                          <Outlet/>
                         </div>
                       </div>
                     </div>

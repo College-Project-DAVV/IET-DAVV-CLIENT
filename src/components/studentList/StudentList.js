@@ -3,6 +3,8 @@ import styles from "./StudentList.module.scss";
 import { useAllUsers } from "../../DataContext";
 import Filter from "../filter/filter";
 import StudentModal from "../Modal/StudentModal/StudentModal"; 
+import ProgressBar from "../progressbar/ProgressBar";
+import studentsvg from "../../assets/student.svg"
 const StudentList = () => {
   const [student, setStudent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +29,7 @@ const StudentList = () => {
   return (
     <>
       <Filter setYears={setYears} setBranches={setBranches} setDegrees={setDegree} years={years} branches={branches} degrees={degree}/>
-      {data && (
+      {data? (
         <div className={styles.details}>
           <div className={styles.list}>
             <div className={styles.head}>
@@ -41,9 +43,9 @@ const StudentList = () => {
             {data &&
               data.map((item, index) => {
                 if(!isNaN(item.email.charAt(0))){
-                if(years.length!==0 && years.indexOf(24-+item.year)==-1)return null;
-                if(branches.length!==0 && branches.indexOf(item.branch)==-1)return null;
-                if(degree.length!==0 && degree.indexOf(item.degree) == -1)return null;
+                if(years.length!==0 && years.indexOf(24-+item.year)===-1)return null;
+                if(branches.length!==0 && branches.indexOf(item.branch)===-1)return null;
+                if(degree.length!==0 && degree.indexOf(item.degree) === -1)return null;
                 return (
                   <div
                     className={styles.row}
@@ -81,7 +83,7 @@ const StudentList = () => {
         )}  
           </div>
         </div>
-      )}
+      ) :<div className={styles.progressBar}> <ProgressBar url={studentsvg}/></div>}
     </>
   );
 };

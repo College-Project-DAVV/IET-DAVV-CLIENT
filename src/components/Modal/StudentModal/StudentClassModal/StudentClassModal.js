@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./StudentClassModal.module.scss";
 import {fetchDataFromAPI} from "./fetchcourses";
+import ProgressBar from "../../../progressbar/ProgressBar";
+import coursesvg from "../../../../assets/course.svg"
 const ClassInfoModal = ({email}) => {
   const [courses, setCourses] = useState(null);
   const [state,setState] = useState(false);
@@ -36,7 +38,7 @@ const ClassInfoModal = ({email}) => {
         ))
         }
         </div>
-        : <div className={styles.notAvailable}>Not Enrolled in any course</div>:<div className={styles.notAvailable}>Fetching Courses.....</div>
+        : <div className={styles.notAvailable}>Not Enrolled in any course</div>:<div className={styles.notAvailable}><ProgressBar url={coursesvg}/></div>
         }
       <div/>
       </div>
