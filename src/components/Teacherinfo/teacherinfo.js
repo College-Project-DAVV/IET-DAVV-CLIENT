@@ -14,7 +14,7 @@ const Teacher = () => {
       email : "vjain@ietdavv.edu.in",
       secemail : "vjain@ietdavv.edu.in",
       phone : "91 94250 71648",
-      reseach : "Data Mining, Information Retrieval, Software Engineering",
+      research : "Data Mining, Information Retrieval, Software Engineering",
       department : "Computer Engineering",
       img : img1,
     },
@@ -23,7 +23,7 @@ const Teacher = () => {
       email : "aagrawal@ietdavv.edu.in",
       secemail : "aagrawal@ietdavv.edu.in",
       phone : "91 94240 90249",
-      reseach : "Data Mining and Algorithms",
+      research : "Data Mining and Algorithms",
       department : "Computer Engineering",
       img : img3
     },
@@ -32,7 +32,7 @@ const Teacher = () => {
       email : "pkarma@ietdavv.edu.in",
       secemail : "pkarma@ietdavv.edu.in",
       phone : "91 98263 13816",
-      reseach : "Computer Networks and its related areas.",
+      research : "Computer Networks and its related areas.",
       department : "Information Technology",
       img : img2,
     },
@@ -41,7 +41,7 @@ const Teacher = () => {
       email : "vjain@ietdavv.edu.in",
       secemail : "vjain@ietdavv.edu.in",
       phone : "91 94250 71648",
-      reseach : "Data Mining, Information Retrieval, Software Engineering",
+      research : "Data Mining, Information Retrieval, Software Engineering",
       department : "Computer Engineering",
       img : img1,
     },
@@ -50,7 +50,7 @@ const Teacher = () => {
       email : "aagrawal@ietdavv.edu.in",
       secemail : "aagrawal@ietdavv.edu.in",
       phone : "91 94240 90249",
-      reseach : "Data Mining and Algorithms",
+      research : "Data Mining and Algorithms",
       department : "Computer Engineering",
       img : img3
     },
@@ -59,7 +59,7 @@ const Teacher = () => {
       email : "pkarma@ietdavv.edu.in",
       secemail : "pkarma@ietdavv.edu.in",
       phone : "91 98263 13816",
-      reseach : "Computer Networks and its related areas.",
+      research : "Computer Networks and its related areas.",
       department : "Information Technology",
       img : img2,
     },
@@ -69,7 +69,7 @@ const Teacher = () => {
   const [activeTab, setActiveTab] = useState("teacherInfo");
   const openModal = (item) => {
     setTeacher(item);
-    setActiveTab("studInfo");
+    setActiveTab("teacherInfo");
     setIsModalOpen(true);
   };
 
@@ -80,21 +80,21 @@ const Teacher = () => {
     setIsModalOpen(false);
   };
   return (
-    <div className={styles.teacherGrid}>
+    <div className={styles.teacherGrid} >
       {/* {data && data.map((teacher, index) => {
         if(isNaN(teacher.email.charAt(0)) && teacher.designation==="Faculty"){
           return(
-        <Card key={index} teacher={teacher} />);
+        <Card key={index} teacher={teacher} onClick={() => openModal(teacher)}/>);
         }
         else return(<div key={index} style={{display:"none"}}></div>);
 })} */}
       {data.map((item, id) =>(
-        <div className={styles.card} key = {id}>
+        <div className={styles.card} key = {id} onClick={() => openModal(item)}>
             <span>{item.name}</span>
             <span>{item.email}</span>
             <span>{item.secemail}</span>
             <span>{item.phone}</span>
-            <span>{item.reseach}</span>
+            <span>{item.research}</span>
             <span>{item.department}</span>
         </div>
       ))}

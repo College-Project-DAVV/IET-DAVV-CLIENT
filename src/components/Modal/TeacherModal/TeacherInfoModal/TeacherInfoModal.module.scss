@@ -1,0 +1,52 @@
+.modalContent{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding-top: 1.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    width: 25rem;
+    table.infoTable {
+        border-collapse: collapse;
+        width: 100%;
+        tr {
+          display: flex;
+          padding-top: 1rem;
+          td.category {
+            width: 40%;
+            padding-right: 2rem;
+          }
+          .dot{
+            width: 4%;
+          }
+          td.value{
+            width: 56%;
+          }
+        }
+    }
+    .research{
+        padding-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        color: #333;
+        text-align: center;
+        .category{
+            color: #6C74CA;
+        }
+    }
+    .editbtn{
+        background-color: white;
+        border: 2px solid #6C74CA;
+        border-radius: 0.5rem;
+        padding: 0.3rem;
+        width: 5rem;
+        margin-top : 1.5rem ;
+        align-self: center;
+        font-weight: 700;
+        color: #6C74CA;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        &:hover{
+            cursor: pointer;
+        }
+      }   
+}

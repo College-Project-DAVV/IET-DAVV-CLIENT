@@ -28,7 +28,7 @@ const StudentModal = ({ student, activeTab, handleTabChange, closeModal }) => {
             Classroom Information
           </div>
         </div>
-        {activeTab === "studInfo" ? ( <StudentInfoModal student={student}/>) : (<ClassInfoModal email={student.email}/>)}
+        {activeTab === "studInfo" ? ( <StudentInfoModal student={student}/>) : (<ClassInfoModal />)}
         <button className={styles.closebtn} onClick={closeModal}> Close </button>
       </div>
     </div>

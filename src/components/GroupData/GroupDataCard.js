@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from "./groupData.module.scss";
+import styles from "./GroupDataCard.module.scss";
 import email from "../../assets/groupemail.svg";
 import count from "../../assets/groupcount.svg";
-export default function GroupDataCard({group}) {
+function GroupDataCard({group}) {
   return (
     <div className={styles.card}>
     <span className={styles.groupHead}> {group.groupName} </span>
@@ -26,3 +26,4 @@ export default function GroupDataCard({group}) {
   </div>
   )
 }
+export default GroupDataCard;

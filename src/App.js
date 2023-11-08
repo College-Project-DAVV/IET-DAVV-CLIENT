@@ -16,6 +16,7 @@ import {
 import { DataProvider } from "./DataContext";
 import { GroupDataProvider } from "./GroupDataContext";
 import GroupData from "./components/GroupData/GroupData";
+import GroupMembers from "./components/GroupMembers/GroupMembers";
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ const App = () => {
               <Route path="teacherinfo" element={<Teacherinfo />} />
               <Route path="studentlist" element={<StudentList />} />
               <Route path="groupinfo" element={<GroupData />} />
+              <Route path="groupmembers" element={<GroupMembers />} />
             </Route>
           }
         </Routes>

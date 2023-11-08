@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./studentClassModal.module.scss";
+import ClassCard from "./ClassCard";
 
 const ClassInfoModal = () => {
   const data = [
@@ -24,23 +25,14 @@ const ClassInfoModal = () => {
       Status : "Active"
     },
   ]
+  
   return (
     <div className={styles.modalContent}>
-      {data.map((item,id) =>(
-        <div className={styles.card} key = {id}>
-          <span className={styles.head}>
-            <span>Course Name : </span>
-            <span>{item.name}</span>
-          </span>
-          <span className={styles.teacher}>
-            <span>Teacher Name : </span>
-            <span>{item.teacher}</span>
-          </span>
-          <span className={`${styles.status} ${item.Status === 'Active' ? styles.active : ''}`}>
-            <span>Status : </span>
-            <span>{item.Status}</span>
-          </span>
-        </div>
+      {data.map((classItem, id) => (
+        <ClassCard 
+          key={id} 
+          classItem={classItem} 
+            />
       ))}
     </div>
   );
