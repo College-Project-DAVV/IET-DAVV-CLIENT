@@ -25,6 +25,9 @@
             color: green;
         }
     }
+    .card:hover{
+      cursor: pointer;
+    }
 }
 .modalContent::-webkit-scrollbar {
     width: 10px;

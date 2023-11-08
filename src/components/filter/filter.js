@@ -22,7 +22,7 @@ const Filter = ({
       3: "bei",
       4: "btc",
       5: "bmc",
-      5: "bcv",
+      6: "bcv",
     };
     return (
       <div className={styles.card}>

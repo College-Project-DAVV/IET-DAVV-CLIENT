@@ -6,8 +6,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Teacherinfo from "./components/Teacherinfo/teacherinfo";
 import Dashboard from "./components/Dashboard/Dashboard";
 import StudentList from "./components/studentList/StudentList";
-import ProgressBar from "./components/progressbar/ProgressBar";
-import studentsvg from "./assets/student.svg";
+import Courseinfo from "./components/Courseinfo/Courseinfo";
 import { DataProvider } from "./DataContext";
 import { GroupDataProvider } from "./GroupDataContext";
 import {
@@ -61,6 +60,7 @@ const App = () => {
               <Route path="teacherinfo" element={<Teacherinfo />} />
               <Route path="studentlist" element={<StudentList />} />
               <Route path="groupinfo" element={<GroupData />} />
+              <Route path="courseinfo" element={<Courseinfo/>}/>
             </Route>
           }
         </Routes>

@@ -16,6 +16,7 @@ export default function Searchbar() {
     setStudent(item);
     setActiveTab("studInfo");
     setIsModalOpen(true);
+    setSearchQuery("");
   };
   const handleTabChange = (tab) => {
     setActiveTab(tab);

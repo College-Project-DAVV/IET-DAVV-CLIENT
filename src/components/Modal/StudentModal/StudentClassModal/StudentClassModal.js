@@ -3,13 +3,15 @@ import styles from "./StudentClassModal.module.scss";
 import {fetchDataFromAPI} from "./fetchcourses";
 import ProgressBar from "../../../progressbar/ProgressBar";
 import coursesvg from "../../../../assets/course.svg"
-const ClassInfoModal = ({email}) => {
+import { useNavigate } from "react-router-dom";
+const ClassInfoModal = ({email,closeModal}) => {
   const [courses, setCourses] = useState(null);
   const [state,setState] = useState(false);
+  const navigate = useNavigate();
   useEffect(()=>{
     fetchDataFromAPI(email).then((coursesResponse)=>{
       setCourses(coursesResponse);
-      console.log(coursesResponse);
+     console.log(coursesResponse);
       setState(true);
     }).catch((err)=>{
       console.log(err);
@@ -17,11 +19,16 @@ const ClassInfoModal = ({email}) => {
   },[])
   return (
     <div>
+      
         {state?
           courses.length>0 ? 
           <div className={styles.modalContent}> 
           {courses.map((item,id) =>(
-          <div className={styles.card} key = {id}>
+          <div className={styles.card} key = {id} onClick={()=>{
+            localStorage.setItem("course",JSON.stringify({"id":item.courseId,"name":item.courseName,"teacher":item.teacher,"description":item.courseDescription}));
+            navigate('/dashboard/courseinfo');
+            closeModal();
+          }}>
             <span className={styles.head}>
               <span>Course Name : </span>
               <span>{item.courseName}</span>
@@ -39,8 +46,7 @@ const ClassInfoModal = ({email}) => {
         }
         </div>
         : <div className={styles.notAvailable}>Not Enrolled in any course</div>:<div className={styles.notAvailable}><ProgressBar url={coursesvg}/></div>
-        }
-      <div/>
+      }
       </div>
   );
 };
