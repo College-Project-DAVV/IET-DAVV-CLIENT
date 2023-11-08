@@ -6,17 +6,19 @@ import { fetchDataFromAPI } from "../StudentModal/StudentInfoModal/fetchUserPhot
 const StudentModal = ({ student, activeTab, handleTabChange, closeModal }) => {
   const [imgUrl, setUrl] = useState("");
   useEffect(()=>{
-    fetchDataFromAPI(student.email).then((image)=>{
-      setUrl(image.imageUrl);
-    }).catch((err)=>{
-      console.log(err);
-    })
-  },[])
+    if(student.email){
+      fetchDataFromAPI(student.email).then((image)=>{
+        setUrl(image.imageUrl);
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
+  },[student.email])
   return (
     <div className={styles.modal}>
       <div className={styles.data}>
         <div className={styles.head}>
-          {imgUrl?<img src={`data:image/jpeg;base64,${imgUrl}`} alt ='profile'className={styles.img}/>:<div className={styles.imgOptional}>{student.name[0]}</div>}
+          {imgUrl?<img src={`data:image/jpeg;base64,${imgUrl}`} alt ='profile'className={styles.img}/>:<div className={styles.imgOptional}>{student&&student.name&&student.name[0]}</div>}
           <h2 className={styles.headName}> {student.name}</h2>
         </div>
         <div className={styles.heading}>

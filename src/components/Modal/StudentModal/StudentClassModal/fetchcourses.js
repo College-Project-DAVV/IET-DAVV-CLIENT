@@ -1,4 +1,4 @@
-export const fetchDataFromAPI=async (email)=> {
+export const fetchDataFromAPI=async (email,designation)=> {
     const apiUrl = `http://localhost:3001/courses`;
     const data = localStorage.getItem('FetchUserToken');
     return  fetch(apiUrl, {
@@ -6,7 +6,7 @@ export const fetchDataFromAPI=async (email)=> {
         headers: {
           'Content-Type': 'application/json', // Set the Content-Type header for JSON data
         },
-        body: JSON.stringify({"token":data,"memberid":email}), // Convert the data to a JSON string
+        body: JSON.stringify({"token":data,"memberid":email,"designation":designation}), // Convert the data to a JSON string
       })
         .then((response) => {
           if (!response.ok) {

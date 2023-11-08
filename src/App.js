@@ -13,14 +13,11 @@ import {
   Routes,
   Route,
   Outlet,
-  useNavigate,
 } from "react-router-dom";
 import GroupData from "./components/GroupData/GroupData";
-import {useGroups} from "./GroupDataContext"
+import GroupMembers from "./components/GroupMembers/GroupMembers";
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
-  const groups = useGroups();
-  const navigate = useNavigate();
   return (
     <DataProvider>
       <GroupDataProvider>
@@ -46,7 +43,6 @@ const App = () => {
                       <div className={styles.searchbar}>
                         <Searchbar/>
                         <div className={styles.target}>
-                          {/* {groups ? <Outlet /> :<div className={styles.progressBar}> <ProgressBar url={studentsvg}/></div> } */}
                           <Outlet/>
                         </div>
                       </div>
@@ -61,6 +57,7 @@ const App = () => {
               <Route path="studentlist" element={<StudentList />} />
               <Route path="groupinfo" element={<GroupData />} />
               <Route path="courseinfo" element={<Courseinfo/>}/>
+              <Route path="groupmembers" element={<GroupMembers />} />
             </Route>
           }
         </Routes>

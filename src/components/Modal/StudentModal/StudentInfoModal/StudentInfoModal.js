@@ -25,7 +25,7 @@ const StudentInfoModal = ({ student }) => {
     },
     {
       category : "Mobile no",
-      value : student.phone
+      value : student.phone  || "Not Available"
     },
   ]
   return (

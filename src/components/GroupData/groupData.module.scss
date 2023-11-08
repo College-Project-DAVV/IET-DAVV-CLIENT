@@ -7,7 +7,10 @@
     padding-top: 2rem;
     height: calc(100vh - 100px);
     overflow-y: scroll;
-    //margin: 2rem 0rem;
+
+    .link{
+      text-decoration: none;
+    }
 }
 .groupdata::-webkit-scrollbar {
     width: 10px;
@@ -24,44 +27,3 @@
     border-radius: 10px;
     height: 100px;
   }
-.card{
-    display: flex;
-    flex-direction: column;
-    border-radius: 1.25rem;
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 1.25rem;
-    color: #333;
-    transition: .2s;
-    .groupHead{
-        font-size: 1.75rem;
-        font-weight: 700;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #9A9A9A;
-    }
-    .groupdesc{
-        padding-top: 1rem;
-        font-size: 1rem;
-    }
-    .email{
-        padding: 1.5rem 0rem 0.5rem 0rem;
-        .groupEmail{
-            color : #575757;
-            font-weight: 500;
-            padding-left : 0.7rem;
-        }
-    }
-    .count{
-        display: flex;
-        align-items: center;
-        .groupCount{
-            color : #575757;
-            font-weight: 500;
-            padding-left : 0.7rem;
-        }
-    }
-}
-.card:hover{
-    scale: 1.05;
-    cursor: pointer;
-}

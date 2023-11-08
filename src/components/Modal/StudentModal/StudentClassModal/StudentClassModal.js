@@ -9,14 +9,13 @@ const ClassInfoModal = ({email,closeModal}) => {
   const [state,setState] = useState(false);
   const navigate = useNavigate();
   useEffect(()=>{
-    fetchDataFromAPI(email).then((coursesResponse)=>{
+    fetchDataFromAPI(email,"student").then((coursesResponse)=>{
       setCourses(coursesResponse);
-     console.log(coursesResponse);
       setState(true);
     }).catch((err)=>{
       console.log(err);
     })
-  },[])
+  },[email])
   return (
     <div>
       
