@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./StudentList.module.scss";
 import { useAllUsers } from "../../DataContext";
 import Filter from "../filter/filter";
 import StudentModal from "../Modal/StudentModal/StudentModal"; 
 import ProgressBar from "../progressbar/ProgressBar";
 import studentsvg from "../../assets/student.svg"
-const StudentList = () => {
+const StudentList = ({type,members}) => {
   const [student, setStudent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("studInfo");
   const [years,setYears]=useState([]);
   const [branches,setBranches]=useState([]);
   const [degree,setDegree]=useState([]);
-  const data = useAllUsers();
+  const data2 = useAllUsers();
+  const [data,setData] = useState(null);
+  function findEmail(data, emailToFind) {
+    const emailLookup = {};
+    for (const item of data) {
+      emailLookup[item.email] = item;
+    }
+    if (emailLookup.hasOwnProperty(emailToFind)) {
+      return emailLookup[emailToFind];
+    }
+    return null; // Email not found
+  }
   const openModal = (item) => {
     setStudent(item);
     setActiveTab("studInfo");
@@ -25,7 +36,23 @@ const StudentList = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+useEffect(()=>{
+  if(type!=="courseMembers"){
+    setData(data2);
+  }
+  else{
+    const dataS=[];
+    if(members && members.length>0){
+      for(const member of members){
+        const temp = findEmail(data2, member.email);
+        if(temp!==null)dataS.push(temp);
+        else dataS.push(member);
+      }
+    }
+    console.log(dataS);
+    setData(dataS);
+  }
+},[type,members,data2])
   return (
     <>
       <Filter setYears={setYears} setBranches={setBranches} setDegrees={setDegree} years={years} branches={branches} degrees={degree}/>

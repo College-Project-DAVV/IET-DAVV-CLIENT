@@ -12,7 +12,7 @@ const GroupMembers = () => {
   const allusers = useAllUsers();
   const storedGroupInfo = localStorage.getItem('groupInfo');
   const parsedGroupInfo = JSON.parse(storedGroupInfo);
-  const [groupInfo, setGroupInfo] = useState(parsedGroupInfo);
+  const groupInfo =parsedGroupInfo;
   const [members, setMembers] = useState(null);
 
   function findEmail(data, emailToFind) {

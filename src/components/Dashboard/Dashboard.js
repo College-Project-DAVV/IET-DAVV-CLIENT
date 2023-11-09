@@ -2,12 +2,10 @@ import React from "react";
 import Cards from "./Cards/Cards";
 import Bargraph from "./Bargraph/Bargraph";
 import styles from "./Dashboard.module.scss";
-import Piechart from "./Piechart/Piechart";
+// import Piechart from "./Piechart/Piechart";
 import { useGroups } from "../../GroupDataContext";
-import { useAllUsers } from "../../DataContext";
 const Dashboard = () => {
   const groups = useGroups();
-  const users = useAllUsers();
   const ExtractingDataDegreeWise = [0, 0, 0, 0];
   const ExtractDataBranchWise = [0, 0, 0, 0, 0, 0];
   const ExtractDataYearDegreeWise = {

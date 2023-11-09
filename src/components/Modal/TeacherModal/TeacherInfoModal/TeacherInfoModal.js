@@ -38,7 +38,7 @@ const TeacherInfoModal = ({teacher}) => {
           </table>
           <div className={styles.research}>
             <div className={styles.category}>Research Area</div>
-            <div>Data Mining, Information Retrieval, Software Engineering</div>
+            <div>Not Available</div>
           </div>
           <button className={styles.editbtn}> Edit </button>
         </div>

@@ -13,7 +13,7 @@ const StudentInfoModal = ({ student }) => {
     },
     {
       category : "Secondary Email",
-      value : student.email || "Not Available"
+      value : student.secondaryEmail || "Not Available"
     },
     {
       category : "Branch",

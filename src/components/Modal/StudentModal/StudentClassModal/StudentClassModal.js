@@ -32,10 +32,10 @@ const ClassInfoModal = ({email,closeModal}) => {
               <span>Course Name : </span>
               <span>{item.courseName}</span>
             </span>
-            <span className={styles.teacher}>
+            {/* <span className={styles.teacher}>
               <span>Teacher Name : </span>
               <span>{item.teacher}</span>
-            </span>
+            </span> */}
             <span className={`${styles.status} ${item.courseStatus === 'ACTIVE' ? styles.active : ''}`}>
               <span>Status : </span>
               <span>{item.courseStatus}</span>
