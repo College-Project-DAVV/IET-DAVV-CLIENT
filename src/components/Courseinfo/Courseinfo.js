@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import styles from "./Courseinfo.module.scss";
 import pencil from '../../assets/pencil.svg';
 import member from '../../assets/members.svg';
@@ -9,21 +9,26 @@ import coursesvg from "../../assets/course.svg"
 const Courseinfo = () => {
   const [course, setCourse] = useState(null);
   const[status,setStatus] = useState(true);
-  const courseD = JSON.parse(localStorage.getItem("course"));
+  const [courseD,setCourseD] = useState(JSON.parse(localStorage.getItem("course")));
   const[img,setImg]=useState(null);
-  useEffect(()=>{
-    if(courseD.id){
-      setStatus(true);
-      fetchDataFromAPI(courseD.id).then((courseDetails)=>{
+  const fetchData = useCallback(() => {
+    fetchDataFromAPI(courseD.id)
+      .then((courseDetails) => {
         setCourse(courseDetails);
-        console.log(courseDetails);
-        setImg("https://"+courseDetails.faculty[0].facultyPhoto);
+        setImg("https://" + courseDetails.faculty[0].facultyPhoto);
         setStatus(false);
-      }).catch((err)=>{
-        console.log(err);
       })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [courseD.id]);
+  
+  useEffect(() => {
+    if (courseD.id) {
+      setStatus(true);
+      fetchData();
     }
-  },[courseD.id]);
+  }, [fetchData]);
   return (
     <div>
    {
@@ -58,7 +63,7 @@ const Courseinfo = () => {
         <a className={styles.button} href={course && course.marks.length>0 && course.marks[0].url} target="_blank" rel="noreferrer">MARKS</a>
       </div>
       <div className={styles.StudentList}>
-    <StudentList type="courseMembers" members={course.members}/>
+    {<StudentList type="courseMembers" members={course.members}/>}
     </div>
     </div>)
    }

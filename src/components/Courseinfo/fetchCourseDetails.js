@@ -1,7 +1,6 @@
 export const fetchDataFromAPI=(courseId)=> {
     const apiUrl = `http://localhost:3001/coursedetails`;
     const data = localStorage.getItem('FetchUserToken');
-    console.log(courseId);
     return  fetch(apiUrl, {
         method: 'POST',
         headers: {

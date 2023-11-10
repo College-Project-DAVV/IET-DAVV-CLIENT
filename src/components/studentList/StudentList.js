@@ -42,21 +42,20 @@ useEffect(()=>{
   }
   else{
     const dataS=[];
-    if(members && members.length>0){
+    if(members && members.length>0 && data2){
       for(const member of members){
         const temp = findEmail(data2, member.email);
         if(temp!==null)dataS.push(temp);
         else dataS.push(member);
       }
     }
-    console.log(dataS);
     setData(dataS);
   }
 },[type,members,data2])
   return (
     <>
       <Filter setYears={setYears} setBranches={setBranches} setDegrees={setDegree} years={years} branches={branches} degrees={degree}/>
-      {data? (
+      {data ? (
         <div className={styles.details}>
           <div className={styles.list}>
             <div className={styles.head}>

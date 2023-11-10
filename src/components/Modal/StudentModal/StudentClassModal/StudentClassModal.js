@@ -24,8 +24,10 @@ const ClassInfoModal = ({email,closeModal}) => {
           <div className={styles.modalContent}> 
           {courses.map((item,id) =>(
           <div className={styles.card} key = {id} onClick={()=>{
+            localStorage.removeItem("course");
             localStorage.setItem("course",JSON.stringify({"id":item.courseId,"name":item.courseName,"teacher":item.teacher,"description":item.courseDescription}));
             navigate('/dashboard/courseinfo');
+            console.log(item.courseId);
             closeModal();
           }}>
             <span className={styles.head}>

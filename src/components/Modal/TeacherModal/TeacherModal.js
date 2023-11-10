@@ -35,5 +35,4 @@ const TeacherModal = ({ teacher, activeTab, handleTabChange, closeModal }) => {
     </div>
   )
 }
-
 export default TeacherModal

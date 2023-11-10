@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAllUsers } from "../../DataContext";
 import SearchItemCard from "./SearchItemCard";
 import StudentModal from "../Modal/StudentModal/StudentModal";
+import TeacherModal from "../Modal/TeacherModal/TeacherModal";
 export default function Searchbar() {
   const data = useAllUsers();
   const profileData = JSON.parse(localStorage.getItem("profile"));
@@ -12,6 +13,7 @@ export default function Searchbar() {
   const [student, setStudent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("studInfo");
+  const [activeTab2, setActiveTab2] = useState("teacherInfo");
   const openModal = (item) => {
     setStudent(item);
     setActiveTab("studInfo");
@@ -20,6 +22,9 @@ export default function Searchbar() {
   };
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+  };
+  const handleTabChange2 = (tab) => {
+    setActiveTab2(tab);
   };
   const closeModal = () => {
     setIsModalOpen(false);
@@ -77,13 +82,18 @@ export default function Searchbar() {
         </div>
       )}
       {isModalOpen && (
-        <StudentModal
-          student={student}
-          activeTab={activeTab}
-          handleTabChange={handleTabChange}
-          closeModal={closeModal}
-        />
-      )}
+          student.designation==="Student"?<StudentModal
+            student={student}
+            activeTab={activeTab}
+            handleTabChange={handleTabChange}
+            closeModal={closeModal}
+          /> : <TeacherModal
+          teacher={student}
+            activeTab={activeTab2}
+            handleTabChange={handleTabChange2}
+            closeModal={closeModal}
+           />
+        )}  
     </div>
   );
 }
