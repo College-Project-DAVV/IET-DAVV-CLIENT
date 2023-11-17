@@ -12,12 +12,11 @@ const Login = () => {
 
   const redirectToExternalUrl = () => {
     window.location.href =
-      "https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/admin.directory.user https://www.googleapis.com/auth/admin.directory.group.readonly https://www.googleapis.com/auth/admin.directory.group.member https://www.googleapis.com/auth/admin.directory.group.member.readonly https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/classroom.courseworkmaterials https://www.googleapis.com/auth/classroom.topics.readonly https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters https://www.googleapis.com/auth/classroom.coursework.students.readonly https://www.googleapis.com/auth/classroom.coursework.students https://www.googleapis.com/auth/classroom.profile.emails https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.courses&access_type=offline&redirect_uri=https://655748d7fd6f810008ad786a--iet-davv-student-aggregation-system.netlify.app&response_type=code&client_id=697918735313-nd2tikionjqd2rtsastcke349h0u2al9.apps.googleusercontent.com";
+      "htts://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/admin.directory.user https://www.googleapis.com/auth/admin.directory.group.readonly https://www.googleapis.com/auth/admin.directory.group.member https://www.googleapis.com/auth/admin.directory.group.member.readonly https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/classroom.courseworkmaterials https://www.googleapis.com/auth/classroom.topics.readonly https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/classroom.courses.readonly https://www.googleapis.com/auth/classroom.rosters https://www.googleapis.com/auth/classroom.coursework.students.readonly https://www.googleapis.com/auth/classroom.coursework.students https://www.googleapis.com/auth/classroom.profile.emails https://www.googleapis.com/auth/classroom.profile.photos https://www.googleapis.com/auth/classroom.courses&access_type=offline&redirect_uri=https://655748d7fd6f810008ad786a--iet-davv-student-aggregation-system.netlify.app&response_type=code&client_id=697918735313-nd2tikionjqd2rtsastcke349h0u2al9.apps.googleusercontent.com";
   };
   const generateToken = (code) => {
     if (!code) return "NAN";
     const url = `https://iet-davv-server.vercel.app/authorization?code=${code}`;
-
     fetch(url, {
       method: "POST",
       headers: {
