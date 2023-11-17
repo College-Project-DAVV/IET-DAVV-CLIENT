@@ -9,7 +9,7 @@ import coursesvg from "../../assets/course.svg"
 const Courseinfo = () => {
   const [course, setCourse] = useState(null);
   const[status,setStatus] = useState(true);
-  const [courseD,setCourseD] = useState(JSON.parse(localStorage.getItem("course")));
+  const courseD=JSON.parse(localStorage.getItem("course"));
   const[img,setImg]=useState(null);
   const fetchData = useCallback(() => {
     fetchDataFromAPI(courseD.id)
@@ -28,7 +28,7 @@ const Courseinfo = () => {
       setStatus(true);
       fetchData();
     }
-  }, [fetchData]);
+  }, [fetchData,courseD.id]);
   return (
     <div>
    {

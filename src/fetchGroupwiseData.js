@@ -1,5 +1,6 @@
 export const fetchGroupWiseDataFromAPI=()=> {
-    const apiUrl = `https://iet-davv-server.vercel.app/groups`;
+  const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
+    const apiUrl = `${SERVER_BASE_URL}/groups`;
     const data = localStorage.getItem('FetchUserToken');
     return  fetch(apiUrl, {
         method: 'POST',
