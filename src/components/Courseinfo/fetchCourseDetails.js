@@ -1,5 +1,5 @@
 export const fetchDataFromAPI=(courseId)=> {
-    const apiUrl = `http://localhost:3001/coursedetails`;
+    const apiUrl = `https://iet-davv-server.vercel.app/coursedetails`;
     const data = localStorage.getItem('FetchUserToken');
     return  fetch(apiUrl, {
         method: 'POST',

@@ -1,5 +1,5 @@
 export const fetchDataFromAPI=(memberid)=> {
-    const apiUrl = `http://localhost:3001/userphoto`;
+    const apiUrl = `https://iet-davv-server.vercel.app/userphoto`;
     const data = localStorage.getItem('FetchUserToken');
     return  fetch(apiUrl, {
         method: 'POST',

@@ -1,5 +1,5 @@
 export const fetchDataFromAPI=()=> {
-    const apiUrl = `http://localhost:3001/fetchuser`;
+    const apiUrl = `https://iet-davv-server.vercel.app/fetchuser`;
     const data = localStorage.getItem('FetchUserToken');
     return  fetch(apiUrl, {
         method: 'POST',
