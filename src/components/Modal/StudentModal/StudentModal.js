@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./StudentModal.module.scss";
+import styles from "./studentModal.module.scss";
 import StudentInfoModal from "./StudentInfoModal/StudentInfoModal"; 
 import ClassInfoModal from "./StudentClassModal/StudentClassModal"; 
 import { fetchDataFromAPI } from "../StudentModal/StudentInfoModal/fetchUserPhoto";

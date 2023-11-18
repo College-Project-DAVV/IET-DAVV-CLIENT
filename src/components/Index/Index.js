@@ -7,40 +7,12 @@ import StudentList from '../studentList/StudentList'
 import Dashboard from '../Dashboard/Dashboard'
 import Filter from '../filter/filter'
 import Courseinfo from '../Courseinfo/Courseinfo'
-
+import Landing from '../Landing/Landing'
 
 export default function Index() {
   return (
-    <div className={styles.indexContainer}>
-      <div className={styles.leftContainer}>
-      <Sidebar/>
-      </div>
-      <div className={styles.rightContainer}>
-      <div className={styles.searchbar}>
-      <Searchbar/>
-      {/* <div className={styles.indexContainer}>
-      <Teacherinfo/>
-      </div> */}
-      <div className={styles.target}>
-      <Filter/>
-      <Dashboard/>
-      </div>
-      {/* <div className={styles.target}>
-      {/* <StudentList/> */}
-      {/* <Dashboard/>
-      </div> */} 
-      <StudentList/>
-      </div>
-      {/* <div className={styles.filter}>
-            <Filter />
-          </div> */}
-          <div className={styles.Courseinfo}>
-            <Courseinfo />
+    <div className={styles.Landing}>
+            <Landing />
           </div>
-          
-      </div>
-      
-    </div>
-  </div>
   )
 }

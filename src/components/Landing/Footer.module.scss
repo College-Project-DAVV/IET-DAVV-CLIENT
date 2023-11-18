@@ -1,0 +1,140 @@
+.footer {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background-color: #333333;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    section {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .links {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 0.2rem;
+
+      }
+        .head {
+        width: auto;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-self: center;
+        color: white;
+        margin-left: 3rem;
+        
+        h1{
+            font-size: 20px;
+        }
+        
+      }
+      .head1 {
+        width: auto;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        color: white;
+        align-self: center;
+        margin-left:0.1rem;
+        
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 20px;
+          line-height: auto;
+        }
+      
+        p {
+          font-size: 14px;
+          font-weight: 300;
+          line-height: auto;
+          margin: 0.5rem 0;
+          cursor: pointer;
+          color: white;
+        }
+      }
+      
+      
+    
+    .connect{
+        color: white;
+        font-size: 22px;
+        font-weight: 200;
+        line-height: 18px;
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+        margin-right: 4rem;
+        p{
+            margin-bottom: 0.4rem;
+            color: white;
+          }
+        .social {
+            display: flex;
+            flex-direction: row;
+          
+            
+          
+            .img {
+              width: 80%;
+            }
+          }  
+    }
+      
+      
+      .bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 0.2rem;
+        margin-left: 3rem;
+        
+        .contribute {
+            font-size: 18px;
+            line-height: 15px;
+            color: white;
+            font-weight: 400;
+            align-self: center;
+          }
+          .name {
+            display: flex;
+            flex-direction: row;
+            margin-right: 2rem;
+            p {
+              font-size: 12px;
+              line-height: 15px;
+              margin-left: 2rem;
+              color: white;
+              font-weight: 600;
+            }
+          }
+      }
+      
+     
+      
+      .hr {
+        background-color: #5F5D5D; 
+        height: 1px; 
+        border: none; 
+        width: 100%;
+        margin: 0; 
+      }
+      
+      
+      
+  }
+  
+  
+  
+  
+  

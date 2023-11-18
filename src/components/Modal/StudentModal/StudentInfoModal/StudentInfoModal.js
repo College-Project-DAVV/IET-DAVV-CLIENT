@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./StudentInfoModal.module.scss";
+import styles from "./studentInfoModal.module.scss";
 const StudentInfoModal = ({ student }) => {
  
   const data = [
