@@ -1,0 +1,70 @@
+.filterContainer {
+  display: flex;
+  align-items: center;
+  background-color: #eff1f7;
+  padding: 1rem 1rem;
+  .filterInfo {
+    display: flex;
+    width: fit-content;
+    margin-left: calc(0.2rem + 0.11vw);
+    margin-right: calc(0.2rem + 0.1vw);
+    .filter {
+      display: flex;
+      flex-direction: column;
+      .card {
+        margin-top: 0.1rem;
+        display: flex;
+        position: absolute;
+        background-color: #eff1f7;
+        width: fit-content;
+        flex-direction: column;
+        padding: 1rem;
+        border: 1px solid #9d9d9d;
+        border-radius: 10px;
+        div {
+          margin-right: 2rem;
+          margin-bottom: 0.5rem;
+          font-size: 1rem;
+          label {
+            margin-left: 0.5rem;
+          }
+          input {
+            height: 18px;
+            width: 18px;
+            border: 1px solid #9d9d9d;
+            background-color: #ffffff;
+          }
+        }
+      }
+      .filterItem {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        justify-content: center;
+        margin-left: 1.2rem;
+        background-color: #6c74ca;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #ffffff;
+        max-height: 2.6rem;
+        border: 2px solid #6c74ca;
+        p {
+          font-size: 1rem;
+          margin-right: 0.5rem;
+          margin-left: 10px;
+        }
+      }
+      .filterItem:hover{
+        cursor: pointer;
+      }
+    }
+  }
+}
+.filterContainer::-webkit-scrollbar {
+  display: none;
+}
+// @media screen and (max-width: 756px) {
+//   .filterContainer {
+//   //justify-content: center;
+//    //align-items: center;
+//   }

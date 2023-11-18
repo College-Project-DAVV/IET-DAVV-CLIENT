@@ -1,6 +1,37 @@
-.main{
+.login{
     background-color: #EFF1F7;
+   height: 100vh;
+   width: 100vw;
+   display:flex;
+   justify-content: center;
+   align-items: center;
+}
+.indexContainer{
+    display: flex;
     height: 100vh;
     width: 100vw;
-   margin: 0px;
+    background-color: #EFF1F7;
+    
+    .leftContainer{
+        width: 285px;
+        
+        @media screen and (max-width : 768px) {
+            display: none;
+        }
+    }
+    .rightContainer{
+        background-color: #EFF1F7;
+        width: calc(100% - 285px);
+        max-height: 100vh;
+        overflow: scroll;
+        @media screen and (max-width:768px) {
+            width: 100%;
+        }
+    }
+    .rightContainer::-webkit-scrollbar{
+        display: none;
+    }
 }
+.progressBar{
+    height:100vh;
+  }

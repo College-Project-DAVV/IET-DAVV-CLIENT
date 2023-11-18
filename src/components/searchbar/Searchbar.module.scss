@@ -3,13 +3,14 @@
     padding: .6rem 3.5rem .6rem 3.5rem;
     display: flex;
     justify-content:space-between;
+    border-left: 1px solid #c1c1c1;
     .searchForm {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 40%;
         .searchInput {
-            box-shadow: 0px 1px #0000002c;
+        box-shadow: 0px 1px #0000002c;
           width: 100%;
           min-width: 100px;
           background-color: #EFF1F7;
@@ -22,7 +23,6 @@
           background-image: url("../../assets/search.svg");
           background-repeat: no-repeat;
           background-position: 10px center;
-          color: #9A9A9A
         }
     }
     .profileContainer{
@@ -33,8 +33,12 @@
             height: 56px;
             width: 56px;
             border: none;
-           // border-radius: 1000px;
-           // border: 1px solid black;
+            border-radius: 100px;
         }
     }
+}
+.searchresult{
+    background-color: #FFFFFF;
+    padding: 1rem;
+    border-top: 1px solid #c1c1c1;
 }
