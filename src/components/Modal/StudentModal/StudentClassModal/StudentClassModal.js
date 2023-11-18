@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./studentClassModal.module.scss";
+import styles from "./StudentClassModal.module.scss";
 import {fetchDataFromAPI} from "./fetchcourses";
 import ProgressBar from "../../../progressbar/ProgressBar";
 import coursesvg from "../../../../assets/course.svg"

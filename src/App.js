@@ -32,7 +32,7 @@ const App = () => {
               path="/"
               element={
                 <div className={styles.login}>
-                  <Login/>
+                  <Landing/>
                 </div>
               }
             />
