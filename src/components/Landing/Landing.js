@@ -29,9 +29,9 @@ const Landing = () => {
           <p className={styles.welcome}>WELCOME TO</p>
           <p className={styles.iet}>INFORMATION MAINTENANCE SYSTEM</p>
         </div>
-        <p className={styles.content}>Lorem ipsum dolor sit amet. Est sint illo quo dolor consectetur qui sequi aspernatur ab doloremque nihil est aperiam eius! Et officiis maxime nam iure saepe sit rerum odit aut dolore rerum ab voluptatem fugit et corrupti
-        Lorem ipsum dolor sit amet. Est sint illo quo dolor consectetur qui sequi aspernatur ab doloremque nihil est aperiam eius! Et officiis maxime nam iure saepe sit rerum odit aut dolore rerum ab voluptatem fugit et corrupti Lorem ipsum
-        </p>
+        <p className={styles.content}>
+  Discover a dynamic educational hub where students, teachers, and groups seamlessly converge. Our user-centric platform offers a unified experience, providing easy access to comprehensive information. Effortlessly navigate class schedules, group activities, and individual details through an intuitive interface. The robust search option ensures quick and efficient retrieval of any user's information. Empower your academic journey with a connected, informed, and collaborative environment. Welcome to a digital realm that enhances communication and accessibility, fostering a vibrant educational community for both students and teachers alike.
+  </p>
       <div className={styles.feature}>
         <button className={styles.button} onClick={()=>{changeSlide(0)}}>DASHBOARD</button>
         <button className={styles.button} onClick={()=>{changeSlide(1)}}>STUDENT INFO</button>
