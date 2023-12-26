@@ -1,0 +1,108 @@
+.container {
+  max-height: 100vh;
+  width: 100vw;
+  .rectangle {
+    background: #6c74ca;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0rem;
+    .left {
+      display: flex;
+      align-items: center;
+      margin-left: 3rem;
+      img {
+        margin-right: 1rem;
+        height: calc(4vw + 2rem);
+        width: auto;
+       
+      }
+      p {
+        
+        color: #fff;
+        font-size: calc(1vw + 10px);
+        font-weight: 600;
+        @media screen and (max-width:576px) {
+          display: none;
+        }
+      }
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      margin-right: 3rem;
+      margin-left: 1rem;
+    }
+  }
+  .mid {
+    display: flex;
+    padding: 0rem 3rem;
+    justify-content: space-evenly;
+    padding: calc(2rem + 6vw) 0rem;
+    align-items: center;
+    @media screen and (max-width : 940px) {
+      flex-direction: column;
+    }
+    .left {
+      width: 50%;
+      @media screen and (max-width : 940px) {
+       width: 100%;
+       order: 2;
+       
+      }
+    }
+    .right {
+      width: 38%;
+      margin-right: 2rem;
+      @media screen and (max-width : 940px) {
+        width: 80%;
+        order: 1;
+        margin-right: 0rem;
+        margin-top: 2rem;
+       }
+      .top {
+        letter-spacing: 0.1rem;
+        .iet {
+          color: #6b6b6b;
+          font-size: 1.5rem;
+          font-weight: 800;
+          margin: 0rem;
+        }
+        .welcome {
+          color: #6b6b6b;
+          font-size: 1.8rem;
+          font-weight: 800;
+          margin: 0rem;
+        }
+      }
+      .content {
+        color: #6a6a6a;
+        font-size: 0.8rem;
+        font-weight: 400;
+        margin-top: 2rem;
+      }
+      .feature {
+        display: flex;
+        flex-wrap: wrap;
+        align-self: flex-start;
+        .button {
+          flex: 1;
+          border-radius: 5px;
+          border: 2px solid #6c74ca;
+          background: #fff;
+          color: #6c74ca;
+          padding: 0.4rem 1rem;
+          font-size: 14px;
+          font-weight: 500;
+          white-space: nowrap;
+          margin: 1rem;
+          
+        }
+        .button:hover{
+          background-color: #6c74ca;
+          cursor: pointer;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

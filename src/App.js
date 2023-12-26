@@ -12,6 +12,7 @@ import { DataProvider } from "./DataContext";
 import { GroupDataProvider } from "./GroupDataContext";
 import GroupData from "./components/GroupData/GroupData";
 import GroupMembers from "./components/GroupMembers/GroupMembers";
+import Landing from "./components/Landing/Landing";
 
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
@@ -31,7 +32,7 @@ const App = () => {
               path="/"
               element={
                 <div className={styles.login}>
-                  <Login />
+                  <Landing/>
                 </div>
               }
             />

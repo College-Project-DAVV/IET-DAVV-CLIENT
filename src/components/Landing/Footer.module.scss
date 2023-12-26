@@ -1,0 +1,104 @@
+.footer {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #333333;
+  .links {
+    display: flex;
+    @media screen and (max-width:656px) {
+      flex-direction: column;
+    }
+   .link{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid #5F5D5D;
+    border-right: 0px;
+    flex-wrap: wrap;
+    @media screen and (max-width:656px) {
+      width: 100%;
+      border: 0px;
+      border-bottom: 1px solid #5F5D5D;
+    }
+    .head {
+      color: white;
+      p {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.96px;
+      }
+    }
+    .head1 {
+      color: white;
+      margin: 0rem 1rem;
+     
+      a {
+        color: white;
+        text-decoration: none;
+        p {
+          color: white;
+          text-decoration: none;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+    .connect {
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 200;
+      width: 40%;
+      border: 1px solid #5F5D5D;
+      justify-content: space-evenly;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      @media screen and (max-width:656px) {
+        width: 100%;
+        border: 0px;
+        border-bottom: 1px solid #5F5D5D;
+      }
+      .social {
+        display: flex;
+        flex-direction: row;
+        img {
+          width: calc(1.2vw + 2rem);
+          height: auto;
+          margin: .4rem;
+        }
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    //padding: 0rem 5rem;
+    .contribute {
+      font-size: 1.1rem;
+      color: white;
+      font-weight: 400;
+    }
+    .name {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      a {
+        font-size: .8rem;
+        margin-left: 2rem;
+        color: white;
+        font-weight: 600;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      a:hover{
+        cursor: pointer;
+      }
+    }
+  }
+}
