@@ -38,7 +38,7 @@ const Landing = () => {
         <button className={styles.button} onClick={()=>{changeSlide(2)}}>TEACHER INFO</button>
         <button className={styles.button} onClick={()=>{changeSlide(3)}}>GROUP INFO</button>
         <button className={styles.button} onClick={()=>{changeSlide(4)}}>COURSE INFO</button>
-        <button className={styles.button} onClick={()=>{changeSlide(5)}}>Serach</button>
+        <button className={styles.button} onClick={()=>{changeSlide(5)}}>SEARCH</button>
       </div>
       </div>
     </div>

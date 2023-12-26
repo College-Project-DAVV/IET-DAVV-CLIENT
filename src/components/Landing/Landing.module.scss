@@ -19,7 +19,7 @@
       p {
         
         color: #fff;
-        font-size: calc(1vw + 10px);
+        font-size: calc(.7vw + 10px);
         font-weight: 600;
         @media screen and (max-width:576px) {
           display: none;
@@ -62,13 +62,13 @@
       .top {
         letter-spacing: 0.1rem;
         .iet {
-          color: #6b6b6b;
+          color: #2c2c2c;
           font-size: 1.5rem;
           font-weight: 800;
           margin: 0rem;
         }
         .welcome {
-          color: #6b6b6b;
+          color: #2c2c2c;
           font-size: 1.8rem;
           font-weight: 800;
           margin: 0rem;

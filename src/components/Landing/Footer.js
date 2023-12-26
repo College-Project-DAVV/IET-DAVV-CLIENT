@@ -28,10 +28,10 @@ const Footer = () => {
         <div className={styles.connect}>
           <p>CONNECT WITH US</p>
           <div className={styles.social}>
-            <img src={Facebook} alt="Facebook" />
-            <img src={Instagram} alt="Facebook" />
-            <img src={Linkedin} alt="Facebook" />
-            <img src={Youtube} alt="Facebook" />
+           <a href="https://www.facebook.com/davv.iet" target="_blank">  <img src={Facebook} alt="Facebook" /></a>
+           <a href="https://twitter.com/ietdavv" target="_blank">  <img src={Instagram} alt="Twitter" /></a>
+            <a href="https://www.linkedin.com/school/ietdavv/" target="_blank"><img src={Linkedin} alt="Linkedin" /></a>
+            <a href="https://www.youtube.com/channel/UCPFbqGEevBQ7-VT-Z_VWu1w/featured" target="_blank"> <img src={Youtube} alt="Facebook" /></a>
           </div>
         </div>
       </div>
