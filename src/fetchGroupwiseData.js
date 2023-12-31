@@ -1,4 +1,6 @@
+
 export const fetchGroupWiseDataFromAPI=()=> {
+  
   const SERVER_BASE_URL = process.env.REACT_APP_SERVER_BASE_URL;
     const apiUrl = `${SERVER_BASE_URL}/groups`;
     const data = localStorage.getItem('FetchUserToken');
@@ -11,6 +13,7 @@ export const fetchGroupWiseDataFromAPI=()=> {
       })
         .then((response) => {
           if (!response.ok) {
+          
             throw new Error(`Network response was not ok: ${response.status}`);
           }
           return response.json(); // Parse the response as JSON
