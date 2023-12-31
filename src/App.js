@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate, Routes, Route, Outlet } from "react-router-dom";
 import styles from "./index.module.scss";
-import Login from "./components/Login/Login";
 import Searchbar from "./components/searchbar/Searchbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Teacherinfo from "./components/Teacherinfo/teacherinfo";
@@ -13,12 +12,10 @@ import { GroupDataProvider } from "./GroupDataContext";
 import GroupData from "./components/GroupData/GroupData";
 import GroupMembers from "./components/GroupMembers/GroupMembers";
 import Landing from "./components/Landing/Landing";
-
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
   const navigate  = useNavigate();
   useEffect(()=>{
-    console.log("hell");
     if(token){
       navigate("/dashboard");
     }
@@ -41,18 +38,19 @@ const App = () => {
                 path="/dashboard"
                 element={
                   <div className={styles.indexContainer}>
-                    <div className={styles.leftContainer}>
-                      <Sidebar />
-                    </div>
-                    <div className={styles.rightContainer}>
-                      <div className={styles.searchbar}>
-                        <Searchbar />
-                        <div className={styles.target}>
-                          <Outlet />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                 <div className={styles.leftContainer}>
+                   <Sidebar />
+                 </div>
+                 <div className={styles.rightContainer}>
+                   <div className={styles.searchbar}>
+                     <Searchbar />
+                     <div className={styles.target}>
+                       <Outlet />
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               
                 }
               >
                 <Route index element={<Dashboard />} />

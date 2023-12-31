@@ -6,6 +6,7 @@ import styles from "./Dashboard.module.scss";
 import { useGroups } from "../../GroupDataContext";
 const Dashboard = () => {
   const groups = useGroups();
+
   const ExtractingDataDegreeWise = [0, 0, 0, 0];
   const ExtractDataBranchWise = [0, 0, 0, 0, 0, 0];
   const ExtractDataYearDegreeWise = {

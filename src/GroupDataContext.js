@@ -8,9 +8,11 @@ export const useGroups = () => {
 export const GroupDataProvider = ({ children }) => {
   const [groupdata, setData] = useState(null);
   const token = localStorage.getItem("FetchUserToken");
+
   useEffect(() => {
     if (token) {
-      fetchGroupWiseDataFromAPI().then((groupedData)=>{
+      fetchGroupWiseDataFromAPI().then((groupedData) => {
+
         setData(groupedData);
       })
     }
