@@ -7,6 +7,7 @@ import teacher from '../../assets/teacher.svg'
 import logoutimg from "../../assets/logout.svg";
 import groupimg from "../../assets/groupicon.svg"
 import { Link, useNavigate } from "react-router-dom";
+import { MdMarkEmailRead } from "react-icons/md";
 export default function Sidebar() {
   const navigate = useNavigate();
   const Logout = () => {
@@ -47,6 +48,14 @@ export default function Sidebar() {
             <div className={styles.element}>
               <img src={groupimg} alt="icon" />
               <p> Group Information</p> 
+            </div>
+          </Link>
+           <Link to="/dashboard/noticeSync" style={{ textDecoration: "none" }}>
+            <div className={styles.element}>
+              <span className={styles.iconMD}>
+              <MdMarkEmailRead/>
+              </span>
+              <p> NoticeSync</p> 
             </div>
           </Link>
         </div>

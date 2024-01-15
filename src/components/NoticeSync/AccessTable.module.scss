@@ -1,0 +1,70 @@
+.groupMembers{
+    display: flex;
+    flex-direction: column;
+    .head{
+        display: flex;
+        color: #6A6A6A;
+        align-items: center;
+        padding: 2rem;
+        .icon{
+            width: 160px;
+            height: 160px;
+            background-color:  #6C74CA;
+            border-radius:50% ;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            color: #fff;
+            
+            .msg{
+            font-size: 2rem;
+            }
+        }
+        .details{
+            padding-left: 2rem;
+            .heading{
+                color: #6C74CA;
+                font-size: 2rem;
+                font-weight: 700;
+                margin : 0;
+                line-break: anywhere;
+                padding-bottom: 0.5rem;
+            }
+            .row2{
+                display: flex;
+                column-gap: 3rem;
+                align-items: center;
+                padding-bottom: 0.5rem;
+                font-weight: 500;
+                .email{
+                    display: flex;
+                    column-gap: 0.7rem;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    .redirect{
+                    background-color: #fff;
+                    border-radius: 50%;
+                    height: 30px;
+                    width: 30px;
+                    color: #6C74CA;display: flex;
+align-items: center;
+                    justify-content: center;
+                    }
+                }
+            }
+            p{
+                margin: 0;
+            }
+            .desc{
+                line-break: anywhere;
+                font-weight: 400;
+            }
+        }
+    }
+}
+.progressBar{
+    height: 40vh;
+  }
+  
