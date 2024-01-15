@@ -17,6 +17,7 @@
     padding-right: 1.52rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #c1c1c1;
+    
     img {
       height: 5rem;
       width: 5rem;
@@ -42,8 +43,15 @@
       .element {
         display: flex;
         padding: 0.1rem 0rem;
-        img {
+        img,span {
           padding-left: 1.5rem;
+        }
+        .iconMD{
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333333;
         }
         p {
           text-decoration: none;
