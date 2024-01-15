@@ -1,28 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./GroupMembersList.module.scss";
 import AccessTable from "./AccessTable";
 import { BiSolidPencil } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
-const mem=[ {
-    name: "vjain",
-    email: "vjain@ietdavv.edu.in",
-    role: "Admin",
-    access: true,
-  },
-  {
-    name: "john_doe",
-    email: "john.doe@example.com",
-    role: "Student",
-    access: true,
-  },
-  {
-    name: "mary_smith",
-    email: "mary.smith@example.com",
-    role: "Faculty",
-    access: false,
-  },
-]
+import { MdCancel } from "react-icons/md";
+import { addMember, deleteUser, getUsers, updateUserData } from "../../actions/user";
+
 const NoticeSync = () => {
 
     const[ showForm, setShowForm]= useState(false) ;
@@ -30,12 +14,18 @@ const NoticeSync = () => {
   const [name, setName] = useState("");
   const [allowed, setAllowed] = useState(false);
   const [role, setRole] = useState("Student");
-    const [members, setMembers] = useState(mem);
+    const [members, setMembers] = useState([]);
+    const user= JSON.parse(localStorage.getItem("profile"))?.result?.email
+    
 
 
     const handleCancel=()=>{
     
-    setShowForm(!showForm);
+     setName("")
+    setEmail("")
+    setAllowed(false)
+    setRole("")
+    setShowForm(false) ;
     
     }
 
@@ -60,16 +50,30 @@ const NoticeSync = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [selectedItem,setSelectedItem]= useState({}) ;
 
-  const handleEdit = (index) => {
+  const handleEdit = (index,id) => {
+  
+    console.log(index, " member: ",members[index])
     setEditIndex(index);
     setSelectedItem(members[index]);
   };
 
-  const handleDelete = (index) => {
-    const updatedMembers = [...members];
-    updatedMembers.splice(index, 1);
-    setMembers(updatedMembers);
-  };
+const handleDelete = async (index, id) => {
+
+  const userConfirmed = window.confirm("Are you sure you want to delete this user?");
+
+  if (userConfirmed) {
+    try {
+      const res = await deleteUser(id);
+      const updatedMembers = [...members];
+      updatedMembers.splice(index, 1);
+      setMembers(updatedMembers);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  }
+  
+  return ;
+};
 
   const handleSaveEdit = (index, editedData) => {
    
@@ -80,7 +84,7 @@ const NoticeSync = () => {
   };
   
   const checkAll=(editedData)=>{
-   if (!editedData.name || !editedData.email || !editedData.role || editedData.access === undefined) {
+   if (!editedData.name || !editedData.email || !editedData.role || editedData.allowed === undefined) {
     alert('Please fill in all required fields');
     return false; // Do not proceed with saving if validation fails
   }
@@ -90,42 +94,50 @@ const NoticeSync = () => {
   
   
     const handleAddMember = async () => {
-    // const newMember = {
-    //   email,
-    //   name,
-    //   allowed,
-    //   role,
-    //   refreshToken: '',
-    //   count: '',
-    // };
-    // const res = "ha" ;
-    // // await addMember(newMember);
 
-    // if (res) {
-    //  setEmail("");
-    //   setName("");
-    //   setAllowed(false);
-    //   setRole("Student");
-    // }
-    
     let newIte={
+    count:0,
   name:name,
   email:email,
-  role:role,
-  access:allowed 
+  role:role?role:"Student",
+  allowed:allowed 
   } ;
+  
+  console.log("newww",newIte)
     if(checkAll(newIte))
-    {setMembers([...members,newIte])
+    {
+    setMembers([...members,newIte])
+    
+    const res= await addMember(newIte) ;
+    
+   
     alert("Member Added")
+    setName("")
+    setEmail("")
+    setAllowed(false)
+    setRole("")
     setShowForm(false) ;
     }
 
   };
 
+  useEffect(()=>{
+  
+  const getAllUsers= async()=>{
+  
+  const noticeSyncUsers= await getUsers() ;
+    
+    const users=noticeSyncUsers?.filter((item)=>item.email!==user)
+    setMembers(users)
+  
+  } 
+  getAllUsers() ;
+  
+  },[])
   
   return (
   <>
-  <AccessTable/>
+  <AccessTable numberOfUsers={ members?members.length:0}/>
   <div className={styles.addPerson}>
   
   <div className={styles.icon} onClick={()=>setShowForm(!showForm)}>
@@ -180,13 +192,13 @@ const NoticeSync = () => {
               {editIndex === index ? (
                 <select
                 required
-                  value={item.role}
+                  value={(item && item.role)?item.role:"Student"}
                   onChange={(e) =>
                     handleSaveEdit(index, { ...item, role: e.target.value })
                   }
                 >
                   <option value="Student">STUDENT</option>
-                  <option value="Faculty">FACULTY</option>
+                  <option value="faculty">FACULTY</option>
                   <option value="Admin">ADMIN</option>
                   <option value="Others">Others</option>
                 </select>
@@ -198,27 +210,29 @@ const NoticeSync = () => {
               {editIndex === index ? (
                 <select
                  required
-                  value={item.access.toString()}
+                  value={item.allowed}
                   onChange={(e) =>
                     handleSaveEdit(index, {
                       ...item,
-                      access: e.target.value === 'true',
+                      allowed: e.target.value === 'true',
                     })
                   }
                 >
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                  <option value="true">true</option>
+                  <option value="false">false</option>
                 </select>
               ) : (
-                item.access ? 'Yes' : 'No'
+                item.allowed ? 'true' : 'false'
               )}
             </span>
             <span className={styles.edit}>
               {editIndex === index ? (
-                <button onClick={() =>{ 
+              <>
+                <button onClick={async() =>{ 
                 if(checkAll(item))
                 {
-                handleSaveEdit(index, item) ; 
+                handleSaveEdit(index, item) ;
+                const res= await updateUserData(item)
                 setEditIndex(null)
                 setSelectedItem({});
                 }
@@ -228,11 +242,12 @@ const NoticeSync = () => {
                 setEditIndex(null)
                 }
                 }}
-                style={{ padding:5}}
+                style={{ padding:5, background:'#6C74CA', border:0, color:"#fff", borderRadius:5}}
                 >
-                  
                   Save
                 </button>
+                <MdCancel style={{ padding:5,}} className={styles.delete} onClick={()=>setEditIndex(null)} />
+                </>
               ) : (
                 <BiSolidPencil
                   className={styles.edit}
@@ -241,7 +256,7 @@ const NoticeSync = () => {
               )}
               <MdDelete
                 className={styles.delete}
-                onClick={() => handleDelete(index)}
+                onClick={() => handleDelete(index,item.id)}
               />
             </span>
           </div>
@@ -251,9 +266,6 @@ const NoticeSync = () => {
           
         </div>
       )}
-      <div style={{ display: 'flex', alignItems:'center',justifyContent:'right', marginRight:40}}>
-      <button className={styles.btn} onClick={handleSave}>Save</button>
-      </div>
       
       
      {showForm  &&<div className={styles.form}>
@@ -266,10 +278,7 @@ const NoticeSync = () => {
               type="text"
               label="User Name"
                placeholder="User Name"
-              variant="outlined"
-              size="small"
               value={name}
-              fullWidth
               required
               onChange={(e) => setName(e.target.value)}
             />
@@ -282,9 +291,6 @@ const NoticeSync = () => {
               type="email"
               value={email}
               label="User Email"
-              variant="outlined"
-              size="small"
-              fullWidth
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -292,19 +298,13 @@ const NoticeSync = () => {
             <span>Role</span>
             <select
               label="Role"
-              select
-              fullWidth
               required
-              variant="outlined"
-              size="small"
               value={role}
               onChange={handleRoleChange}
-              SelectProps={{
-                native: true,
-              }}
+            
             >
               <option value="Student">STUDENT</option>
-              <option value="Faculty">FACULTY</option>
+              <option value="faculty">FACULTY</option>
               <option value="Admin">ADMIN</option>
               <option value="Others">Others</option>
             </select>
@@ -314,16 +314,11 @@ const NoticeSync = () => {
             <span>Access</span>
             <select
               label="Access"
-              select
-              fullWidth
               required
-              variant="outlined"
               size="small"
-              value={allowed.toString()} // Convert boolean to string
+              value={allowed}
               onChange={handleAllowedChange}
-              SelectProps={{
-                native: true,
-              }}
+            
             >
               <option value="true">Yes</option>
               <option value="false">No</option>

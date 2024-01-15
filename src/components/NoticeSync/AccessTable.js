@@ -16,7 +16,7 @@ const groupInfo={
     groupDescription: 'Manage the access of members of NoticeSync.',
     icon: 'path/to/group1-icon.png'} ;
 
-const AccessTable = () => {
+const AccessTable = ({numberOfUsers}) => {
   return <div>
    <div className={styles.groupMembers}>
       <div className={styles.head}>
@@ -38,7 +38,7 @@ const AccessTable = () => {
                 </div>
               <div className={styles.email}>
                 <img src={count} alt='email' className={styles.emailimg}/>
-                <div>{groupInfo.groupMembersCount}</div>
+                <div>{numberOfUsers}</div>
               </div>
             </div>
             <p className={styles.desc}>{groupInfo.groupDescription || 'Description Not Available'} </p>

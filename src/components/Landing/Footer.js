@@ -22,6 +22,9 @@ const Footer = () => {
             <a href="https://student.ietdavv.edu.in" target="_blank" rel="noreferrer">
               <p>STUDENT PORTAL</p>
             </a>
+            <a href="https://notices.ietdavv.edu.in" target="_blank" rel="noreferrer">
+              <p>NoticeSync</p>
+            </a>
           </div>
         </div>
 
@@ -32,6 +35,7 @@ const Footer = () => {
            <a href="https://twitter.com/ietdavv" target="_blank">  <img src={Instagram} alt="Twitter" /></a>
             <a href="https://www.linkedin.com/school/ietdavv/" target="_blank"><img src={Linkedin} alt="Linkedin" /></a>
             <a href="https://www.youtube.com/channel/UCPFbqGEevBQ7-VT-Z_VWu1w/featured" target="_blank"> <img src={Youtube} alt="Facebook" /></a>
+            
           </div>
         </div>
       </div>
@@ -43,6 +47,7 @@ const Footer = () => {
           <a href="https://www.linkedin.com/in/harsh-farkiya-410523201/" target="_blank" rel="noreferrer">Harsh Farkiya</a>
           <a href="https://www.linkedin.com/in/smrutii/" target="_blank" rel="noreferrer">Smruti Lakhamapurkar</a>
           <a href="https://www.linkedin.com/in/suhani-verma/" target="_blank" rel="noreferrer">Suhani Verma</a>
+          <a href="https://www.linkedin.com/in/deepakkpatil/" target="_blank" rel="noreferrer">Deepak Patil</a>
         </div>
       </div>
     </div>
