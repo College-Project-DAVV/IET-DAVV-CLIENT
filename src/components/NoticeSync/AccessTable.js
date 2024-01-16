@@ -38,7 +38,7 @@ const AccessTable = ({numberOfUsers}) => {
                 </div>
               <div className={styles.email}>
                 <img src={count} alt='email' className={styles.emailimg}/>
-                <div>{numberOfUsers}</div>
+                <div>{numberOfUsers+1}</div>
               </div>
             </div>
             <p className={styles.desc}>{groupInfo.groupDescription || 'Description Not Available'} </p>
