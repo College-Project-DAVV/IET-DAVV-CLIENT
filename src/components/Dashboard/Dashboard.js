@@ -4,6 +4,7 @@ import Bargraph from "./Bargraph/Bargraph";
 import styles from "./Dashboard.module.scss";
 // import Piechart from "./Piechart/Piechart";
 import { useGroups } from "../../GroupDataContext";
+
 const Dashboard = () => {
   const groups = useGroups();
 

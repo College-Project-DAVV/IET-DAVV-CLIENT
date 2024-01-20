@@ -7,6 +7,7 @@ padding: 5px;
 height: 50px;
 width: 50px;
 background-color: #fff;
+top:80% ;
 left: 90%;
 display: flex;
 align-items: center;
@@ -26,6 +27,7 @@ margin: 10px;
 }
 &:hover{
 
+height: auto;
 color: #FFF;
 background-color: #6C74CA;
 left: 80%;

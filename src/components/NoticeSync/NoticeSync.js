@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import styles from "./GroupMembersList.module.scss";
+import styles from "./NoticeSync.module.scss";
 import AccessTable from "./AccessTable";
 import { BiSolidPencil } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { addMember, deleteUser, getUsers, updateUserData } from "../../actions/user";
+import { FaLock } from "react-icons/fa";
 
 const NoticeSync = () => {
 
@@ -52,7 +53,6 @@ const NoticeSync = () => {
 
   const handleEdit = (index,id) => {
   
-    console.log(index, " member: ",members[index])
     setEditIndex(index);
     setSelectedItem(members[index]);
   };
@@ -103,7 +103,6 @@ const handleDelete = async (index, id) => {
   allowed:allowed 
   } ;
   
-  console.log("newww",newIte)
     if(checkAll(newIte))
     {
     setMembers([...members,newIte])
@@ -336,7 +335,7 @@ const handleDelete = async (index, id) => {
            <button
           className={styles.btn}
           onClick={handleCancel}
-          style={{background:"red"}}
+          style={{background:"#ea4335"}}
         >
           Cancel
         </button>

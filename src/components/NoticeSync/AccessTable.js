@@ -33,7 +33,7 @@ const AccessTable = ({numberOfUsers}) => {
                 <div className={styles.redirect}>
                 <FiExternalLink />
                 </div>
-                <p><a href={`https://${groupInfo.groupEmail}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>{groupInfo.groupEmail}</a></p>
+                <p><a href={`https://${groupInfo.groupEmail}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color:"gray", fontWeight:'inherit' }}>{groupInfo.groupEmail}</a></p>
 
                 </div>
               <div className={styles.email}>
