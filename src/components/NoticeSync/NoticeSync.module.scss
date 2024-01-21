@@ -100,12 +100,18 @@ width: 310px;
           flex-direction: column;
           width: calc(100% - 4rem);
           margin-bottom: 2rem;
+          overflow: scroll;
+     &::-webkit-scrollbar{
+            
+            display: none;
+            }
           .head {
             display: flex;
             justify-content: space-between;
             border-radius: 1.9rem 1.9rem 0px 0px;
             min-width: 768px;
-            padding: 1rem;
+            padding: 1rem 0rem;
+            padding-left: 1.2rem;
             font-size: 0.9rem;
             font-weight: 600;
             border: 1px solid #cccccc;
@@ -119,17 +125,15 @@ width: 310px;
             .phone {
               width: 20%;
             }
+         
           }
           .table{
-            overflow-y: scroll;
+            
             border-radius: 0rem 0rem 1.9rem 1.9rem;
             border: 1px solid #cccccc;
             border-top: 0;
-             &::-webkit-scrollbar{
             
-            display: none;
-            width: 1rem;
-            }
+        
           .row {
             display: flex;
             min-width: 768px;
@@ -166,7 +170,7 @@ width: 310px;
               .delete{
                margin-left: 10px;
                &:hover{
-               color: red ;
+               color: #ea4335 ;
                }
               }
               .edit{
