@@ -58,6 +58,14 @@ export default function Sidebar() {
               <p> NoticeSync</p> 
             </div>
           </Link>
+           <Link to="/dashboard/addldapuser" style={{ textDecoration: "none" }}>
+            <div className={styles.element}>
+              <span className={styles.iconMD}>
+              <MdMarkEmailRead/>
+              </span>
+              <p> LDAP User</p> 
+            </div>
+          </Link>
         </div>
       </div>
       <div className={styles.logout} onClick={Logout}>

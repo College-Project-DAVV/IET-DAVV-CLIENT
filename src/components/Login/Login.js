@@ -24,7 +24,7 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    })
+    })  
       .then((response) => response.json())
       .then((data) => {
         // Handle the response data here
