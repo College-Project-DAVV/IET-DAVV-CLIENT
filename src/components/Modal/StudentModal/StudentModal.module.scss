@@ -14,41 +14,71 @@
         display: flex;
         flex-direction: column;
         background-color: #EFF1F7;
-        width: 30rem;
-        row-gap: 1.5rem;
+        width: 32rem;
         border-radius: 1.3rem;
         border: 1px solid #cccccc;
+        .head{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 1rem;
+            color: #333;
+            .img{
+                height: 96px;
+                width: 96px;
+                border-radius: 7rem;
+            }
+            .imgOptional{
+                height: 96px;
+                width: 96px;
+                font-size: 2.5rem;
+                font-weight: 600;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #6C74CA;
+                border-radius: 100px;
+                color: #FFf;
+            }
+        }
         .heading{
             display: flex;
+            justify-content: center;
             font-weight: 600;
-            color: #3C4389;
-            border-bottom: 2px solid #cccccc;
-            .tab1{
-                border-right: 2px solid #cccccc;
-            }
+            color: #9d9d9d;
             div{
                 display: flex;
                 justify-content: center;
-                width: 50%;
-                padding: 1rem 0rem;
+                align-items: center;
+                padding: 0.75rem 0.5rem;
+                border: 2px solid #cccccc;
+                border-radius: 0.7rem;
+                width: fit-content;
+                height: 1rem;
+                margin: 0rem 1rem;
+                background-color: white;
                 &:hover{
                     cursor: pointer;
                 }
                 &.activeTab {
-                    border-bottom: 3px solid #54cefb;
+                    border: 2px solid #6C74CA;
+                    color: #6C74CA;
                 }
             }
         }
         .closebtn{
             background-color: white;
             border: 1px solid #cccccc;
+            border-radius: 0.5rem;
             padding: 0.8rem;
             width: 10rem;
-            margin-bottom : 2rem;
+            margin : 1rem 0rem;
             align-self: center;
             font-weight: 700;
+            transition: .3s;
             &:hover{
-                background-color: #3C4389;
+                background-color: #6C74CA;
                 color: white;
                 cursor: pointer;
             }
