@@ -14,6 +14,7 @@ import GroupMembers from "./components/GroupMembers/GroupMembers";
 import Landing from "./components/Landing/Landing";
 import NoticeSync from "./components/NoticeSync/NoticeSync";
 import AccessTable from "./components/NoticeSync/AccessTable";
+import AddUser from "./components/LDAP/AddUser";
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
   const navigate  = useNavigate();
@@ -62,6 +63,7 @@ const App = () => {
                 <Route path="courseinfo" element={<Courseinfo />} />
                 <Route path="groupmembers" element={<GroupMembers />} />
                 <Route path="noticeSync" element={<NoticeSync />} />
+                <Route path="addldapuser" element={<AddUser />} />
               </Route>
             )}
           </Routes>

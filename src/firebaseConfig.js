@@ -24,5 +24,4 @@ const studentPortal = initializeApp(firebaseConfig2,'studentPortal');
 
 const db = getFirestore(noticeSync);
 const db2= getFirestore(studentPortal) ;
-
 export {db,db2}
