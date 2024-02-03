@@ -1,7 +1,21 @@
 import React, { useState } from 'react'
 import styles from "./ldap.module.scss"
+import eyeopen from '../../assets/eyeopen.svg'
+import eyeclose from '../../assets/eyeclose.svg'
 export default function AddUser() {
+    const [showpassword, setshowpassword]=useState(false);
     const [data,setData] = useState({"title":"","first_name":"","last_name":"","email":"","username":"","password":"","group":"","designation":"","branch":"","phoneno":""});
+    function Toggle() {
+        var temp = document.getElementById("typepass");
+        if (temp.type === "password") {
+            temp.type = "text";
+            setshowpassword(true);
+        }
+        else {
+            temp.type = "password";
+            setshowpassword(false);
+        }
+        }
     const handlesubmit = (e) => {
         e.preventDefault();
     
@@ -39,30 +53,34 @@ export default function AddUser() {
         <div className={styles.adduser}>
             <form>
                 <h2>ADD LDAP USER</h2>
-                    <div className={styles.line}>
-                        <select name="title" value={data.title} onChange={handleChange} required>
-                                <option value="" disabled selected hidden>Title</option>
-                                <option value="mr">Mr.</option>
-                                <option value="ms">Ms.</option>
-                                <option value="mrs">Mrs.</option>
-                                <option value="dr">Dr.</option>
-                        </select>
-                        <input name='first_name' type='text' className={styles.input} onChange={handleChange} value={data.first_name} placeholder='First Name' required/>
-                        <input name='last_name' type='text' className={styles.input} onChange={handleChange} value={data.last_name} placeholder='Last Name' required/>
-                    </div>
-                    <div className={styles.line}>
-                        <input name='email' type='text' className={styles.input} onChange={handleChange} value={data.email} placeholder='Email' required/>
-                    </div>
-                    <div className={styles.line}>
-                        <input name='username' type='text' className={styles.input} onChange={handleChange} value={data.username} placeholder='Username'required/>
-                        <input name='password' type='password' className={styles.input} onChange={handleChange} value={data.password} placeholder='Password' required/>
-                    </div>
+                <div className={styles.line}>
+                    <select name="title" value={data.title} onChange={handleChange} required>
+                        <option value="" disabled selected hidden>Title</option>
+                        <option value="mr">Mr.</option>
+                        <option value="ms">Ms.</option>
+                        <option value="mrs">Mrs.</option>
+                        <option value="dr">Dr.</option>
+                    </select>
+                    <input name='first_name' type='text' className={styles.input} onChange={handleChange} value={data.first_name} placeholder='First Name' required/>
+                    <input name='last_name' type='text' className={styles.input} onChange={handleChange} value={data.last_name} placeholder='Last Name' required/>
+                </div>
+                <div className={styles.line}>
+                    <input name='email' type='text' className={styles.input} onChange={handleChange} value={data.email} placeholder='Email' required/>
+                </div>
+                <div className={styles.line}>
+                    <input name='username' type='text' className={styles.input} onChange={handleChange} value={data.username} placeholder='Username'required/>
+                    <div className={styles.pass}>
+                        <input type='password' name='password'className={styles.input1} placeholder='Password'
+                                id="typepass" onChange={handleChange} value={data.password} required/>
+                        <img src={showpassword?eyeopen:eyeclose} alt='eyeopen' className={styles.eyeopen} onClick={Toggle}/>
+                     </div>                    
+                </div>
                 <div className={styles.line}>
                     <div className={styles.faculty}>
                         <label>Type of Faculty</label>
                         <div className={styles.radio}>
                             <input type="radio" id="guestfaculty" name="group" value="guestfaculty"
-                                checked={data.group === "guestfaculty"} onChange={handleChange} required/>
+                                   checked={data.group === "guestfaculty"} onChange={handleChange} required/>
                             <label htmlFor="guestfaculty">Guest Faculty</label>
                         </div>
                         <div className={styles.radio}>
@@ -71,29 +89,28 @@ export default function AddUser() {
                             <label htmlFor="faculty">Faculty</label>
                         </div> 
                     </div>   
-                        <select name="designation" className={styles.select} value={data.designation} onChange={handleChange} required>
-                            <option value="" disabled selected hidden>Designation</option>
-                            <option value="lecturer">Lecturer</option>
-                            <option value="Professor">Professor</option>
-                            <option value="AssistantProfessor">Assistant Professor</option>
-                            <option value="AssociateProfessor">Associate Professor</option>
-                        </select>
+                    <select name="designation" className={styles.select} value={data.designation} onChange={handleChange} required>
+                        <option value="" disabled selected hidden>Designation</option>
+                        <option value="lecturer">Lecturer</option>
+                        <option value="Professor">Professor</option>
+                        <option value="AssistantProfessor">Assistant Professor</option>
+                        <option value="AssociateProfessor">Associate Professor</option>
+                    </select>
                 </div>
                 <div className={styles.line}>
-                <select name="branch" value={data.branch} onChange={handleChange} required>
-                            <option value="" disabled selected hidden>Branch</option>
-                            <option value="CS">Computer Science</option>
-                            <option value="IT">Information Technology</option>
-                            <option value="ETC">Electonics & telecommunication</option>
-                            <option value="EI">Electical and Instrumentation</option>
-                            <option value="CI">Civil</option>
-                            <option value="Mech">Mechanical</option>
-                            <option value="AS">Applied Science</option>
-                        </select>
-                        <input name='phoneno' type='text' className={styles.input} onChange={handleChange} value={data.phoneno} placeholder='Phone No.' required/>
+                    <select name="branch" value={data.branch} onChange={handleChange} required>
+                        <option value="" disabled selected hidden>Branch</option>
+                        <option value="CS">Computer Science</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="ETC">Electonics & telecommunication</option>
+                        <option value="EI">Electical and Instrumentation</option>
+                        <option value="CI">Civil</option>
+                        <option value="Mech">Mechanical</option>
+                        <option value="AS">Applied Science</option>
+                    </select>
+                    <input name='phoneno' type='text' className={styles.input} onChange={handleChange} value={data.phoneno} placeholder='Phone No.' required/>
                 </div>
-
-            <button onClick={handlesubmit}>ADD</button>
+                <button onClick={handlesubmit}>ADD</button>
             </form>
         </div>
     )

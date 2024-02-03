@@ -26,6 +26,22 @@
             padding: 1.5rem 0rem;
             margin: 0rem 1rem;
             align-items: center;
+            .pass{
+                display: flex;
+                // justify-content: center;
+                // align-items: center;
+                width: 100%;
+                .input1{
+                    border: none;
+                    border-bottom: 1px solid #666;
+                    font-size: 0.9rem;
+                    padding: 0rem 0rem 0.5rem 1rem;
+                    width: 100%;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
             .input,select{
                 border: none;
                 border-bottom: 1px solid #666;
@@ -56,6 +72,7 @@
                 }
               }
             }
+               
         }
         @media screen and (max-width: 1024px) {
             .faculty{
@@ -72,6 +89,9 @@
                 .input,select{
                     width: 90%;
                     margin: 1rem 0rem;
+                }
+                .pass{
+                    margin:1rem 0rem;
                 }
                 .faculty{
                     width: 100%;
