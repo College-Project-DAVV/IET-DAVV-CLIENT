@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import styles from "./ldap.module.scss"
 export default function AddUser() {
-    const [data,setData] = useState({"title":"","first_name":"","last_name":"","email":"","password":"","username":"","group":""});
+    const [data,setData] = useState({"title":"","first_name":"","last_name":"","email":"","username":"","password":"","group":"","designation":"","branch":"","phoneno":""});
     const handlesubmit = (e) => {
         e.preventDefault();
     
         // Check if all required fields are filled before submitting
-        if (data.title && data.first_name && data.last_name && data.email && data.password && data.username && data.group ) {
+        if (data.title && data.first_name && data.last_name && data.email && data.password && data.username && data.group && data.designation && data.branch && data.phoneno) {
           console.log(data);
           // Your logic for form submission here
     
@@ -19,7 +19,9 @@ export default function AddUser() {
             password: '',
             username: '',
             group: '',
-            enumber: '',
+            designation: '',
+            branch: '',
+            phoneno: '',
           });
         } else {
           alert('Please fill in all required fields');
