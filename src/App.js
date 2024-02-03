@@ -31,8 +31,13 @@ const App = () => {
             <Route
               path="/"
               element={
-                <div className={styles.login}>
-                  <Landing/>
+                <div className={styles.indexContainer}>
+                <div className={styles.leftContainer}>
+                   <Sidebar />
+                 </div>
+                <div className={styles.rightContainer}>
+                  <AddUser/>
+                </div>
                 </div>
               }
             />
