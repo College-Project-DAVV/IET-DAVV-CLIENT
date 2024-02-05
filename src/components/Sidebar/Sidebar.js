@@ -6,6 +6,7 @@ import student from '../../assets/student.svg'
 import teacher from '../../assets/teacher.svg'
 import logoutimg from "../../assets/logout.svg";
 import groupimg from "../../assets/groupicon.svg"
+import ldap from "../../assets/ldap.svg"
 import { Link, useNavigate } from "react-router-dom";
 import { MdMarkEmailRead } from "react-icons/md";
 export default function Sidebar() {
@@ -60,10 +61,8 @@ export default function Sidebar() {
           </Link>
            <Link to="/dashboard/addldapuser" style={{ textDecoration: "none" }}>
             <div className={styles.element}>
-              <span className={styles.iconMD}>
-              <MdMarkEmailRead/>
-              </span>
-              <p> LDAP User</p> 
+            <img src={ldap} alt="icon" />
+              <p> Add Faculty User</p> 
             </div>
           </Link>
         </div>
