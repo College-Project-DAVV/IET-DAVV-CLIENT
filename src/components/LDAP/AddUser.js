@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from "./ldap.module.scss"
 export default function AddUser() {
-    const [data,setData] = useState({"name":"","email":"","password":"","username":"","group":"","enumber":""});
+    const [data,setData] = useState({"name":"","email":"","password":"","username":"","group":""});
     const handlesubmit = (e) => {
         e.preventDefault();
     
