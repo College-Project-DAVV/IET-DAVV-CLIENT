@@ -28,7 +28,7 @@ const App = () => {
       <GroupDataProvider>
         <div className={styles.indexContainer}>
           <Routes>
-            <Route
+          <Route
               path="/"
               element={
                 <div className={styles.login}>
