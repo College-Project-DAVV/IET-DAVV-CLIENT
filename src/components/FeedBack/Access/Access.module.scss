@@ -1,0 +1,227 @@
+
+.accessContainer{
+    width: 100%;
+}
+.addPerson{
+
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    
+    .icon{
+    
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    &:hover{
+    color:#6C74CA ;
+    }
+    }
+    }
+    
+    .groupMemberList{
+    
+    .form{
+    
+    position: absolute;
+    top:50%;
+    left: 60%;
+    transform: translate(-50%,-50%);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    background-color: #fff;
+    
+    
+    
+    .main{
+    
+    width: 90%;
+    
+    div{
+    
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    margin: 10px;
+    span{
+    margin-right: 10px;
+    }
+    
+    input,select{
+    cursor: pointer;
+    width: 300px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    padding: 5px;
+    
+    }
+    select{
+    width: 310px;
+    }
+    
+    }
+    
+    }
+    }
+    
+    .btn{
+      width: 100px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #6C74CA;
+      color: #fff;
+      border: 0;
+      margin: 10px;
+      cursor: pointer;
+      &:hover {
+        background: #47529a; /* Change the color on hover as needed */
+      }
+    
+    }
+        .details {
+            display: flex;
+            justify-content: center;
+            max-height: calc(100vh - 100px);
+            margin-top: 1rem;
+            .list {
+              display: flex;
+              flex-direction: column;
+              width: calc(100% - 4rem);
+              margin-bottom: 2rem;
+              overflow: scroll;
+         &::-webkit-scrollbar{
+                
+                display: none;
+                }
+              .head {
+                display: flex;
+                justify-content: space-between;
+                border-radius: 1.9rem 1.9rem 0px 0px;
+                min-width: 768px;
+                padding: 1rem 0rem;
+                padding-left: 1.2rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                border: 1px solid #cccccc;
+                background-color: white;
+                .email {
+                  width: 40%;
+                }
+                .name {
+                  width: 40%;
+                }
+                .phone {
+                  width: 20%;
+                }
+             
+              }
+              .table{
+                
+                border-radius: 0rem 0rem 1.9rem 1.9rem;
+                border: 1px solid #cccccc;
+                border-top: 0;
+                
+            
+              .row {
+                display: flex;
+                min-width: 768px;
+                padding-top: 1rem;
+                padding-bottom: 1rem ;
+                padding-left: 1.2rem;
+                justify-content: space-between;
+                border: 1px solid #cccccc;
+                border-left: 0;
+                border-right: 0;
+                font-size: 0.9rem;
+                background-color: white;
+                border-top: 0px;
+               
+                .email {
+                  width: 40%;
+                }
+                .name {
+                  width: 40%;
+                }
+                .phone {
+                  width: 20%;
+                }
+                 .edit {
+                 text-align: justify;
+                  width: 20%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1.2rem;
+                  svg{
+                  margin-left: 10px;
+                  }
+                  .delete{
+                   margin-left: 10px;
+                   &:hover{
+                   color: #ea4335 ;
+                   }
+                  }
+                  .edit{
+                   margin-left: 10px;
+                   &:hover{
+                   color: #6C74CA ;
+                   }
+                  }
+                }
+                &:last-child {
+                  border-bottom: 0;
+                }
+                &:hover {
+                  background-color: #eff1f7;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+    }
+
+
+
+  .facultynameList{
+    color: #47529a;
+    border: 1px solid rgb(41, 39, 39);
+   height: 100px;
+    // position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0px !important;
+   width: 100%;
+ 
+
+    div{
+width: 100%;
+font-size: 0.8rem;
+border: 1px solid rgb(68, 61, 61);
+color: #47529a;
+cursor: pointer;
+    }
+  }
+
+  .nameContainer{
+    display: flex;
+    flex-direction: column;
+  }

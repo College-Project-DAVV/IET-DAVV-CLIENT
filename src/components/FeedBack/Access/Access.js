@@ -1,25 +1,29 @@
 import React, {useEffect, useState} from "react";
-import styles from "./NoticeSync.module.scss";
-import AccessTable from "./AccessTable";
+import styles from "./Access.module.scss";
 import { BiSolidPencil } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
-import { addMember, deleteUser, getUsers, updateUserData } from "../../actions/user";
+import { addMember, deleteUser, getUsers, updateUserData } from "../../../actions/user";
 import { FaLock } from "react-icons/fa";
+import { addNewMember, getDepartment, getFaculty, getaccessUsers } from "../../../actions/feedbackSession";
 
-const NoticeSync = () => {
+const Access = () => {
 
     const[ showForm, setShowForm]= useState(false) ;
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState('');
   const [name, setName] = useState("");
-  const [allowed, setAllowed] = useState(false);
-  const [role, setRole] = useState("Student");
+  const [departmentname, setDepartmentname] = useState('');
+  const [role, setRole] = useState('Faculty');
+  const [allowed,setAllowed]=useState(false);
     const [members, setMembers] = useState([]);
+
+    const [department,setDepartment] = useState([]);
+    
+    const [faculty,setfaculty] = useState([]);
     const user= JSON.parse(localStorage.getItem("profile"))?.result?.email
     
 
-console.log(members)
     const handleCancel=()=>{
     
      setName("")
@@ -34,14 +38,11 @@ console.log(members)
     setRole(e.target.value);
   };
 
-  const handleAllowedChange = (e) => {
-    // Convert the string value to a boolean
-    setAllowed(e.target.value === "true");
-  };
-  
-  const handleSave=()=>{
-  
-  console.log(members)
+
+  const handleFacultyClick=(item)=>{
+    setSelectedItem(item)
+    setName(item.title+" "+item.first_name+" "+item.last_name)
+    setEmail(item.email);
   }
   
   
@@ -51,10 +52,16 @@ console.log(members)
   const [editIndex, setEditIndex] = useState(null);
   const [selectedItem,setSelectedItem]= useState({}) ;
 
-  const handleEdit = (index,id) => {
+  const handleEdit = (index) => {
   
     setEditIndex(index);
     setSelectedItem(members[index]);
+    const item=members[index]
+    console.log(item)
+    setName(item.name)
+    setEmail(item.email);
+    setDepartmentname(item.department)
+   handleAddnewMember()
   };
 
 const handleDelete = async (index, id) => {
@@ -75,6 +82,21 @@ const handleDelete = async (index, id) => {
   return ;
 };
 
+
+const handleAddnewMember=async()=>{
+  const res = await getDepartment();
+  const res2 = await getFaculty();
+  console.log(res2)
+  if(res?.results && res2?.results)
+  {
+    setDepartment(res.results);
+    setfaculty(res2.results)
+    
+    setShowForm(!showForm)
+  }
+}
+
+
   const handleSaveEdit = (index, editedData) => {
    
   
@@ -83,8 +105,8 @@ const handleDelete = async (index, id) => {
     setMembers(updatedMembers);
   };
   
-  const checkAll=(editedData)=>{
-   if (!editedData.name || !editedData.email || !editedData.role || editedData.allowed === undefined) {
+  const checkAll=()=>{
+   if (!selectedItem.id || !email || !department|| !role) {
     alert('Please fill in all required fields');
     return false; // Do not proceed with saving if validation fails
   }
@@ -92,54 +114,69 @@ const handleDelete = async (index, id) => {
   return true ;
   }
   
+  const handleUpdate = async ()=>{
+
+  }
   
     const handleAddMember = async () => {
 
     let newIte={
-    count:0,
-  name:name,
+      facultyId:selectedItem.id,
+      name:name,
+      designation:role,
   email:email,
-  role:role?role:"Student",
-  allowed:allowed 
+      department:departmentname,
+
   } ;
-  
-    if(checkAll(newIte))
+  console.log(newIte)
+
+    if(true)
     {
-    setMembers([...members,newIte])
+    // setMembers([...members,newIte])
     
-    const res= await addMember(newIte) ;
-    
+    const res = await addNewMember(newIte) ;
+    console.log(res)
+   if(res?.id){
+    newIte['id']=res.id;
    
-    alert("Member Added")
+   console.log(newIte)
+   setMembers([...members,newIte])
+    
     setName("")
     setEmail("")
     setAllowed(false)
-    setRole("")
+    
+    alert(res.message)
+    
     setShowForm(false) ;
+    setRole("")}else{
+ 
+    alert(res.error)}
     }
 
   };
+  const filteredFaculty = faculty.filter((item) =>
+  (item.title + " " + item.first_name + " " + item.last_name).toLowerCase().includes(name.toLowerCase())
+);
 
   useEffect(()=>{
   
   const getAllUsers= async()=>{
   
-  const noticeSyncUsers= await getUsers() ;
-    
-    const users=noticeSyncUsers?.filter((item)=>item.email!==user)
-    setMembers(users)
+  const res= await getaccessUsers() ;
+   
+    setMembers(res.results)
   
   } 
   getAllUsers() ;
   
   },[])
-  
+  console.log(editIndex)
   return (
-  <>
-  <AccessTable numberOfUsers={ members?members.length:0}/>
+  <div className={styles.accessContainer}>
   <div className={styles.addPerson}>
   
-  <div className={styles.icon} onClick={()=>setShowForm(!showForm)}>
+  <div className={styles.icon} onClick={()=>handleAddnewMember()}>
   <IoMdPersonAdd/>
   </div>
   <div>Add a member</div>
@@ -151,8 +188,8 @@ const handleDelete = async (index, id) => {
             <div className={styles.head}>
               <span className={styles.name}>Name</span>
               <span className={styles.email}>Email id</span>
-              <span className={styles.phone}>Role</span>
-              <span className={styles.phone}>Access</span>
+              <span className={styles.phone}>Designation</span>
+              <span className={styles.phone}>Department</span>
               <span className={styles.phone}>Edit & Delete</span>
             </div>
          <div className={styles.table}>
@@ -160,99 +197,34 @@ const handleDelete = async (index, id) => {
         members.map((item, index) => (
           <div className={styles.row} key={index}>
             <span className={styles.name}>
-              {editIndex === index ? (
-                <input
-                  type="text"
-                  required
-                  value={item.name}
-                  onChange={(e) =>
-                    handleSaveEdit(index, { ...item, name: e.target.value })
-                  }
-                />
-              ) : (
-                item.name || 'Not Available'
-              )}
+        
+               { item.name} 
+           
             </span>
             <span className={styles.email}>
-              {editIndex === index ? (
-                <input
-                  type="text"
-                  value={item.email}
-                  required
-                  onChange={(e) =>
-                    handleSaveEdit(index, { ...item, email: e.target.value })
-                  }
-                />
-              ) : (
-                item.email || 'Not Available'
-              )}
+         
+               { item.email}
+        
             </span>
             <span className={styles.phone}>
-              {editIndex === index ? (
-                <select
-                required
-                  value={(item && item.role)?item.role:"Student"}
-                  onChange={(e) =>
-                    handleSaveEdit(index, { ...item, role: e.target.value })
-                  }
-                >
-                  <option value="Student">STUDENT</option>
-                  <option value="faculty">FACULTY</option>
-                  <option value="Admin">ADMIN</option>
-                  <option value="Others">Others</option>
-                </select>
-              ) : (
-                item.role || 'Not Available'
-              )}
+         
+               { item.designation }
+            
             </span>
             <span className={styles.phone}>
-              {editIndex === index ? (
-                <select
-                 required
-                  value={item.allowed}
-                  onChange={(e) =>
-                    handleSaveEdit(index, {
-                      ...item,
-                      allowed: e.target.value === 'true',
-                    })
-                  }
-                >
-                  <option value="true">true</option>
-                  <option value="false">false</option>
-                </select>
-              ) : (
-                item.allowed ? 'true' : 'false'
-              )}
+      
+               { item.department}
+           
             </span>
             <span className={styles.edit}>
-              {editIndex === index ? (
-              <>
-                <button onClick={async() =>{ 
-                if(checkAll(item))
-                {
-                handleSaveEdit(index, item) ;
-                const res= await updateUserData(item)
-                setEditIndex(null)
-                setSelectedItem({});
-                }
-                else{
-                handleSaveEdit(index,selectedItem) ;
-                setSelectedItem({});
-                setEditIndex(null)
-                }
-                }}
-                style={{ padding:5, background:'#6C74CA', border:0, color:"#fff", borderRadius:5}}
-                >
-                  Save
-                </button>
-                <MdCancel style={{ padding:5,}} className={styles.delete} onClick={()=>setEditIndex(null)} />
-                </>
-              ) : (
+             
+              
+           
                 <BiSolidPencil
                   className={styles.edit}
                   onClick={() => handleEdit(index)}
                 />
-              )}
+              
               <MdDelete
                 className={styles.delete}
                 onClick={() => handleDelete(index,item.id)}
@@ -269,10 +241,11 @@ const handleDelete = async (index, id) => {
       
      {showForm  &&<div className={styles.form}>
          
-         <h4>Enter Details of members to add</h4>
+         <h4>Enter Details of member to add</h4>
       <div className={styles.main}>
       <div className={styles.emailInput}>
-            <span>Name</span>
+            <span >Name</span>
+            <div className={styles.nameContainer}>
             <input
               type="text"
               label="User Name"
@@ -281,7 +254,17 @@ const handleDelete = async (index, id) => {
               required
               onChange={(e) => setName(e.target.value)}
             />
+        
+        <div className={styles.facultynameList}>
+    {filteredFaculty.map((item) => (
+        <div key={item.id}  onClick={()=>{
+        handleFacultyClick(item)
+      }}>{item.title} {item.first_name} {item.last_name}</div>
+    ))}
+</div></div>
           </div>
+
+         
           <div className={styles.emailInput}>
             <span>Email</span>
             <input
@@ -302,25 +285,26 @@ const handleDelete = async (index, id) => {
               onChange={handleRoleChange}
             
             >
-              <option value="Student">STUDENT</option>
-              <option value="faculty">FACULTY</option>
-              <option value="Admin">ADMIN</option>
-              <option value="Others">Others</option>
+              <option value="faculty">Faculty</option>
+              <option value="HOD">HOD</option>
+              <option value="Director">Director</option>
             </select>
           </div>
 
           <div className={styles.roleInput}>
-            <span>Access</span>
+            <span>Department</span>
             <select
               label="Access"
               required
               size="small"
-              value={allowed}
-              onChange={handleAllowedChange}
+              value={departmentname}
+              onChange={(e)=>setDepartmentname(e.target.value)}
             
             >
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              
+              <option value={"Not Needed"}>Not Needed</option>
+
+              {department.map((item,index)=><option key={item.department_name} value={item.department_name}>{item.department_name}</option>)}
             </select>
           </div>
           
@@ -328,9 +312,9 @@ const handleDelete = async (index, id) => {
       <div>
       <button
           className={styles.btn}
-          onClick={handleAddMember}
+          onClick={editIndex>=0?handleUpdate:handleAddMember}
         >
-          Add Member
+          {editIndex>=0?"Update Member":"Add Member"}
         </button>
            <button
           className={styles.btn}
@@ -343,8 +327,8 @@ const handleDelete = async (index, id) => {
     </div>
     }
     </div>
-    </>
+    </div>
   );
 };
 
-export default NoticeSync;
+export default Access;
