@@ -4,7 +4,7 @@ import styles from "./groupData.module.scss";
 import { useGroups } from "../../GroupDataContext";
 import GroupCard from "./GroupDataCard"
 import { MdCloudSync } from "react-icons/md";
-import { adminGroupUpdate } from "../../actions/groups";
+// import { adminGroupUpdate } from "../../actions/groups";
 import ProgressBar from "../progressbar/ProgressBar";
 import studentsvg from "../../assets/student.svg"
 
@@ -18,7 +18,7 @@ const GroupData = () => {
   if(res)
   {
     setLoading(true) ;
-    const response= await adminGroupUpdate(groups) ;
+    // const response= await adminGroupUpdate(groups) ;
     setLoading(false) ;
     alert("added")
     
