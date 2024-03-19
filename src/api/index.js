@@ -72,6 +72,7 @@ export const getdepartment=()=>API.get('/feedback/access/getdepartment');
 export const getFacultyName= ()=>API.get('/feedback/access/getfacultyname');
 
 export const getAccessUsers= ()=>API.get('/feedback/access/getaccessusers');
+export const updatedataUserAccess=(formdata)=>API.post('/feedback/access/updateUserData',formdata)
 
 export const getBranchClass=()=>API.get('/feedback/feedback/getclass');
 
@@ -79,3 +80,5 @@ export const getAllFeedback=()=>API.get('/feedback/feedback/getfeedback');
 export const addAccessMember=(data)=>API.post('/feedback/access/addmember',data);
 
 export const createFeedback=(data)=>API.post('/feedback/feedback/addfeedback',data);
+
+export const updatedataFeedback=(data)=>API.post('/feedback/feedback/updatefeedback',data);

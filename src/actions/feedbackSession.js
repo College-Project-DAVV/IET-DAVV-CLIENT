@@ -32,6 +32,15 @@ export const addNewMember= async (formdata)=>{
     }
 }
 
+export const updateAccesUserData= async(formdata)=>{
+    try {
+        const {data} = await api.updatedataUserAccess(formdata);
+        return data;
+    } catch (error) {
+        
+    }
+}
+
 export const getaccessUsers = async()=>{
     try {
         const {data} =  await  api.getAccessUsers();
@@ -69,6 +78,16 @@ export const getFeedback = async ()=>{
     try {
         const {data} = await api.getAllFeedback();
         return data
+    } catch (error) {
+        
+    }
+}
+
+
+export const updateFeedbackDetail = async(formdata)=>{
+    try {
+        const {data}= await api.updatedataFeedback(formdata)
+        return data;
     } catch (error) {
         
     }

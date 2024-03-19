@@ -28,57 +28,7 @@
     
     .groupMemberList{
     
-    .form{
     
-    position: absolute;
-    top:50%;
-    left: 60%;
-    transform: translate(-50%,-50%);
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid gray;
-    border-radius: 15px;
-    padding: 15px;
-    font-size: 1rem;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    background-color: #fff;
-    
-    
-    
-    .main{
-    
-    width: 90%;
-    
-    div{
-    
-    display: flex;
-    justify-content: space-between !important;
-    align-items: center;
-    margin: 10px;
-    span{
-    margin-right: 10px;
-    }
-    
-    input,select{
-    cursor: pointer;
-    width: 300px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    padding: 5px;
-    
-    }
-    select{
-    width: 310px;
-    }
-    
-    }
-    
-    }
-    }
     
     .btn{
       width: 100px;
@@ -148,7 +98,7 @@
                 border: 1px solid #cccccc;
                 border-left: 0;
                 border-right: 0;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 background-color: white;
                 border-top: 0px;
                
@@ -162,11 +112,11 @@
                   width: 20%;
                 }
                  .edit {
-                 text-align: justify;
+                 text-align:left;
                   width: 20%;
                   display: flex;
                   align-items: center;
-                  justify-content: center;
+                  justify-content: left;
                   font-size: 1.2rem;
                   svg{
                   margin-left: 10px;
@@ -201,7 +151,7 @@
 
   .facultynameList{
     color: #47529a;
-    border: 1px solid rgb(41, 39, 39);
+    // border: 1px solid rgb(41, 39, 39);
    height: 100px;
     // position: absolute;
     overflow-y: auto;
@@ -209,19 +159,118 @@
     display: flex;
     flex-direction: column;
     gap: 0px !important;
-   width: 100%;
+   width: 45%;
+   overflow-y: auto;
+   overflow-x: hidden;
+   z-index: 20;
+   position: fixed;
+   background-color: #fff;
+   top: 40%;
  
 
     div{
-width: 100%;
+
+width: auto;
 font-size: 0.8rem;
 border: 1px solid rgb(68, 61, 61);
 color: #47529a;
+
+padding: 2px 2px;
 cursor: pointer;
+    }
+    div:hover{
+      background-color: #47529a;
+      color: #fff;
+
     }
   }
 
-  .nameContainer{
+  .indexClass{
+    margin-right: 20px;
+  }
+  .form{
+    
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: auto;
     display: flex;
     flex-direction: column;
-  }
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background-color: #fff;
+    
+    
+    
+    .main{
+    
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .emailInput2{
+        display: flex;
+      justify-content: space-between !important;
+      align-items: center;
+      span{
+        width: 40%;
+        font-size: 0.9rem;
+      }
+      input{
+        
+        height: 24px;
+        width: 48%;
+      }
+      }
+      .emailInput,  .roleInput{
+      
+      display: flex;
+      justify-content: space-between !important;
+      align-items: center;
+      
+  
+      span{
+        width: 40%;
+        font-size: 0.9rem;
+        
+      }
+   
+      input , select{
+        height: 25px;
+        width:50%;
+  
+        
+  
+      }
+  
+      
+      
+    
+   
+   
+      }
+      
+  
+
+    .nameContainer{
+      
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+  
+  
+      input{
+        width: 97%;
+        height: 25px;
+  
+      }
+    }
+  
+      }
+    }

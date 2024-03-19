@@ -6,7 +6,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { addMember, deleteUser, getUsers, updateUserData } from "../../../actions/user";
 import { FaLock } from "react-icons/fa";
-import { addNewMember, getDepartment, getFaculty, getaccessUsers } from "../../../actions/feedbackSession";
+import { addNewMember, getDepartment, getFaculty, getaccessUsers, updateAccesUserData } from "../../../actions/feedbackSession";
 
 const Access = () => {
 
@@ -14,8 +14,8 @@ const Access = () => {
     const [email, setEmail] = useState('');
   const [name, setName] = useState("");
   const [departmentname, setDepartmentname] = useState('');
-  const [role, setRole] = useState('Faculty');
-  const [allowed,setAllowed]=useState(false);
+  const [role, setRole] = useState('Class-Cordinator');
+  const [nameFeild,setnameFeild]=useState(false);
     const [members, setMembers] = useState([]);
 
     const [department,setDepartment] = useState([]);
@@ -28,9 +28,9 @@ const Access = () => {
     
      setName("")
     setEmail("")
-    setAllowed(false)
-    setRole("")
+    setRole("Class-Cordinator")
     setShowForm(false) ;
+    setEditIndex(null);
     
     }
 
@@ -40,9 +40,11 @@ const Access = () => {
 
 
   const handleFacultyClick=(item)=>{
+    setnameFeild(false)
     setSelectedItem(item)
     setName(item.title+" "+item.first_name+" "+item.last_name)
     setEmail(item.email);
+    
   }
   
   
@@ -57,36 +59,18 @@ const Access = () => {
     setEditIndex(index);
     setSelectedItem(members[index]);
     const item=members[index]
-    console.log(item)
+    setRole(item.designation)
     setName(item.name)
     setEmail(item.email);
     setDepartmentname(item.department)
    handleAddnewMember()
   };
 
-const handleDelete = async (index, id) => {
-
-  const userConfirmed = window.confirm("Are you sure you want to delete this user?");
-
-  if (userConfirmed) {
-    try {
-      const res = await deleteUser(id);
-      const updatedMembers = [...members];
-      updatedMembers.splice(index, 1);
-      setMembers(updatedMembers);
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
-  }
-  
-  return ;
-};
 
 
 const handleAddnewMember=async()=>{
   const res = await getDepartment();
   const res2 = await getFaculty();
-  console.log(res2)
   if(res?.results && res2?.results)
   {
     setDepartment(res.results);
@@ -116,9 +100,38 @@ const handleAddnewMember=async()=>{
   
   const handleUpdate = async ()=>{
 
+    
+    let newIte={
+      id:selectedItem.id,
+      name:selectedItem.name,
+      designation:role,
+  email:email,
+      department:departmentname,
+
+  };
+  const res = await updateAccesUserData(newIte);
+  if(res.message)
+  {
+  
+    setName("")
+    setEmail("");
+    alert(res.message);
+    
+  const updatedMembers = [...members];
+  updatedMembers[editIndex] = { ...newIte };
+  setMembers(updatedMembers);
+  setShowForm(false);
+  setRole("Class-Cordinator");
+  }
+  else{
+
+  }
+
+
   }
   
     const handleAddMember = async () => {
+      
 
     let newIte={
       facultyId:selectedItem.id,
@@ -127,15 +140,14 @@ const handleAddnewMember=async()=>{
   email:email,
       department:departmentname,
 
-  } ;
-  console.log(newIte)
+  };
 
-    if(true)
+if(true)
     {
     // setMembers([...members,newIte])
     
     const res = await addNewMember(newIte) ;
-    console.log(res)
+    
    if(res?.id){
     newIte['id']=res.id;
    
@@ -144,12 +156,13 @@ const handleAddnewMember=async()=>{
     
     setName("")
     setEmail("")
-    setAllowed(false)
+
     
     alert(res.message)
     
     setShowForm(false) ;
-    setRole("")}else{
+    setRole("Class-Cordinator")
+  }else{
  
     alert(res.error)}
     }
@@ -171,7 +184,6 @@ const handleAddnewMember=async()=>{
   getAllUsers() ;
   
   },[])
-  console.log(editIndex)
   return (
   <div className={styles.accessContainer}>
   <div className={styles.addPerson}>
@@ -186,16 +198,23 @@ const handleAddnewMember=async()=>{
         <div className={styles.details}>
           <div className={styles.list}>
             <div className={styles.head}>
+              
+            <span className={styles.indexClass}>S.no</span>
               <span className={styles.name}>Name</span>
               <span className={styles.email}>Email id</span>
               <span className={styles.phone}>Designation</span>
               <span className={styles.phone}>Department</span>
-              <span className={styles.phone}>Edit & Delete</span>
+              <span className={styles.phone}>Edit</span>
             </div>
          <div className={styles.table}>
       {members &&
         members.map((item, index) => (
           <div className={styles.row} key={index}>
+              <span className={styles.indexClass}>
+      
+        {index+1} 
+    
+     </span>
             <span className={styles.name}>
         
                { item.name} 
@@ -225,10 +244,7 @@ const handleAddnewMember=async()=>{
                   onClick={() => handleEdit(index)}
                 />
               
-              <MdDelete
-                className={styles.delete}
-                onClick={() => handleDelete(index,item.id)}
-              />
+           
             </span>
           </div>
         ))}
@@ -241,7 +257,7 @@ const handleAddnewMember=async()=>{
       
      {showForm  &&<div className={styles.form}>
          
-         <h4>Enter Details of member to add</h4>
+         <h4>Enter Details to add Class-Cordinator</h4>
       <div className={styles.main}>
       <div className={styles.emailInput}>
             <span >Name</span>
@@ -253,19 +269,23 @@ const handleAddnewMember=async()=>{
               value={name}
               required
               onChange={(e) => setName(e.target.value)}
+              onFocus={()=>setnameFeild(true)}
+              
+              disabled={editIndex!=null?true:false}
             />
         
-        <div className={styles.facultynameList}>
+ {  (editIndex==null && nameFeild)
+  && <div className={styles.facultynameList}>
     {filteredFaculty.map((item) => (
         <div key={item.id}  onClick={()=>{
         handleFacultyClick(item)
       }}>{item.title} {item.first_name} {item.last_name}</div>
     ))}
-</div></div>
+</div>}</div>
           </div>
 
          
-          <div className={styles.emailInput}>
+          <div className={styles.emailInput2}>
             <span>Email</span>
             <input
             required
@@ -282,10 +302,10 @@ const handleAddnewMember=async()=>{
               label="Role"
               required
               value={role}
-              onChange={handleRoleChange}
+              onChange={(e)=>handleRoleChange(e)}
             
             >
-              <option value="faculty">Faculty</option>
+              <option value="Class-Cordinator">Class-Cordinator</option>
               <option value="HOD">HOD</option>
               <option value="Director">Director</option>
             </select>
@@ -312,9 +332,9 @@ const handleAddnewMember=async()=>{
       <div>
       <button
           className={styles.btn}
-          onClick={editIndex>=0?handleUpdate:handleAddMember}
+          onClick={(e)=>{editIndex!=null?handleUpdate():handleAddMember()}}
         >
-          {editIndex>=0?"Update Member":"Add Member"}
+          {editIndex!=null?"Update":"Add"}
         </button>
            <button
           className={styles.btn}

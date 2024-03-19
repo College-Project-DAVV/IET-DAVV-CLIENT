@@ -39,7 +39,6 @@ const Session = () => {
     const [sessionEnd , setSessionEnd] = useState("");
 
     const [members, setMembers] = useState([]);
-    const user= JSON.parse(localStorage.getItem("profile"))?.result?.email
     
 
     const handleCancel=()=>{
@@ -82,6 +81,9 @@ const Session = () => {
    const datatoupdate = members;
    datatoupdate[index]=newIte;
    setMembers(datatoupdate)
+   
+   setSessionStart('');
+   setSessionEnd('')
 
 
    
@@ -207,7 +209,7 @@ setMembers(res.results);
                
                 
                 }}
-                style={{ padding:5, background:'#6C74CA', border:0, color:"#fff", borderRadius:5}}
+                style={{ padding:5, background:'#6C74CA', border:0, color:"#fff", borderRadius:5,cursor:'pointer'}}
                 >
                   Save
                 </button>
