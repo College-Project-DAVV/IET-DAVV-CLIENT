@@ -10,7 +10,7 @@ import {
   updateFeedbackDetail,
 } from "../../../actions/feedbackSession";
 import { getSession } from "../../../actions/session";
-import { formatDate, formatDateToAMPM, formatDateinput, isPastDate, setTimeInInputField } from "../../../actions/exportingFunctions";
+import { formatDate, formatDateSql, formatDateToAMPM, formatDateinput, isPastDate, setTimeInInputField } from "../../../actions/exportingFunctions";
 
 const Feedback = () => {
   const [branch, setBranch] = useState([]);
@@ -123,24 +123,26 @@ const Feedback = () => {
       alert(res.error);
     }
   }
-
+console.log(selectedItem)
   const handleUpdateDataClick = async ()=>{
     if(startTime>=endTime){
       alert('Start Time should be less than End Time');
     }
     else{
+
       let anyitem ={
-        id : selectedItem.id,
-        startTime: date + " " + startTime,
-        endTime: date + " " + endTime
-        }
+
+        id: selectedItem.feedback_id,
+        startTime: formatDateSql(date, startTime),
+        endTime: formatDateSql(date, endTime)
+    };
         const res = await updateFeedbackDetail(anyitem);
         
         if(res.message)
         {
           alert(res.message);
           const array=feedback;
-          const index = array.findIndex(item => item.id === anyitem.id);
+          const index = array.findIndex(item => item.feedback_id === anyitem.id);
     
           if (index !== -1) {
               // Update the startTime and endTime of the object

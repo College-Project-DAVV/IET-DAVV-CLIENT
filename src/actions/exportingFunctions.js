@@ -61,3 +61,34 @@
     const formattedTime = `${hours}:${minutes}`;
     return formattedTime;
   }
+   export function formatDateSql(date, time) {
+    // Assuming date is in the format 'YYYY-MM-DD'
+    // and time is in the format 'HH:MM'
+    const formattedDate = new Date(date);
+    const [hours, minutes] = time.split(':');
+
+    // Adding leading zeros if necessary
+    const formattedHours = hours.padStart(2, '0');
+    const formattedMinutes = minutes.padStart(2, '0');
+
+    // Constructing the datetime string in MySQL format
+    return `${formattedDate.getFullYear()}-${(formattedDate.getMonth() + 1).toString().padStart(2, '0')}-${formattedDate.getDate().toString().padStart(2, '0')} ${formattedHours}:${formattedMinutes}:00`;
+}
+
+
+
+export function formatDateToDate(startDateISOString) {
+  const startDate = new Date(startDateISOString);
+
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+  };
+ 
+
+  const formattedStartDate = startDate.toLocaleDateString("en-US", options);
+
+
+  return `${formattedStartDate}`;
+}

@@ -6,7 +6,7 @@ import Analytics from './Analytics/Analytics';
 import Access from './Access/Access';
 
 const FeedbackComponent = () => {
-  const [step,setStep]=useState(0);
+  const [step,setStep]=useState(3);
  
   return (
     <div className={styles.main_conatiner_feedBack}>

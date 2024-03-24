@@ -62,6 +62,8 @@ export const addSession=(data)=>API.post('/feedback/session/addsession',data);
 export const updateSessionById=(data)=>API.post('/feedback/session/updatesession',data);
 export const getAllSession=()=>API.get('/feedback/session/getsession');
 
+export const getAnalytics=(id)=>API.get(`/feedback/session/getAnalytics/${id}`);
+
 
 
 

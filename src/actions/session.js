@@ -40,3 +40,18 @@ export const updateSession=async (formData)=>{
 }
 
 
+export const getAnalyticsBySession=async (id)=>{
+
+    try {
+        console.log(id)
+        
+        const {data}= await  api.getAnalytics(id);
+        
+        return data;
+
+    } catch (error) {
+        
+    }
+}
+
+
