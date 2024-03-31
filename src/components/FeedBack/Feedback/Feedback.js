@@ -7,6 +7,7 @@ import {
   getClass,
   getFeedback,
   getaccessUsers,
+  sendRem,
   updateFeedbackDetail,
 } from "../../../actions/feedbackSession";
 import { getSession } from "../../../actions/session";
@@ -23,7 +24,7 @@ const Feedback = () => {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [feedback, setFeedback] = useState([]);
-  const [endTime, setEndTime] = useState("");
+  const [endTime, setEndTime] = useState(10);
   const [create, setCreate] = useState(false);
   const [editFeedback,setEditFeedback]=useState(false);
   const [viewDetails,setViewDetails] = useState(false)
@@ -53,11 +54,17 @@ const Feedback = () => {
   }, []);
 
   const handleFeedbackEdit=(item)=>{
-    console.log(item)
     setEditFeedback(true);
     setDate(formatDateinput(item.startTime));
     setStartTime(setTimeInInputField(item.startTime))
     setEndTime(setTimeInInputField(item.endTime));
+    const startTimeDate = new Date(item.startTime);
+const endTimeDate = new Date(item.endTime);
+
+const timeDifferenceMillis = endTimeDate.getTime() - startTimeDate.getTime();
+
+const timeDifferenceMinutes = Math.floor(timeDifferenceMillis / 60000);
+setEndTime(timeDifferenceMinutes)
     setCreate(true);
     setclassName(item.course_code +
       " " +
@@ -97,12 +104,20 @@ const Feedback = () => {
     setManageState(0);
   }
   async function handleSubmitClick() {
+ 
+    const startTimeMillis = new Date(date + " " + startTime).getTime(); // Convert start time to milliseconds
+const endTimeMillis = startTimeMillis + endTime * 60000; // Calculate end time in milliseconds
+
+const endTimeDate = new Date(endTimeMillis); // Create a Date object for the end time
+const formattedEndTime = `${endTimeDate.getFullYear()}-${(endTimeDate.getMonth() + 1).toString().padStart(2, '0')}-${endTimeDate.getDate().toString().padStart(2, '0')} ${endTimeDate.getHours().toString().padStart(2, '0')}:${endTimeDate.getMinutes().toString().padStart(2, '0')}`; // Format the end time
+
+
     let item = {
       classtable_id: selectedbranch.id,
       session_id: selectedSession.id,
       faculty_id: selectedUser.id,
       startTime: date + " " + startTime,
-      endTime: date + " " + endTime,
+      endTime: formattedEndTime
     };
     const res = await addFeedback(item);
     if (res.message) {
@@ -111,7 +126,7 @@ const Feedback = () => {
 
       setDate("");
       setStartTime("");
-      setEndTime("");
+      setEndTime(10);
       setSelectedBranch({});
       setUserName("");
       setSessionString("");
@@ -123,18 +138,19 @@ const Feedback = () => {
       alert(res.error);
     }
   }
-console.log(selectedItem)
   const handleUpdateDataClick = async ()=>{
-    if(startTime>=endTime){
-      alert('Start Time should be less than End Time');
-    }
-    else{
+    const startTimeMillis = new Date(date + " " + startTime).getTime(); // Convert start time to milliseconds
+    const endTimeMillis = startTimeMillis + endTime * 60000; // Calculate end time in milliseconds
+    
+    const endTimeDate = new Date(endTimeMillis);
+    const formattedEndTime = `${endTimeDate.getFullYear()}-${(endTimeDate.getMonth() + 1).toString().padStart(2, '0')}-${endTimeDate.getDate().toString().padStart(2, '0')} ${endTimeDate.getHours().toString().padStart(2, '0')}:${endTimeDate.getMinutes().toString().padStart(2, '0')}`; // Format the end time
+    
 
       let anyitem ={
 
         id: selectedItem.feedback_id,
         startTime: formatDateSql(date, startTime),
-        endTime: formatDateSql(date, endTime)
+        endTime: formattedEndTime
     };
         const res = await updateFeedbackDetail(anyitem);
         
@@ -145,7 +161,6 @@ console.log(selectedItem)
           const index = array.findIndex(item => item.feedback_id === anyitem.id);
     
           if (index !== -1) {
-              // Update the startTime and endTime of the object
               array[index].startTime = anyitem.startTime;
               array[index].endTime = anyitem.endTime;
           }
@@ -157,8 +172,7 @@ console.log(selectedItem)
           alert(res.error)
         }
 
-    }
-
+  
   }
 const handleViewDetails=(item)=>{
   setViewDetails(true);
@@ -205,6 +219,24 @@ const handleViewDetails=(item)=>{
       )
     );
   });
+  const handleRemiander = async(email)=>{
+  
+        // Ask for confirmation
+        const confirmed = window.confirm(`Do you want to send a reminder to ${email}?`);
+        
+
+        // If user confirms, proceed with sending reminder
+        if (confirmed) {
+          const res = await sendRem(email)
+      
+          if(res?.message)
+          {
+            alert(`Reminder sent to ${email}.`)
+          }
+        } else {
+            console.log("Reminder not sent.");
+        }
+    }
   const TableComponnet = ()=>{
 
     return(
@@ -274,8 +306,8 @@ const handleViewDetails=(item)=>{
                 <div>
                   <span className={styles.cardHeadings}>
                     Number of Students given Feedback:
-                  </span>{" "}
-                  <span className={styles.cardHeadingValues}>{item?.code>0?item.code:0}</span>
+                  </span>
+                  <span className={styles.cardHeadingValues}>{item?.total_students/item.subjects.length>0?item?.total_students/item.subjects.length:"Nil"}</span>
                 </div>
               </div>
               <div className={styles.card_content_child}>
@@ -299,7 +331,7 @@ const handleViewDetails=(item)=>{
       {index < item.subjects.length - 1 ? (subject.subject_name + "  ,") :subject.subject_name}
     </span>
   </React.Fragment>
-))):<span>No Subjects are added <span className={styles.rButton}>Send Remiander to {item.email}</span></span>} 
+))):<span>No Subjects are added <span className={styles.rButton} onClick={()=>handleRemiander(item.email)}>Send Remainder to {item.email}</span></span>} 
 
                 </div>
               </div>
@@ -310,7 +342,7 @@ const handleViewDetails=(item)=>{
               handleFeedbackEdit(item)
             }}>Edit</button>}
               <button onClick={(e)=>handleViewDetails(item)}>View Details</button>
-              <button>View Analytics</button>
+             
             </div>
           </div>
         )):<div className={styles.nofeedbackContainer}>No FeedBack </div>}
@@ -416,16 +448,30 @@ const handleViewDetails=(item)=>{
                 />
               </div>
             </div>
+     
             <div className={styles.inputContainer}>
-              <div className={styles.inputheading}>Ending Time</div>
-              <div className={styles.inputfeild}>
-                <input
-                  type="time"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                />
-              </div>
+              
+            <div className={styles.inputheading}>Ending Time</div>
+            <div className={styles.inputfeild}>
+            <select
+              label="Access"
+              required
+              value={endTime}
+              onChange={(e)=>setEndTime(e.target.value)}
+            
+            >
+              
+              <option value={10}>10 Minutes</option>
+              
+              <option value={15}>15 Minutes</option>
+              
+              <option value={30}>30 Minutes</option>
+              
+              <option value={45}>45 Minutes</option>
+
+            </select>
             </div>
+          </div>
             <div className={styles.submitButton}>
               <button
                 className={styles.submit}
@@ -478,7 +524,7 @@ const handleViewDetails=(item)=>{
                   <span className={styles.cardHeadings}>
                     Secret Code :
                   </span>{" "}
-                  <span className={styles.cardHeadingValues}>item.code</span>
+                  <span className={styles.cardHeadingValues}>{selectedItem?.code}</span>
                 </div>
                 
 

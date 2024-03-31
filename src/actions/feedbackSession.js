@@ -92,3 +92,12 @@ export const updateFeedbackDetail = async(formdata)=>{
         
     }
 }
+
+export const sendRem = async(email)=>{
+    try {
+        const {data}= await api.sendReminder(email)
+        return data;
+    } catch (error) {
+        
+    }
+}

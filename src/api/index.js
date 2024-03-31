@@ -83,4 +83,6 @@ export const addAccessMember=(data)=>API.post('/feedback/access/addmember',data)
 
 export const createFeedback=(data)=>API.post('/feedback/feedback/addfeedback',data);
 
+
 export const updatedataFeedback=(data)=>API.post('/feedback/feedback/updatefeedback',data);
+export const sendReminder=(email)=>API.get(`/feedback/feedback/rem/${email}`);

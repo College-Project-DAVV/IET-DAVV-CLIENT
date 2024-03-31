@@ -4,6 +4,7 @@
     width: 100%;
     
   page-break-inside: avoid;
+  overflow-x: auto;
   }
   .subjectsContainer{
     margin-top: 20px;
@@ -19,6 +20,7 @@
     border-collapse: collapse;
     font-size: 0.6rem;
     font-weight: 500;
+    
   }
   
   .tableContainer th {
@@ -98,3 +100,6 @@
 
   }
   
+
+  
+

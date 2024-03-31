@@ -42,3 +42,27 @@
     align-items: center;
     border-radius: 10px;
 }
+
+
+
+@media screen and (max-width: 470px) {    
+    .switchcomponent{
+        width: 85%;
+      
+        flex-direction: column;
+        height: auto;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 50px;
+        margin-top:15px ;
+        gap: 5px;
+        background-color: #fff;
+        border: 1px solid #000;
+        border-radius: 10px;
+    }
+    .differentcomponents{
+        width: 70%;
+        text-align: center;
+    }
+
+}
