@@ -15,6 +15,8 @@ import Landing from "./components/Landing/Landing";
 import NoticeSync from "./components/NoticeSync/NoticeSync";
 import AccessTable from "./components/NoticeSync/AccessTable";
 import AddUser from "./components/LDAP/AddUser";
+import FeedbackComponent from "./components/FeedBack/FeedbackComponent";
+import Admin from "./components/AdminAccess/Admin";
 const App = () => {
   const token = localStorage.getItem("FetchUserToken");
   const navigate  = useNavigate();
@@ -63,6 +65,10 @@ const App = () => {
                 <Route path="courseinfo" element={<Courseinfo />} />
                 <Route path="groupmembers" element={<GroupMembers />} />
                 <Route path="noticeSync" element={<NoticeSync />} />
+                
+                <Route path="adminAccess" element={<Admin />} />
+                
+                <Route path="feedback" element={<FeedbackComponent />} />
                 <Route path="addldapuser" element={<AddUser />} />
               </Route>
             )}

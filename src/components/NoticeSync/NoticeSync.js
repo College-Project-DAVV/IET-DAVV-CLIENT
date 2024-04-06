@@ -19,7 +19,7 @@ const NoticeSync = () => {
     const user= JSON.parse(localStorage.getItem("profile"))?.result?.email
     
 
-
+console.log(members)
     const handleCancel=()=>{
     
      setName("")
