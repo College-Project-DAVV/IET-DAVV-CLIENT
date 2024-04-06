@@ -118,7 +118,7 @@ const Session = () => {
     if(res)
     {
       newIte['id']=res.id;
-      setMembers([...members,newIte])
+      setMembers([newIte,...members])
     }
   setSessionEnd('');
   setSessionStart('');

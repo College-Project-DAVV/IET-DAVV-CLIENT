@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL:'http://localhost:5000/'});
+const API = axios.create({baseURL:'https://notices.ietdavv.edu.in/server/'});
 
 
 
@@ -38,7 +38,6 @@ export const getGroupsForAdmin=()=>API.get('/groups/fetchadmin');
 
 
 
-// All Function Related to Users
 export const addUser = (formData) => API.post('/users/add',formData);
 export const getAllUsers=()=>API.get('/users/getall');
 

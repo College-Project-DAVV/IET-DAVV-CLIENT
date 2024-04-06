@@ -62,12 +62,9 @@
     return formattedTime;
   }
    export function formatDateSql(date, time) {
-    // Assuming date is in the format 'YYYY-MM-DD'
-    // and time is in the format 'HH:MM'
     const formattedDate = new Date(date);
     const [hours, minutes] = time.split(':');
 
-    // Adding leading zeros if necessary
     const formattedHours = hours.padStart(2, '0');
     const formattedMinutes = minutes.padStart(2, '0');
 

@@ -389,7 +389,7 @@ const handleViewDetails=(item)=>{
               <div className={styles.inputheading}> Class Teacher</div>
               <div className={styles.inputfeild}>
                 <input
-                  placeholder="Search class"
+                  placeholder="Search class Cordinator8"
                   value={userName}
                   onFocus={() => setManageState(2)}
                   onChange={(e) => setUserName(e.target.value)}
@@ -410,7 +410,7 @@ const handleViewDetails=(item)=>{
               <div className={styles.inputheading}>Session</div>
               <div className={styles.inputfeild}>
                 <input
-                  placeholder="Search class"
+                  placeholder="Search Session"
                   value={sessionString}
                   onFocus={() => setManageState(3)}
                   onChange={(e) => setSessionString(e.target.value)}
