@@ -75,6 +75,13 @@ export default function Sidebar() {
               <p> LDAP User</p> 
             </div>
           </Link>
+          <Link to="/dashboard/adminAccess" style={{ textDecoration: "none" }}>
+            <div className={styles.element}>
+                
+              <img src={teacher} alt="icon" />
+              <p>Admin Portal Access</p> 
+            </div>
+          </Link>
         </div>
       </div>
       <div className={styles.logout} onClick={Logout}>

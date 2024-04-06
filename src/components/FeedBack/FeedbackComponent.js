@@ -12,10 +12,10 @@ const FeedbackComponent = () => {
     <div className={styles.main_conatiner_feedBack}>
       <div className={styles.switchcomponent}>
         
-        <div className={styles.differentcomponents} onClick={()=>setStep(0)}         style={step === 0 ? { backgroundColor: '#6c74ca', color: '#ffffff' } : {}}>Manage FeedBack</div>
+        <div className={styles.differentcomponents} onClick={()=>setStep(0)}         style={step === 0 ? { backgroundColor: '#6c74ca', color: '#ffffff' } : {}}>Manage FeedBack Schedule</div>
       
-        <div className={styles.differentcomponents} onClick={()=>setStep(1)}       style={step === 1 ? { backgroundColor: '#6c74ca', color: '#ffffff' } : {}}>Manage Session</div>
-        <div className={styles.differentcomponents} onClick={()=>setStep(2)}       style={step === 2 ? { backgroundColor: '#6c74ca', color: '#ffffff' } : {}}>Manage Access</div>
+        <div className={styles.differentcomponents} onClick={()=>setStep(1)}       style={step === 1 ? { backgroundColor: '#6c74ca', color: '#ffffff' } : {}}>Manage  Academic Session</div>
+        <div className={styles.differentcomponents} onClick={()=>setStep(2)}       style={step === 2 ? { backgroundColor: '#6c74ca', color: '#ffffff' } : {}}>Grant Access</div>
         <div className={styles.differentcomponents} onClick={()=>setStep(3)}       style={step === 3 ? { backgroundColor: '#6c74ca', color: '#ffffff' } : {}}>View Analytics</div>
        
          </div>

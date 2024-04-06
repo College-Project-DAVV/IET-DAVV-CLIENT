@@ -4,7 +4,6 @@ import styles from "./groupData.module.scss";
 import { useGroups } from "../../GroupDataContext";
 import GroupCard from "./GroupDataCard"
 import { MdCloudSync } from "react-icons/md";
-// import { adminGroupUpdate } from "../../actions/groups";
 import ProgressBar from "../progressbar/ProgressBar";
 import studentsvg from "../../assets/student.svg"
 
@@ -14,15 +13,8 @@ const GroupData = () => {
   
   const handleUpdateData= async()=>{
   
-  const res= window.confirm("Do you want to update groups on NoticeSync?")
-  if(res)
-  {
-    setLoading(true) ;
-    // const response= await adminGroupUpdate(groups) ;
-    setLoading(false) ;
-    alert("added")
-    
-  }
+  const res= window.confirm("Update Groups From NoticeSync")
+
   
   }
   return (!loading?(<>

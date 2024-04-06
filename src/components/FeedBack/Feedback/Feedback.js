@@ -43,11 +43,12 @@ const Feedback = () => {
       const res2 = await getSession();
       const res3 = await getaccessUsers();
       const res4 = await getFeedback();
-      setFeedback(res4.results);
-      if (res && res2 && res3) {
-        setUsers(res3.results);
-        setSession(res2.results);
-        setBranch(res.results);
+      if (res && res2 && res3 && res4) {
+        
+      setFeedback(res4?.results);
+        setUsers(res3?.results);
+        setSession(res2?.results);
+        setBranch(res?.results);
       }
     };
     getClassNames();
@@ -90,6 +91,8 @@ setEndTime(timeDifferenceMinutes)
   }
 
   function handleSessionClick(item) {
+
+    
     const combinedString = `${formatDate(item.sessionStart)} - ${formatDate(
       item.sessionEnd
     )}`;
@@ -389,7 +392,7 @@ const handleViewDetails=(item)=>{
               <div className={styles.inputheading}> Class Teacher</div>
               <div className={styles.inputfeild}>
                 <input
-                  placeholder="Search class Cordinator8"
+                  placeholder="Search class Cordinator"
                   value={userName}
                   onFocus={() => setManageState(2)}
                   onChange={(e) => setUserName(e.target.value)}
