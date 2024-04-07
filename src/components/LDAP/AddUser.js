@@ -22,10 +22,9 @@ export default function AddUser() {
     
         // Check if all required fields are filled before submitting
         if (data.title && data.first_name && data.last_name && data.email && data.password && data.username && data.group && data.designation && data.branch && data.phoneno) {
-          console.log(data);
           // Your logic for form submission here
             adduser(data).then((result)=>{
-                console.log(result);
+                alert(result);
             })
           // Reset form fields after submission
           setData({
