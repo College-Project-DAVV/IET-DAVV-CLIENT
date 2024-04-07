@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const APINotice = axios.create({ baseURL: 'https://notices.ietdavv.edu.in/server/' });
+const APINotice = axios.create({ baseURL: 'https://notices.ietdavv.edu.in/server/'});
 
-const APIStudent = axios.create({ baseURL: 'http://localhost:5000/' });
+const APIStudent = axios.create({ baseURL: 'https://student.ietdavv.edu.in/server/'});
 
-const APIAdmin = axios.create({ baseURL: 'http://localhost:3001/' });
+const APIAdmin = axios.create({ baseURL: 'https://admin.ietdavv.edu.in/server/'});
 
 
 

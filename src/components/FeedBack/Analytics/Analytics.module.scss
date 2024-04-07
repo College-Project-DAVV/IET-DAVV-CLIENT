@@ -95,6 +95,7 @@
 }
 .feedbackDetailsContainer{
   width: 90%;
+  font-size: 0.9rem;
 
 }
 .headerContainer{
@@ -107,13 +108,13 @@
 }
 .headerContent{
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 .headerContent1{
     margin-top: 20px;
     padding-left: 5%;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     font-weight: 500;
 }
 .feedbackGeneratorContainer{
@@ -155,10 +156,14 @@
 
 .classDetailsContainer{
   margin-top: 20px;
+  border-bottom: 2px solid black;
 }
 .feedbackDetails{
   font-size: 0.8rem;
   font-weight: 500;
+  span{
+    margin-left: 5px;
+  }
 }
 .chartContainer{
   width: 100%;

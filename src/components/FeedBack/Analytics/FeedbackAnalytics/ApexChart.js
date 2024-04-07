@@ -13,7 +13,6 @@ const question1=[
   "Overall"
 ]
 const ApexChart = ({item}) => {
-  console.log(item)
 const [arr,setArr]=useState([])
   const [chartData, setChartData] = useState({
     series: [{

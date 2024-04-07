@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Admin.module.scss";
-import { BiSolidPencil } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { IoMdPersonAdd } from "react-icons/io";
-import { MdCancel } from "react-icons/md";
 import { addMember, deleteUser, getUsers } from "../../actions/AdminAccess";
 
 const Admin = () => {
