@@ -9,7 +9,6 @@ const question1 = [
   ];
   
 const YesNo = ({item}) => {
-  console.log(item)
 const [arr,setArr]=useState([])
   const [chartData, setChartData] = useState({
     series: [{

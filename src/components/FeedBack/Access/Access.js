@@ -178,7 +178,8 @@ if(true)
   
   const res= await getaccessUsers() ;
    
-    setMembers(res.results)
+  if(res?.results){
+    setMembers(res.results)}
   
   } 
   getAllUsers() ;

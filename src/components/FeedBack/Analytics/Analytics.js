@@ -22,14 +22,14 @@ const Analytics = () => {
   
   const [totalclass,setTotalclass]=useState(0);
   const [editFeedback,setEditFeedback]=useState(false);
-  const [department_id,setDepartment_id]=useState(-1)
+  const [department_id,setDepartment_id]=useState("")
   const [feedback,setFeedback]=useState([]);
 
   useEffect(() => {
     const getClassNames = async () => {
       const res2 = await getSession();
-      if (res2 ) {
-        setSession(res2.results);
+      if (res2?.results ) {
+        setSession(res2?.results);
       }
     };
     getClassNames();
@@ -55,9 +55,9 @@ const Analytics = () => {
     setSessionString(combinedString);
     setManageState(0);
 
-    console.log(item)
     const res = await getAnalyticsBySession(item.id)
-    console.log(res)
+    if(res?.results.length>0)
+{ 
     let total_sum=0;
     let total_Class=0;
  
@@ -68,30 +68,26 @@ const Analytics = () => {
      total_Class++; }
     }
     const results = res?.results || [];
-    const uniqueDepartmentsSet = new Set();
+    const uniqueDepartmentsMap = new Map();
 
     results.forEach(result => {
-      if (result.department_id && result.department_name) {
-        const departmentString = JSON.stringify({
-          id: result.department_id,
-          name: result.department_name
-        });
-
-        // Check if the department is not already in the set before adding
-        if (!uniqueDepartmentsSet.has(departmentString)) {
-          uniqueDepartmentsSet.add(departmentString);
+      if ( result.department_name) {
+        // Check if the department_id is not already in the Map before adding
+        if (!uniqueDepartmentsMap.has(result.department_name)) {
+          uniqueDepartmentsMap.set(result.department_name);
         }
       }
     });
-
-    setUniqueDepartments(Array.from(uniqueDepartmentsSet).map(departmentString => JSON.parse(departmentString)));
-  
+    const uniqueDepartmentsArray = Array.from(uniqueDepartmentsMap).map(([ name]) => ({  name }));
+    setUniqueDepartments(uniqueDepartmentsArray);
     setTotalclass(total_Class)
     setTotal(total_sum)
-    setFeedback(res?.results)
+    setFeedback(res?.results)}
+    else{
+      alert(res?.error)
+    }
 
   }
-  console.log(uniqueDepartments)
  
   
 	const contentRef = useRef(null);
@@ -179,9 +175,9 @@ const Analytics = () => {
             
             >
               
-              <option value={-1}>All Departments</option>
+              <option value={""}>All Departments</option>
 
-              {uniqueDepartments?.map((item,index)=><option key={item.department_name} value={item.id}>{item.name}</option>)}
+              {uniqueDepartments?.map((item,index)=><option key={item.department_name} value={item.name}>{item.name}</option>)}
             </select>
           </div>
           <button className={styles.downloadpdfButton} onClick={convertToPdf}>
@@ -189,26 +185,26 @@ const Analytics = () => {
 			</button>
       </div>
 
-      <div className={styles.analyticsComponent} id="divToDownload" ref={contentRef}>
+     {sessionString!==""? <div className={styles.analyticsComponent} id="divToDownload" ref={contentRef}>
         <div className={styles.headerContainer}>
           
         <div className={styles.headerContent}>FeedBack Report</div>
           <div className={styles.headerContent}>Institute of Engineering and Technology , DAVV </div>
           
-          <div className={styles.headerContent1}>Session :10/02/2024  to 10/05/2025</div>
+          <div className={styles.headerContent1}>Session :<span>{sessionString}</span></div>
         </div>
-        <div className={styles.feedbackDetailsContainer}>
+   { department_id===""&&    <div className={styles.feedbackDetailsContainer}>
           <div>Total Classes : {totalclass}</div>
           
           <div>Total Number of Students : {total}</div>
-        </div>
+        </div>}
         <div className={styles.feedbackGeneratorContainer}>
           {feedback?.map((item,index)=>( 
-  item.total_students>0 && (            <div className={styles.classDetailsContainer} key = {index}>
-              <div className={styles.feedbackDetails}>Class : {item.course_code} {item.year} Year {item.department_name} {item.section} </div>
-              <div className={styles.feedbackDetails}>Conducted on : {formatDateToDate(item.startTime)}</div>
-              <div className={styles.feedbackDetails}>Class Teacher: {item.name}</div>
-              <div className={styles.feedbackDetails}>Total Students Appeared: {item?.subjects?.length ? Math.round(item.total_students / item?.subjects.length) : "Not available"}
+  item.total_students>=0 &&((department_id!=="" &&item.department_name===department_id)|| (department_id==="")) &&(            <div className={styles.classDetailsContainer} key = {index}>
+              <div className={styles.feedbackDetails}>Class : <span>{item.course_code} {item.year} Year {item.department_name} {item.section}</span> </div>
+              <div className={styles.feedbackDetails}>Conducted on :<span> {formatDateToDate(item.startTime)}</span></div>
+              <div className={styles.feedbackDetails}>Class Teacher:<span> {item.name}</span></div>
+              <div className={styles.feedbackDetails}>Total Students Appeared:<span> {item?.subjects?.length ? Math.round(item.total_students / item?.subjects.length) : "Not available"}</span>
 </div>
 
                 <FeedbackAnalytics item={item}/>
@@ -223,7 +219,7 @@ const Analytics = () => {
           }
 
         </div>
-        </div>
+        </div>:<div>Select the Session</div>}
     </div>
   )
 }

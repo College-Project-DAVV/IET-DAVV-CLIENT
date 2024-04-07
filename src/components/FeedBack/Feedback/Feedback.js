@@ -11,7 +11,7 @@ import {
   updateFeedbackDetail,
 } from "../../../actions/feedbackSession";
 import { getSession } from "../../../actions/session";
-import { formatDate, formatDateSql, formatDateToAMPM, formatDateinput, isPastDate, setTimeInInputField } from "../../../actions/exportingFunctions";
+import { formatDate, formatDateSql, formatDateToAMPM, formatDateinput, getCurrentDate, isPastDate, setTimeInInputField } from "../../../actions/exportingFunctions";
 
 const Feedback = () => {
   const [branch, setBranch] = useState([]);
@@ -33,26 +33,46 @@ const Feedback = () => {
   const [sessionString, setSessionString] = useState("");
   const [selectedItem,setSelectedItem]=useState({});
   const handleCreate = async () => {
-    setCreate(true);
+
+        const res = await getClass();
+        const res2 = await getSession();
+        const res3 = await getaccessUsers();
+        if (res && res2 && res3 ) {
+          
+          setUsers(res3?.results);
+          setSession(res2?.results);
+          setBranch(res?.results);
+          
+        setCreate(true);
+        }
   };
 
+  const handleClose=()=>{
+    setDate("");
+    setStartTime("");
+    setEndTime(10);
+    setSelectedBranch({});
+    setUserName("");
+    setSessionString("");
+    setclassName("");
+    setSelectedSession({});
+    setSelectedUser({});
+    setCreate(false);
+  }
   
   useEffect(() => {
     const getClassNames = async () => {
-      const res = await getClass();
-      const res2 = await getSession();
-      const res3 = await getaccessUsers();
+ 
       const res4 = await getFeedback();
-      if (res && res2 && res3 && res4) {
+      if (res4) {
         
       setFeedback(res4?.results);
-        setUsers(res3?.results);
-        setSession(res2?.results);
-        setBranch(res?.results);
+     
       }
     };
     getClassNames();
   }, []);
+    
 
   const handleFeedbackEdit=(item)=>{
     setEditFeedback(true);
@@ -101,13 +121,30 @@ setEndTime(timeDifferenceMinutes)
     setManageState(0);
   }
 
+
+  // function checkRepeat ()
+  // {
+  //   for(const itr in  feedback)
+  //   {
+  //     if(selectedSession.session_id==itr.session_id && selectedbranch.id==itr.classtable_id  && selectedUser.id==itr.faculty_id)
+  //     alert('Already Exist')
+  //     return false;
+  //   }
+  //   return true;
+  // }
   function handleUserClick(item) {
     setSelectedUser(item);
     setUserName(item.name);
     setManageState(0);
   }
   async function handleSubmitClick() {
- 
+    if(!selectedbranch || !selectedSession ||!selectedUser || !date){
+      alert('All Feilds are Compulsory')
+      
+    }
+    else 
+  
+{ 
     const startTimeMillis = new Date(date + " " + startTime).getTime(); // Convert start time to milliseconds
 const endTimeMillis = startTimeMillis + endTime * 60000; // Calculate end time in milliseconds
 
@@ -139,7 +176,7 @@ const formattedEndTime = `${endTimeDate.getFullYear()}-${(endTimeDate.getMonth()
       setCreate(false);
     } else {
       alert(res.error);
-    }
+    }}
   }
   const handleUpdateDataClick = async ()=>{
     const startTimeMillis = new Date(date + " " + startTime).getTime(); // Convert start time to milliseconds
@@ -237,7 +274,7 @@ const handleViewDetails=(item)=>{
             alert(`Reminder sent to ${email}.`)
           }
         } else {
-            console.log("Reminder not sent.");
+            alert("Reminder not sent. Error Occured");
         }
     }
   const TableComponnet = ()=>{
@@ -353,7 +390,7 @@ const handleViewDetails=(item)=>{
       {create && (
         <div className={styles.create_feedback_container}>
           <div className={styles.cancel_container}>
-            <span onClick={() => setCreate(false)}>
+            <span onClick={() => handleClose()}>
               <MdCancel className={styles.delete} />
             </span>
           </div>
@@ -434,11 +471,14 @@ const handleViewDetails=(item)=>{
             <div className={styles.inputContainer}>
               <div className={styles.inputheading}>Date</div>
               <div className={styles.inputfeild}>
-                <input
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
+            
+              <input
+  type="date"
+  value={date}
+  min={getCurrentDate()}
+  onChange={(e) => setDate(e.target.value)}
+/>
+
               </div>
             </div>
             <div className={styles.inputContainer}>
