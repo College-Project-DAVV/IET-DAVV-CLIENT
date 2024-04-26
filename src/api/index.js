@@ -78,8 +78,12 @@ export const getBranchClass = () => APIStudent.get('/feedback/feedback/getclass'
 export const getAllFeedback = () => APIStudent.get('/feedback/feedback/getfeedback');
 export const addAccessMember = (data) => APIStudent.post('/feedback/access/addmember', data);
 
+export const deleteCc = (id) => APIStudent.get(`/feedback/access/delete/${id}`);
+
 export const createFeedback = (data) => APIStudent.post('/feedback/feedback/addfeedback', data);
 
 
 export const updatedataFeedback = (data) => APIStudent.post('/feedback/feedback/updatefeedback', data);
-export const sendReminder = (email) => APIStudent.get(`/feedback/feedback/rem/${email}`);
+export const sendReminder = (data) => APIStudent.post(`/feedback/feedback/rem`,data);
+
+export const deleteFeedback = (id) => APIStudent.get(`/feedback/feedback/delete/${id}`);

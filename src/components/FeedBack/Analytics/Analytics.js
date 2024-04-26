@@ -4,7 +4,7 @@ import styles from './Analytics.module.scss';
 import {getAnalyticsBySession, getSession } from '../../../actions/session';
 import { formatDate, formatDateToDate } from '../../../actions/exportingFunctions';
 import FeedbackAnalytics from './FeedbackAnalytics/FeedbackAnalytics';
-
+import logo from '../../../assets/logo.png'
 
 import html2pdf from 'html2pdf.js';
 import ApexChart from './FeedbackAnalytics/ApexChart';
@@ -35,7 +35,7 @@ const Analytics = () => {
     getClassNames();
   }, []);
   const filteredDataSession = session?.filter((item) => {
-    const combinedString = `${formatDate(item.sessionStart)} - ${formatDate(
+    const combinedString = `${formatDate(item.sessionStart)} to ${formatDate(
       item.sessionEnd
     )}`;
 
@@ -48,7 +48,7 @@ const Analytics = () => {
   });
 
  async function  handleSessionClick(item) {
-    const combinedString = `${formatDate(item.sessionStart)} - ${formatDate(
+    const combinedString = `${formatDate(item.sessionStart)} to ${formatDate(
       item.sessionEnd
     )}`;
     setSelectedSession(item);
@@ -56,6 +56,7 @@ const Analytics = () => {
     setManageState(0);
 
     const res = await getAnalyticsBySession(item.id)
+    console.log(res)
     if(res?.results.length>0)
 { 
     let total_sum=0;
@@ -83,6 +84,9 @@ const Analytics = () => {
     setTotalclass(total_Class)
     setTotal(total_sum)
     setFeedback(res?.results)}
+    else if (res?.results.length===0){
+      alert('No Feedback is Collected for this session')
+    }
     else{
       alert(res?.error)
     }
@@ -187,21 +191,23 @@ const Analytics = () => {
 
      {sessionString!==""? <div className={styles.analyticsComponent} id="divToDownload" ref={contentRef}>
         <div className={styles.headerContainer}>
+        <div className={styles.headerContentImageContainer}><img src={logo} alt='logoiet'/></div>
+          
+          <div className={styles.headerContent1}>Institute of Engineering and Technology , DAVV </div>
           
         <div className={styles.headerContent}>FeedBack Report</div>
-          <div className={styles.headerContent}>Institute of Engineering and Technology , DAVV </div>
           
-          <div className={styles.headerContent1}>Session :<span>{sessionString}</span></div>
+          <div className={styles.headerContent}><span>{sessionString}</span></div>
         </div>
    { department_id===""&&    <div className={styles.feedbackDetailsContainer}>
           <div>Total Classes : {totalclass}</div>
           
           <div>Total Number of Students : {total}</div>
         </div>}
-        <div className={styles.feedbackGeneratorContainer}>
+        <div className={`${styles.feedbackGeneratorContainer} pagebreak`}>
           {feedback?.map((item,index)=>( 
-  item.total_students>=0 &&((department_id!=="" &&item.department_name===department_id)|| (department_id==="")) &&(            <div className={styles.classDetailsContainer} key = {index}>
-              <div className={styles.feedbackDetails}>Class : <span>{item.course_code} {item.year} Year {item.department_name} {item.section}</span> </div>
+  item.total_students>0 &&((department_id!=="" &&item.department_name===department_id)|| (department_id==="")) &&(            <div className={styles.classDetailsContainer} key = {index}>
+              <div className={styles.feedbackDetails1}><span>{item.course_code} {item.year} Year {item.department_name} {item.section}</span> </div>
               <div className={styles.feedbackDetails}>Conducted on :<span> {formatDateToDate(item.startTime)}</span></div>
               <div className={styles.feedbackDetails}>Class Teacher:<span> {item.name}</span></div>
               <div className={styles.feedbackDetails}>Total Students Appeared:<span> {item?.subjects?.length ? Math.round(item.total_students / item?.subjects.length) : "Not available"}</span>

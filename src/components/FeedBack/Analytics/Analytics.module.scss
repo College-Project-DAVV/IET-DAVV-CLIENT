@@ -9,6 +9,17 @@
     border-radius: 20px;
 
 }
+.headerContentImageContainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  img{
+    width: 120px ;
+    height: 120px;
+  }
+}
 .downloadpdfButton{
   width: 20%;
   cursor: pointer;
@@ -95,7 +106,8 @@
 }
 .feedbackDetailsContainer{
   width: 90%;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 400;
 
 }
 .headerContainer{
@@ -103,20 +115,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
+    padding: 200px 20px;
+    gap: 20px;
 
 }
 .headerContent{
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 .headerContent1{
-    margin-top: 20px;
-    padding-left: 5%;
-    font-size: 0.9rem;
-    font-weight: 500;
+  
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
+
 .feedbackGeneratorContainer{
     width: 95%;
     height: auto;
@@ -155,12 +169,22 @@
   }
 
 .classDetailsContainer{
-  margin-top: 20px;
+  margin-top: 30px;
   border-bottom: 2px solid black;
 }
 .feedbackDetails{
+  
   font-size: 0.8rem;
   font-weight: 500;
+  span{
+    margin-left: 5px;
+  }
+}
+.feedbackDetails1{
+  text-align: center;
+  font-size:1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
   span{
     margin-left: 5px;
   }

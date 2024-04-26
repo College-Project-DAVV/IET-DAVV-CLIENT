@@ -45,6 +45,16 @@ export const deleteUser = async (email) => {
 	}
 };
 
+export const deleteCcById = async (id) => {
+	try {
+		const { data } = await api.deleteCc(id);
+		return data;
+
+	} catch (error) {
+		console.error("Error deleting document:", error);
+
+	}
+};
 
 
 

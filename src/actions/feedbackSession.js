@@ -93,9 +93,19 @@ export const updateFeedbackDetail = async(formdata)=>{
     }
 }
 
-export const sendRem = async(email)=>{
+export const sendRem = async(formData)=>{
     try {
-        const {data}= await api.sendReminder(email)
+
+        const {data}= await api.sendReminder(formData)
+        return data;
+    } catch (error) {
+        
+    }
+}
+export const deleteFeedbackById = async(id)=>{
+    try {
+        
+        const {data}= await api.deleteFeedback(id)
         return data;
     } catch (error) {
         
