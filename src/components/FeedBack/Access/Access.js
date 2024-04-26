@@ -7,13 +7,14 @@ import { MdCancel } from "react-icons/md";
 import { addMember, deleteUser, getUsers, updateUserData } from "../../../actions/user";
 import { FaLock } from "react-icons/fa";
 import { addNewMember, getDepartment, getFaculty, getaccessUsers, updateAccesUserData } from "../../../actions/feedbackSession";
+import { deleteCcById } from "../../../actions/AdminAccess";
 
 const Access = () => {
 
     const[ showForm, setShowForm]= useState(false) ;
     const [email, setEmail] = useState('');
   const [name, setName] = useState("");
-  const [departmentname, setDepartmentname] = useState('');
+  const [departmentname, setDepartmentname] = useState('Not Needed');
   const [role, setRole] = useState('Class-Cordinator');
   const [nameFeild,setnameFeild]=useState(false);
     const [members, setMembers] = useState([]);
@@ -122,6 +123,7 @@ const handleAddnewMember=async()=>{
   setMembers(updatedMembers);
   setShowForm(false);
   setRole("Class-Cordinator");
+  setDepartmentname('Not Needed')
   }
   else{
 
@@ -171,12 +173,26 @@ if(true)
   const filteredFaculty = faculty.filter((item) =>
   (item.title + " " + item.first_name + " " + item.last_name).toLowerCase().includes(name.toLowerCase())
 );
+const handleDelete=async(id)=>{
+  console.log(id);
+  const res = await deleteCcById(id)
+  if (res?.message) {
+    alert(res?.message);
+    
+    const filteredMambersArray = members.filter(feedback => feedback.id !== id);
+    setMembers(filteredMambersArray)
+  }else {
+    alert(res?.error);
+  }
+
+}
+
 
   useEffect(()=>{
   
   const getAllUsers= async()=>{
   
-  const res= await getaccessUsers() ;
+  const res= await getaccessUsers();
    
   if(res?.results){
     setMembers(res.results)}
@@ -205,7 +221,7 @@ if(true)
               <span className={styles.email}>Email id</span>
               <span className={styles.phone}>Designation</span>
               <span className={styles.phone}>Department</span>
-              <span className={styles.phone}>Edit</span>
+              <span className={styles.phone}>Edit & Delete</span>
             </div>
          <div className={styles.table}>
       {members &&
@@ -244,6 +260,10 @@ if(true)
                   className={styles.edit}
                   onClick={() => handleEdit(index)}
                 />
+                       <MdDelete
+                className={styles.delete}
+                onClick={() => handleDelete(item.id)}
+              />
               
            
             </span>
@@ -339,7 +359,7 @@ if(true)
         </button>
            <button
           className={styles.btn}
-          onClick={handleCancel}
+          onClick={handleCancel()}
           style={{background:"#ea4335"}}
         >
           Cancel
