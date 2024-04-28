@@ -44,6 +44,10 @@
     gap: 5px;
     margin-top: 20px;
   }
+  .pagebreakStop{
+    
+  page-break-inside: avoid;
+  }
   .yesNoContainer{
     display: flex;
     

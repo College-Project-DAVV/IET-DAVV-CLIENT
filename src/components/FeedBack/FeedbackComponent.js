@@ -4,11 +4,16 @@ import Feedback from './Feedback/Feedback';
 import Session from './Session/Session';
 import Analytics from './Analytics/Analytics';
 import Access from './Access/Access';
+import ProgressBar from '../progressbar/ProgressBar';
+
+import studentsvg from "../../assets/student.svg"
 
 const FeedbackComponent = () => {
   const [step,setStep]=useState(0);
+  const [loader,setLoader]=useState(false)
  
   return (
+    <>
     <div className={styles.main_conatiner_feedBack}>
       <div className={styles.switchcomponent}>
         
@@ -21,9 +26,13 @@ const FeedbackComponent = () => {
          </div>
 
          <div className={styles.componentContainer}>
-          {step===0 && <Feedback/> || step===1  && <Session/> || step===2&&<Access/>|| step===3 && <Analytics/>}
+          {step===0 && <Feedback setLoader={setLoader}/> || step===1  && <Session setLoader={setLoader}/> || step===2&&<Access setLoader={setLoader}/>|| step===3 && <Analytics setLoader={setLoader}/>}
          </div>
+       
     </div>
+      {
+        loader&& <div className={styles.progressbarcontainer}><ProgressBar url={studentsvg}/></div>
+       }</>
   )
 }
 

@@ -76,11 +76,12 @@ const FeedbackAnalytics = ({item}) => {
             {item?.subjects?.length>0&& item?.subjects.map((item,index1)=>(
 
               <div  key = {index1} className={styles.subjectChild1}>
+                <div className={`${styles.pagebreakStop} pagebreak`}>
                 <div>Subject Name : {item?.subject_name}</div>
                 
                 <div>Subject Code : {item?.subject_code}</div>
                 <div>Faculty Name : {item?.title}{item?.first_name}{item?.last_name}</div>
-                
+                </div>
                 <div className={styles.responsesContainer}>
                 <div className={`${styles.tableContainer} pagebreak`}>
       <table>
@@ -143,7 +144,7 @@ const FeedbackAnalytics = ({item}) => {
     <div>Strength :<StrengthComponent item={item}/></div>
     
     <div>Weekness : <WeeknessComponent item={item}/></div>
-                <div>Overall Rating: {calculateRating(item)}</div>
+                <div>Overall Rating: {calculateRating(item).toFixed(2)}</div>
                 </div>
 
                 </div>

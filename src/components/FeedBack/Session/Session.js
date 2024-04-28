@@ -31,7 +31,7 @@ function formatDateinput(inputString) {
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
-const Session = () => {
+const Session = ({setLoader}) => {
 
     const[ showForm, setShowForm]= useState(false) ;
     const [sessionStart , setSessionStart] = useState("");
@@ -69,23 +69,29 @@ const Session = () => {
 
 
   const handleSaveEdit = async(index, id) => {
+    
+    setLoader(true)
    let newIte={
     id:id,
     sessionStart:sessionStart,
     sessionEnd:sessionEnd
    } ;
    const res = await updateSession(newIte);
-   
-   setEditIndex(null)
+   console.log(res)
+   if(res?.message){   setEditIndex(null)
                 setSelectedItem({});
    const datatoupdate = members;
    datatoupdate[index]=newIte;
    setMembers(datatoupdate)
-   
+  
    setSessionStart('');
    setSessionEnd('')
+  alert(res?.message)
+  }else{
+   alert('Error',res?.error)}
 
 
+   setLoader(false)
    
 
   
@@ -103,6 +109,8 @@ const Session = () => {
   
   
     const handleAddMember = async () => {
+      
+    setLoader(true)
 
     let newIte={
    sessionStart:sessionStart,
@@ -124,18 +132,24 @@ const Session = () => {
   setSessionStart('');
     setShowForm(false) ;}
     
+    setLoader(false
+    )
 
   };
 
   useEffect(()=>{
   
   const getSessions= async()=>{
+    
+    setLoader(true)
   
   const res= await getSession() ;
     if(res?.results)
     {
 setMembers(res.results);
     }
+    
+    setLoader(false)
   } 
   getSessions() ;
   

@@ -4,6 +4,8 @@ const APINotice = axios.create({ baseURL: 'https://notices.ietdavv.edu.in/server
 
 const APIStudent = axios.create({ baseURL: 'https://student.ietdavv.edu.in/server/'});
 
+// const APIStudent = axios.create({ baseURL: 'http://localhost:3003/'});
+
 const APIAdmin = axios.create({ baseURL: 'https://admin.ietdavv.edu.in/server/'});
 
 

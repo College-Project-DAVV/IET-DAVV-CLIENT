@@ -9,7 +9,7 @@ import { FaLock } from "react-icons/fa";
 import { addNewMember, getDepartment, getFaculty, getaccessUsers, updateAccesUserData } from "../../../actions/feedbackSession";
 import { deleteCcById } from "../../../actions/AdminAccess";
 
-const Access = () => {
+const Access = ({setLoader}) => {
 
     const[ showForm, setShowForm]= useState(false) ;
     const [email, setEmail] = useState('');
@@ -82,24 +82,18 @@ const handleAddnewMember=async()=>{
 }
 
 
-  const handleSaveEdit = (index, editedData) => {
-   
-  
-    const updatedMembers = [...members];
-    updatedMembers[index] = { ...editedData };
-    setMembers(updatedMembers);
-  };
-  
+
   const checkAll=()=>{
-   if (!selectedItem.id || !email || !department|| !role) {
+   if (!selectedItem.id || !email || !departmentname|| !role||!name) {
     alert('Please fill in all required fields');
-    return false; // Do not proceed with saving if validation fails
+    return false; 
   }
   
   return true ;
   }
   
   const handleUpdate = async ()=>{
+    setLoader(true)
 
     
     let newIte={
@@ -126,13 +120,15 @@ const handleAddnewMember=async()=>{
   setDepartmentname('Not Needed')
   }
   else{
+    alert("Error",res?.error)
 
   }
-
+  setLoader(false)
 
   }
   
     const handleAddMember = async () => {
+      setLoader(true)
       
 
     let newIte={
@@ -144,7 +140,7 @@ const handleAddnewMember=async()=>{
 
   };
 
-if(true)
+if(checkAll())
     {
     // setMembers([...members,newIte])
     
@@ -153,7 +149,6 @@ if(true)
    if(res?.id){
     newIte['id']=res.id;
    
-   console.log(newIte)
    setMembers([...members,newIte])
     
     setName("")
@@ -168,13 +163,14 @@ if(true)
  
     alert(res.error)}
     }
+    setLoader(false)
 
   };
   const filteredFaculty = faculty.filter((item) =>
   (item.title + " " + item.first_name + " " + item.last_name).toLowerCase().includes(name.toLowerCase())
 );
 const handleDelete=async(id)=>{
-  console.log(id);
+  setLoader(true)
   const res = await deleteCcById(id)
   if (res?.message) {
     alert(res?.message);
@@ -184,6 +180,7 @@ const handleDelete=async(id)=>{
   }else {
     alert(res?.error);
   }
+  setLoader(false)
 
 }
 
@@ -191,12 +188,13 @@ const handleDelete=async(id)=>{
   useEffect(()=>{
   
   const getAllUsers= async()=>{
-  
+  setLoader(true)
   const res= await getaccessUsers();
    
   if(res?.results){
     setMembers(res.results)}
   
+    setLoader(false)
   } 
   getAllUsers() ;
   
@@ -359,7 +357,7 @@ const handleDelete=async(id)=>{
         </button>
            <button
           className={styles.btn}
-          onClick={handleCancel()}
+          onClick={()=>handleCancel()}
           style={{background:"#ea4335"}}
         >
           Cancel

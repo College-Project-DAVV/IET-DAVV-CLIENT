@@ -9,7 +9,8 @@ import logo from '../../../assets/logo.png'
 import html2pdf from 'html2pdf.js';
 import ApexChart from './FeedbackAnalytics/ApexChart';
 import YesNo from './FeedbackAnalytics/YesNo';
-const Analytics = () => {
+import { FaSlack } from 'react-icons/fa';
+const Analytics = ({setLoader}) => {
 
   const [uniqueDepartments, setUniqueDepartments] = useState([]);
 
@@ -24,7 +25,6 @@ const Analytics = () => {
   const [editFeedback,setEditFeedback]=useState(false);
   const [department_id,setDepartment_id]=useState("")
   const [feedback,setFeedback]=useState([]);
-
   useEffect(() => {
     const getClassNames = async () => {
       const res2 = await getSession();
@@ -57,6 +57,7 @@ const Analytics = () => {
 
     const res = await getAnalyticsBySession(item.id)
     console.log(res)
+    
     if(res?.results.length>0)
 { 
     let total_sum=0;
@@ -83,6 +84,7 @@ const Analytics = () => {
     setUniqueDepartments(uniqueDepartmentsArray);
     setTotalclass(total_Class)
     setTotal(total_sum)
+
     setFeedback(res?.results)}
     else if (res?.results.length===0){
       alert('No Feedback is Collected for this session')
@@ -90,19 +92,32 @@ const Analytics = () => {
     else{
       alert(res?.error)
     }
-
   }
  
-  
+  useEffect(()=>{
+    let total_sum=0;
+    let total_Class=0;
+ 
+    for (let i = 0; i < feedback.length; i++) {
+      if ((department_id && department_id===feedback[i].department_name )|| feedback[i].total_students && feedback[i]?.subjects?.length>0) {
+        total_sum += (feedback[i].total_students / feedback[i]?.subjects?.length);
+     
+     total_Class++; }
+    }
+
+    setTotalclass(total_Class)
+    setTotal(total_sum)
+  },[department_id])
 	const contentRef = useRef(null);
 
   const convertToPdf = () => {
+    setLoader(true)
     const content = contentRef.current;
 
     const options = {
-        filename: `Session-${formatDate(selectedSession?.sessionStart)} - ${formatDate(
+        filename: `Feedback_Report_Session-${formatDate(selectedSession?.sessionStart)}_${formatDate(
           selectedSession?.sessionEnd
-        )}.pdf`, 
+        )}${department_id&&"_Department_"+department_id}.pdf`, 
         margin: 0.5,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
@@ -140,7 +155,11 @@ const Analytics = () => {
             }
         }
     }).save();
+    
+    setLoader(false)
+    
 };
+
 
 
   return (
@@ -184,7 +203,7 @@ const Analytics = () => {
               {uniqueDepartments?.map((item,index)=><option key={item.department_name} value={item.name}>{item.name}</option>)}
             </select>
           </div>
-          <button className={styles.downloadpdfButton} onClick={convertToPdf}>
+          <button className={styles.downloadpdfButton}  onClick={()=>convertToPdf()}>
 				Download PDF
 			</button>
       </div>
@@ -195,25 +214,26 @@ const Analytics = () => {
           
           <div className={styles.headerContent1}>Institute of Engineering and Technology , DAVV </div>
           
-        <div className={styles.headerContent}>FeedBack Report</div>
+        <div className={styles.headerContent}> Student FeedBack Report</div>
           
           <div className={styles.headerContent}><span>{sessionString}</span></div>
         </div>
-   { department_id===""&&    <div className={styles.feedbackDetailsContainer}>
+     <div className={styles.feedbackDetailsContainer}>
           <div>Total Classes : {totalclass}</div>
           
           <div>Total Number of Students : {total}</div>
-        </div>}
+        </div>
         <div className={`${styles.feedbackGeneratorContainer} pagebreak`}>
           {feedback?.map((item,index)=>( 
   item.total_students>0 &&((department_id!=="" &&item.department_name===department_id)|| (department_id==="")) &&(            <div className={styles.classDetailsContainer} key = {index}>
-              <div className={styles.feedbackDetails1}><span>{item.course_code} {item.year} Year {item.department_name} {item.section}</span> </div>
+        <div className='pagebreak'>      <div className={styles.feedbackDetails1}><span>{item.course_code} {item.year} Year {item.department_name} {item.section}</span> </div>
               <div className={styles.feedbackDetails}>Conducted on :<span> {formatDateToDate(item.startTime)}</span></div>
               <div className={styles.feedbackDetails}>Class Teacher:<span> {item.name}</span></div>
               <div className={styles.feedbackDetails}>Total Students Appeared:<span> {item?.subjects?.length ? Math.round(item.total_students / item?.subjects.length) : "Not available"}</span>
 </div>
 
                 <FeedbackAnalytics item={item}/>
+                </div>
                 
                 <div className={`${styles.chartContainer} pagebreak`} >
           <ApexChart item={item}/></div>
@@ -226,6 +246,7 @@ const Analytics = () => {
 
         </div>
         </div>:<div>Select the Session</div>}
+        
     </div>
   )
 }
