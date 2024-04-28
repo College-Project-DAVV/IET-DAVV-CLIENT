@@ -1,72 +1,117 @@
 .adduser{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    // padding: 2rem;
-    width: 100%;
-    height: 100%;
-    .head{
-        margin-top: 2rem;
-        p{
-            font-size: calc(1rem + 1vw);
-            font-weight: 600;
-        }
-    }
+    height: fit-content;
+    overflow-y: auto;
+    margin: 2rem 0rem 0rem 2rem;
     form{
-         width: 90%;
         display: flex;
         flex-direction: column;
+        width: 95%;
+        background: white;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 1rem;
         align-items: center;
-        justify-content: center;
-        background-color: #6C74CA;
-        padding: 2rem 1rem;
-        border-radius: 20px;
-        margin: 1rem;
-        .inputbox{
-            width: 100%;
+        padding: 1rem 0rem 2rem 0rem;
+        h2{
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding-left: 1rem;
+            align-self: flex-start;
+        }
+        .line{
             display: flex;
-            // background-color: blue;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
+            width:95%;
+            justify-content: space-between;
+            column-gap: 10%;
+            padding: 1.5rem 0rem;
+            margin: 0rem 1rem;
             align-items: center;
-            // margin: 1rem;
-            .title{
-                width: 20%;
-                font-size: calc(1rem + 0.5vw);
-                color: #fff;
-                font-weight: 500;
-                overflow: hidden;
-            }
-            div{
-                width: 70%;
+            .pass{
                 display: flex;
-                align-items: center;
-                input,select{
-                    padding: 0.8rem;
-                    border-radius: 10px;
-                    border: 0;
+                // justify-content: center;
+                // align-items: center;
+                width: 100%;
+                .input1{
+                    border: none;
+                    border-bottom: 1px solid #666;
+                    font-size: 0.9rem;
+                    padding: 0rem 0rem 0.5rem 1rem;
                     width: 100%;
-                    font-size: calc(0.6rem + 0.5vw);
-                }
-                select{
-                    color: #3c3c3c !important;
-                    // background: #3c3c3c;
-                    width: 70% !important;
-                    option{
-                        color: #000;
-
+                    &:focus{
+                        outline: none;
                     }
                 }
             }
+            .input,select{
+                border: none;
+                border-bottom: 1px solid #666;
+                font-size: 0.9rem;
+                &:focus{
+                    outline: none;
+                }
+            }
+            
+            .input{
+                padding: 0rem 0rem 0.5rem 1rem;
+                width: 100%;
+            }
+            select{
+                padding: 0rem 0rem 0.25rem 1rem;
+                width: 45%;
+            }
+            .faculty{
+                display: flex;
+                font-size: 0.9rem;
+                width: 45%;
+              .radio{
+                display: flex;
+                padding-left: 2rem;
+                align-items: center;
+                label{
+                    padding-left: 0.6rem;
+                }
+              }
+            }
+               
+        }
+        @media screen and (max-width: 1024px) {
+            .faculty{
+                flex-direction: column;
+            }
+            
+        }
+        @media screen and (max-width: 578px) {
+            .line{
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0;
+                margin: 0;
+                .input,select{
+                    width: 90%;
+                    margin: 1rem 0rem;
+                }
+                .pass{
+                    margin:1rem 0rem;
+                }
+                .faculty{
+                    width: 100%;
+                }
+            }
+            
         }
         button{
-            padding: 0.5rem 2rem;
-            font-size: 1.5rem;
-            font-weight: 500;
-            background-color: #fff;
-            border: 0;
-            border-radius: 5px;
+            border-radius: 3rem;
+            background: #6C74CA;
+            border: none;
+            color: white;
+            margin-top: 2rem;
+            font-weight: 600;
+            width: 10rem;
+            padding: 1rem;
+            &:hover{
+                cursor: pointer;
+                background-color: #4e55a5;
+            }
         }
     }
 }
