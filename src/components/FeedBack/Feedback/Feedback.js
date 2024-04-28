@@ -23,7 +23,7 @@ import {
   setTimeInInputField,
 } from "../../../actions/exportingFunctions";
 
-const Feedback = ({setLoader}) => {
+const Feedback = ({ setLoader }) => {
   const [branch, setBranch] = useState([]);
   const [users, setUsers] = useState([]);
   const [userName, setUserName] = useState("");
@@ -70,20 +70,18 @@ const Feedback = ({setLoader}) => {
 
   useEffect(() => {
     const getClassNames = async () => {
-      
-    setLoader(true)
+      setLoader(true);
       const res4 = await getFeedback();
       if (res4) {
         setFeedback(res4?.results);
       }
-      
-    setLoader(false)
+
+      setLoader(false);
     };
     getClassNames();
   }, []);
 
   const handleFeedbackEdit = (item) => {
-    
     setEditFeedback(true);
     setDate(formatDateinput(item.startTime));
     setStartTime(setTimeInInputField(item.startTime));
@@ -147,8 +145,8 @@ const Feedback = ({setLoader}) => {
     setManageState(0);
   }
   async function handleSubmitClick() {
-    setLoader(true)
-    
+    setLoader(true);
+
     if (!selectedbranch || !selectedSession || !selectedUser || !date) {
       alert("All Feilds are Compulsory");
     } else {
@@ -197,13 +195,12 @@ const Feedback = ({setLoader}) => {
         alert(res.error);
       }
     }
-    
-    setLoader(false)
+
+    setLoader(false);
   }
 
   const handleUpdateDataClick = async () => {
-    
-    setLoader(true)
+    setLoader(true);
     const startTimeMillis = new Date(date + " " + startTime).getTime(); // Convert start time to milliseconds
     const endTimeMillis = startTimeMillis + endTime * 60000; // Calculate end time in milliseconds
 
@@ -245,8 +242,8 @@ const Feedback = ({setLoader}) => {
     } else {
       alert(res.error);
     }
-    
-    setLoader(false)
+
+    setLoader(false);
   };
   const handleViewDetails = (item) => {
     setViewDetails(true);
@@ -306,8 +303,7 @@ const Feedback = ({setLoader}) => {
     };
     // If user confirms, proceed with sending reminder
     if (confirmed) {
-      
-    setLoader(true)
+      setLoader(true);
       const res = await sendRem(formData);
 
       if (res?.message) {
@@ -316,33 +312,34 @@ const Feedback = ({setLoader}) => {
     } else {
       alert("Reminder not sent. Error Occured");
     }
-    
-    setLoader(false)
+
+    setLoader(false);
   };
-  const handleDeleteFeedback = async(id)=>{
+  const handleDeleteFeedback = async (id) => {
     const confirmed = window.confirm(
       `Are you Sure ? you want to delete the scheduled feedback it will erase all data related to this feedback.`
     );
 
     // If user confirms, proceed with sending reminder
     if (confirmed) {
-      
-    setLoader(true)
+      setLoader(true);
       const res = await deleteFeedbackById(id);
 
       if (res?.message) {
         alert(res?.message);
-        
-        const filteredFeedbackArray = feedback.filter(feedback => feedback.feedback_id !== id);
-        setFeedback(filteredFeedbackArray)
-      }else {
+
+        const filteredFeedbackArray = feedback.filter(
+          (feedback) => feedback.feedback_id !== id
+        );
+        setFeedback(filteredFeedbackArray);
+      } else {
         alert(res?.error);
       }
-    } 
+    }
 
-    setLoader(false)
-  }
-  
+    setLoader(false);
+  };
+
   const TableComponnet = () => {
     return (
       <div className={styles.tableContainer}>

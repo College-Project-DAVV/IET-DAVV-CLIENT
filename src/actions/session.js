@@ -1,57 +1,34 @@
-
 import * as api from "../api/index.js";
 
-export const addNewSession=async (formData)=>{
+export const addNewSession = async (formData) => {
+  try {
+    const { data } = await api.addSession(formData);
+    console.log(data.id);
+    return data;
+  } catch (error) {}
+};
+export const getSession = async (formData) => {
+  try {
+    const { data } = await api.getAllSession();
 
-    try {
-        
-        const {data}= await  api.addSession(formData);
-        console.log(data.id)
-        return data;
+    return data;
+  } catch (error) {}
+};
 
-    } catch (error) {
-        
-    }
-}
-export const getSession=async (formData)=>{
+export const updateSession = async (formData) => {
+  try {
+    const { data } = await api.updateSessionById(formData);
 
-    try {
-        
-        const {data}= await  api.getAllSession();
-        
-        return data;
+    return data;
+  } catch (error) {}
+};
 
-    } catch (error) {
-        
-    }
-}
+export const getAnalyticsBySession = async (id) => {
+  try {
+    console.log(id);
 
-export const updateSession=async (formData)=>{
+    const { data } = await api.getAnalytics(id);
 
-    try {
-        
-        const {data}= await  api.updateSessionById(formData);
-        
-        return data;
-
-    } catch (error) {
-        
-    }
-}
-
-
-export const getAnalyticsBySession=async (id)=>{
-
-    try {
-        console.log(id)
-        
-        const {data}= await  api.getAnalytics(id);
-        
-        return data;
-
-    } catch (error) {
-        
-    }
-}
-
-
+    return data;
+  } catch (error) {}
+};

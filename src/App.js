@@ -38,7 +38,7 @@ const App = () => {
                 </div>
               }
             />
-            {token ||(
+            {token &&(
               <Route
                 path="/dashboard"
                 element={
