@@ -99,11 +99,10 @@
       margin-left: 10px;
     }
     .cardHeadingValues {
-        font-size: 0.9rem;
-        font-weight: 400;
-        margin-left: 10px;
-      }
-      
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin-left: 10px;
+    }
   }
   .subjectList {
     padding: 0px 8px;
@@ -127,11 +126,10 @@
     border: 1px solid #353636;
     border-radius: 5px;
     cursor: pointer;
-    &:hover{
-        background-color: #47529a;
-        color: #ffffff;
+    &:hover {
+      background-color: #47529a;
+      color: #ffffff;
     }
-
   }
 }
 
@@ -193,13 +191,11 @@
     width: 100%;
     height: 20px;
   }
-  select{
+  select {
     width: 100%;
     height: 20px;
   }
-
 }
-
 
 .submitButton {
   width: 60%;
@@ -252,13 +248,7 @@
   }
 }
 
-
-
-
-
-
-  
-.viewDetailsContainer{
+.viewDetailsContainer {
   height: 500px;
   width: auto;
   z-index: 20;
@@ -275,7 +265,7 @@
   border-radius: 20px;
   margin: 0px 50px;
   padding: 10px;
-  
+
   overflow-x: hidden;
   p {
     text-align: center;
@@ -290,44 +280,28 @@
     justify-content: end;
     padding: 15px;
   }
-.detailsContainer{
-  display: flex;
-  flex-direction: column;
-  color: #020202;
-  font-size: 0.9rem;
-  width: 100%;
-  padding: 10px 20px;
-  .headerDiv{
-    width: 70%;
-text-align: left;
-    .cardHeadings {
-      font-weight: 500;
-      color: black;
+  .detailsContainer {
+    display: flex;
+    flex-direction: column;
+    color: #020202;
+    font-size: 0.9rem;
+    width: 100%;
+    padding: 10px 20px;
+    .headerDiv {
+      width: 70%;
+      text-align: left;
+      .cardHeadings {
+        font-weight: 500;
+        color: black;
+      }
+      .cardHeadingValues {
+        font-size: 0.9rem;
+        font-weight: 400;
+        margin-left: 10px;
+      }
     }
-    .cardHeadingValues {
-      font-size: 0.9rem;
-      font-weight: 400;
-      margin-left: 10px;
-    }
-  
-        }
-
-
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
 
 .tableContainer {
   width: auto;
@@ -335,7 +309,7 @@ text-align: left;
   border: 1px solid #ccc;
   border-radius: 5px;
   overflow-x: auto;
-  overflow-y:auto ;
+  overflow-y: auto;
   margin-top: 15px;
   table {
     width: auto;
@@ -343,87 +317,78 @@ text-align: left;
     overflow-x: auto;
     overflow-y: auto;
   }
-  
+
   .tableHeader {
     background-color: #5e5b5b;
     color: #ccc;
   }
-  
+
   .tableHeaderRow th {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
   }
-  
+
   .tableBodyRow:hover {
     background-color: #f9f9f9;
   }
-  
+
   .tableRowCell {
     text-align: left;
     border: 1px solid #ddd;
     padding: 8px;
   }
-  
-
-
 }
 
-
 @media screen and (max-width: 950px) {
-  .tableContainer{
+  .tableContainer {
     font-size: 0.8rem;
     .tableHeaderRow th {
       padding: 2px;
     }
-    
+
     .tableBodyRow:hover {
       background-color: #f9f9f9;
     }
-    
+
     .tableRowCell {
       padding: 0px;
     }
   }
 }
 @media screen and (max-width: 850px) {
-  .tableContainer{
+  .tableContainer {
     font-size: 0.8rem;
   }
 }
 @media screen and (max-width: 770px) {
-  .tableContainer{
+  .tableContainer {
     font-size: 0.8rem;
   }
 }
 @media screen and (max-width: 570px) {
-  .tableContainer{
+  .tableContainer {
     font-size: 0.7rem;
   }
 }
 @media screen and (max-width: 500px) {
-  .tableContainer{
+  .tableContainer {
     font-size: 0.6rem;
   }
-  
-  
 }
 
-
-.rButton{
-padding: 3px 5px;
-border: 1px solid #353636;
-cursor: pointer;
-border-radius: 10px;
-&:hover{
-  background-color: #47529a;
-  color: #ddd;
+.rButton {
+  padding: 3px 5px;
+  border: 1px solid #353636;
+  cursor: pointer;
+  border-radius: 10px;
+  &:hover {
+    background-color: #47529a;
+    color: #ddd;
+  }
 }
-}
 
-
-.nofeedbackContainer{
+.nofeedbackContainer {
   font-size: 0.9rem;
   font-weight: bold;
-  
 }

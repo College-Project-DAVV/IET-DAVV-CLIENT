@@ -1,105 +1,95 @@
 /* styles.css */
 .tableContainer {
-    margin: 20px 0px;
-    width: 100%;
-    
+  margin: 20px 0px;
+  width: 100%;
+
   page-break-inside: avoid;
   overflow-x: auto;
-  }
-  .subjectsContainer{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 50px;
-  }
-  
-  .tableContainer table {
-    width: 100%;
-    
-    border-collapse: collapse;
-    font-size: 0.6rem;
-    font-weight: 500;
-    
-  }
-  
-  .tableContainer th {
-    border: 1px solid #dddddd;
+}
+.subjectsContainer {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+}
+
+.tableContainer table {
+  width: 100%;
+
+  border-collapse: collapse;
+  font-size: 0.6rem;
+  font-weight: 500;
+}
+
+.tableContainer th {
+  border: 1px solid #dddddd;
   padding: 5px 2px;
+  text-align: center;
+}
+.tableContainer td {
+  border: 1px solid #dddddd;
+  padding: 5px 2px;
+  text-align: center;
+}
+
+.tableContainer th {
+  background-color: #f2f2f2;
+}
+.overAllContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 20px;
+}
+.pagebreakStop {
+  page-break-inside: avoid;
+}
+.yesNoContainer {
+  display: flex;
+
+  page-break-inside: avoid;
+  // border: 1px solid red;
+  flex-direction: column;
+  justify-content: center;
+  width: 98%;
+  padding: 5px;
+  gap: 5px;
+  margin-top: 10px;
+
+  .questionyesno {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .q {
+    // border: 1px solid red;
+    width: 58%;
+  }
+  .yesno {
+    text-align: center;
+    // border: 1px solid red;
+    width: 21%;
+  }
+
+  .number {
+    padding: 0px 2px;
+    margin-right: 2px;
+  }
+  .questionyesno1 {
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .q1 {
+    width: 58%;
     text-align: center;
   }
-  .tableContainer td{
-    border: 1px solid #dddddd;
-    padding: 5px 2px;
-      text-align: center;
-
+  .yesno1 {
+    text-align: center;
+    border-left: 1px solid #000;
+    width: 21%;
   }
-  
-  .tableContainer th {
-    background-color: #f2f2f2;
-  }
-  .overAllContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-top: 20px;
-  }
-  .yesNoContainer{
-    display: flex;
-    
-  page-break-inside: avoid;
-    // border: 1px solid red;
-    flex-direction: column;
-    justify-content: center;
-    width: 98%;
-    padding: 5px;
-    gap: 5px;
-    margin-top: 10px;
-  
-    .questionyesno{
-      
-    // border: 1px solid red;
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-    }
-    .q{
-      
-    // border: 1px solid red;
-      width: 58%;
-    }
-    .yesno{
-      text-align: center;
-    // border: 1px solid red;
-      width: 21%;
-    }
-
-
-.number{
-  padding: 0px 2px;
-  margin-right: 2px;
 }
-    .questionyesno1{
-      
-      border: 1px solid rgb(0, 0, 0);
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-      }
-      .q1{
-        
-        width: 58%;text-align: center;
-      }
-      .yesno1{
-        text-align: center;
-        border-left: 1px solid #000;
-        width: 21%;
-      }
-
-
-
-  }
-  
-
-  
-

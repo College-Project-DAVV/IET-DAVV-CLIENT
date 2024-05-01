@@ -65,7 +65,7 @@ export default function Sidebar() {
               <span className={styles.iconMD}>
               <MdFeed/>
               </span>
-              <p>FeedBack</p> 
+              <p>Student FeedBack</p> 
             </div>
           </Link>
            <Link to="/dashboard/addldapuser" style={{ textDecoration: "none" }}>
