@@ -3,9 +3,11 @@ import styles from "./ldap.module.scss"
 import eyeopen from '../../assets/eyeopen.svg'
 import eyeclose from '../../assets/eyeclose.svg'
 import {adduser} from "./adduserapi"
+import ProgressBar from '../progressbar/ProgressBar'
 export default function AddUser() {
     const [showpassword, setshowpassword]=useState(false);
     const [data,setData] = useState({"title":"","first_name":"","last_name":"","email":"","username":"","password":"","group":"","designation":"","branch":"","phoneno":""});
+    const [adding,setAdding] =useState(false);
     function Toggle() {
         var temp = document.getElementById("typepass");
         if (temp.type === "password") {
@@ -23,22 +25,27 @@ export default function AddUser() {
         // Check if all required fields are filled before submitting
         if (data.title && data.first_name && data.last_name && data.email && data.password && data.username && data.group && data.designation && data.branch && data.phoneno) {
           // Your logic for form submission here
+          setAdding(true);
             adduser(data).then((result)=>{
+                if(result){
                 alert(result);
+                }
+                setData({
+                    title: '',
+                    first_name: '',
+                    last_name: '',
+                    email: '',
+                    password: '',
+                    username: '',
+                    group: '',
+                    designation: '',
+                    branch: '',
+                    phoneno: '',
+                  });
+                  setAdding(false);
             })
           // Reset form fields after submission
-          setData({
-            title: '',
-            first_name: '',
-            last_name: '',
-            email: '',
-            password: '',
-            username: '',
-            group: '',
-            designation: '',
-            branch: '',
-            phoneno: '',
-          });
+          
         } else {
           alert('Please fill in all required fields');
         }
@@ -112,7 +119,7 @@ export default function AddUser() {
                     </select>
                     <input name='phoneno' type='text' className={styles.input} onChange={handleChange} value={data.phoneno} placeholder='Phone No.' required/>
                 </div>
-                <button onClick={handlesubmit}>ADD</button>
+                {!adding ?<button onClick={handlesubmit}>ADD</button> : <ProgressBar/>}
             </form>
         </div>
     )

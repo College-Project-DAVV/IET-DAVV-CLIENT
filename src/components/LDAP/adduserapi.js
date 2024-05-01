@@ -10,7 +10,9 @@ export const adduser=(user)=> {
         })
           .then((response) => {
             if (!response.ok) {
+              alert("Unable to add user")
               throw new Error(`Network response was not ok: ${response.status}`);
+              return;
             }
             return response.json(); // Parse the response as JSON
           })

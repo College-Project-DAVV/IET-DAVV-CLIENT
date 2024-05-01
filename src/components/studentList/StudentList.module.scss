@@ -23,20 +23,35 @@
       background-color: white;
       
       .email {
-        width: 30%;
+        width: 20%;
         padding-left: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .name {
-        width: 23%;
+        width: 28%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .branch {
-        width: 23%;
+        width: 28%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .year {
         width: 12%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .rollno {
         width: 12%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
     .table{
@@ -55,19 +70,34 @@
       background-color: white;
       border-top: 0px;
       .email {
-        width: 30%;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .name {
-        width: 23%;
+        width: 28%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .branch {
-        width: 23%;
+        width: 28%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .year {
         width: 12%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .rollno {
         width: 12%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       &:last-child {
         border-bottom: 0;

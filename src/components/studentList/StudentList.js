@@ -14,6 +14,7 @@ const StudentList = ({type,members}) => {
   const [degree,setDegree]=useState([]);
   const data2 = useAllUsers();
   const [data,setData] = useState(null);
+  const currentYear = new Date().getFullYear();
   function findEmail(data, emailToFind) {
     const emailLookup = {};
     for (const item of data) {
@@ -88,7 +89,7 @@ useEffect(()=>{
                       {item.department || "Not Available"}
                     </span>
                     <span className={styles.year}>
-                      {item.year || "Not Available"}
+                      {item.year ? (currentYear-(+item.year+2000)) < 5 ? (currentYear-(+item.year+2000)) : "Alumni": "Not Available"}
                     </span>
                     <span className={styles.rollno}>
                       {item.rollNumber || "Not Available"}

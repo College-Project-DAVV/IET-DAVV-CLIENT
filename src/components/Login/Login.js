@@ -70,7 +70,6 @@ const Login = () => {
             };
             //Check in the database
             const check = await getCurrentUser(result.result.email);
-            console.log(check);
             if(check.messege!=="Authorized"){
               alert("Unauthorized Access")
               return;
