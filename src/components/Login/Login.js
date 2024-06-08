@@ -4,6 +4,7 @@ import styles from "./Login.module.scss";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import ProgressBar from "../progressbar/ProgressBar";
+import {getCurrentUser} from "../../actions/AdminAccess"
 const Login = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState("");
@@ -24,7 +25,7 @@ const Login = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    })  
+    })
       .then((response) => response.json())
       .then((data) => {
         // Handle the response data here
@@ -44,11 +45,12 @@ const Login = () => {
     if (decodedCodeValue !== "null") {
       setShowLogin(false);
       setCode(decodedCodeValue);
+
       generateToken(decodedCodeValue);
       if (localStorage.getItem("FetchUserToken")) {
-       navigate("/dashboard");
+        navigate("/dashboard");
       }
-     // setShowLogin(true);
+      // setShowLogin(true);
     }
   }, [code, navigate]);
   return (
@@ -60,12 +62,18 @@ const Login = () => {
           shape="pill"
           variant="contained"
           size="large"
-          onSuccess={(credentialResponse) => {
+          onSuccess={async (credentialResponse) => {
             var decoded = jwt_decode(credentialResponse.credential);
             const result = {
               result: decoded,
               token: credentialResponse.credential,
             };
+            //Check in the database
+            const check = await getCurrentUser(result.result.email);
+            if(check.messege!=="Authorized"){
+              alert("Unauthorized Access")
+              return;
+            }
             localStorage.setItem("profile", JSON.stringify(result));
             if (result) {
               redirectToExternalUrl();

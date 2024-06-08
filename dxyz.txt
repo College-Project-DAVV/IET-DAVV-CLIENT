@@ -1,0 +1,5 @@
+REACT_APP_CLIENT_ID =1045295922314-n1e3q1uglok14q27ipqt4944ne01sfre.apps.googleusercontent.com
+REACT_APP_CLIENT_SECRET =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
+REACT_APP_REDIRECT_URI=https://admin.ietdavv.edu.in
+REACT_APP_SERVER_BASE_URL=https://admin.ietdavv.edu.in/server
+REACT_APP_FACULTY_SERVER=https://test.ietdavv.edu.in/server

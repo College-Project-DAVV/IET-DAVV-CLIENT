@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./StudentInfoModal.module.scss";
 const StudentInfoModal = ({ student }) => {
- 
+  const currentYear = new Date().getFullYear();
   const data = [
     {
       category : "Name",
@@ -16,16 +16,16 @@ const StudentInfoModal = ({ student }) => {
       value : student.secondaryEmail || "Not Available"
     },
     {
-      category : "Branch",
-      value : student.department || "Not Available"
-    },
-    {
       category : "Roll no",
       value : student.rollNumber || "Not Available"
     },
     {
       category : "Mobile no",
       value : student.phone  || "Not Available"
+    },
+    {
+      category : "Class",
+      value : (student.year && student.department && student.section) ? currentYear-(+student.year+2000) + " Year " +  student.department  + "("+ student.section+")" : "Not Available"
     },
   ]
   return (
@@ -41,16 +41,6 @@ const StudentInfoModal = ({ student }) => {
           ))}
         </tbody>
       </table>
-      <div className={styles.row2}>
-        <div className={styles.col}>
-          <span className={styles.value2}> {student.year || "Not Available"}</span>
-          <span>Year</span>
-        </div>
-        <div className={styles.col}>
-          <span className={styles.value2}>{student.section || "Not Available"}</span>
-          <span>Section</span>
-        </div>
-      </div>
     </div>
   );
 };
