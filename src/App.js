@@ -13,7 +13,6 @@ import GroupData from "./components/GroupData/GroupData";
 import GroupMembers from "./components/GroupMembers/GroupMembers";
 import Landing from "./components/Landing/Landing";
 import NoticeSync from "./components/NoticeSync/NoticeSync";
-import AccessTable from "./components/NoticeSync/AccessTable";
 import AddUser from "./components/LDAP/AddUser";
 import FeedbackComponent from "./components/FeedBack/FeedbackComponent";
 import Admin from "./components/AdminAccess/Admin";
