@@ -19,6 +19,11 @@ const question2 = [
   "Would you recommend him/her to teach you any other subject?",
   "In your opinion is this syllabus adequate?",
 ];
+const question3 = [
+  "What are the strengths of the teacher ?",
+  "What are the areas of weakness in teacher ?",
+  "Any other suggestions regarding curriculum, subject/(s), faculty ?"
+]
 
 const StrengthComponent = ({ item }) => {
   const strengths = [];
@@ -75,7 +80,8 @@ function calculateRating(item) {
   return sum;
 }
 
-const FeedbackAnalytics = ({ item }) => {
+const FeedbackAnalytics = ({ item ,reportType}) => {
+  console.log(item)
   return (
     <div className={styles.subjectsContainer}>
       {item?.subjects?.length > 0 &&
@@ -91,7 +97,7 @@ const FeedbackAnalytics = ({ item }) => {
                 {item?.last_name}
               </div>
             </div>
-            <div className={styles.responsesContainer}>
+{      reportType==="1"?      <div className={styles.responsesContainer}>
               <div className={`${styles.tableContainer} pagebreak`}>
                 <table>
                   <thead>
@@ -244,7 +250,15 @@ const FeedbackAnalytics = ({ item }) => {
                 </div>
                 <div>Overall Rating: {calculateRating(item).toFixed(2)}</div>
               </div>
-            </div>
+            </div>:
+            <div className={`${styles.textualContainer}`}>
+              {question3.map((item1,index3)=>(
+                <div className={`${styles.questionContainerText} pagebreak`}>
+                  <div className={`${styles.textquestion} pagebreak`}>{index3+1} {item1}</div>
+                  <div className={`${styles.textresponse} pagebreak`}>{(index3===0 && item?.response?.q16_text ||index3===1 && item?.response?.q17_text) ||index3===2 && item?.response?.q18_text}</div>
+                </div>
+              ))}
+              </div>}
           </div>
         ))}
     </div>

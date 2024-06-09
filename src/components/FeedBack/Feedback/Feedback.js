@@ -23,6 +23,12 @@ import {
   setTimeInInputField,
 } from "../../../actions/exportingFunctions";
 
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
+
 const Feedback = ({ setLoader }) => {
   const [branch, setBranch] = useState([]);
   const [users, setUsers] = useState([]);
@@ -32,9 +38,11 @@ const Feedback = ({ setLoader }) => {
   const [selectedSession, setSelectedSession] = useState({});
   const [session, setSession] = useState([]);
   const [date, setDate] = useState("");
-  const [startTime, setStartTime] = useState("");
+  const [startTime, setStartTime] = useState(dayjs(new Date()));
   const [feedback, setFeedback] = useState([]);
-  const [endTime, setEndTime] = useState(10);
+  const [endTime, setEndTime] = useState(30);
+  
+  const [step, setStep] = useState(0);
   const [create, setCreate] = useState(false);
   const [editFeedback, setEditFeedback] = useState(false);
   const [viewDetails, setViewDetails] = useState(false);
@@ -42,6 +50,8 @@ const Feedback = ({ setLoader }) => {
   const [manageState, setManageState] = useState(0);
   const [sessionString, setSessionString] = useState("");
   const [selectedItem, setSelectedItem] = useState({});
+  
+
   const handleCreate = async () => {
     const res = await getClass();
     const res2 = await getSession();
@@ -57,13 +67,15 @@ const Feedback = ({ setLoader }) => {
 
   const handleClose = () => {
     setDate("");
-    setStartTime("");
-    setEndTime(10);
+    setStartTime(new Date());
+
+    setEndTime(30);
     setSelectedBranch({});
     setUserName("");
     setSessionString("");
     setclassName("");
     setSelectedSession({});
+    setEditFeedback(false)
     setSelectedUser({});
     setCreate(false);
   };
@@ -72,19 +84,40 @@ const Feedback = ({ setLoader }) => {
     const getClassNames = async () => {
       setLoader(true);
       const res4 = await getFeedback();
-      if (res4) {
-        setFeedback(res4?.results);
+      if (res4?.results) {
+        const currentTime = dayjs();
+  
+        const updatedResults = res4?.results.map((item) => {
+          const startTime = dayjs(item.startTime); // Assuming StartTime is a timestamp
+          const endTime = dayjs(item.endTime); // Assuming EndTime is a timestamp
+  
+  
+          let category = null;
+          if (startTime.isAfter(currentTime)) {
+            category = 0;
+          } else if (endTime.isBefore(currentTime)) {
+            if (item.total_students === 0) {
+              category = 2;
+            } else {
+              category = 1;
+            }
+          }
+          return { ...item, category };
+        });
+  
+  
+        setFeedback(updatedResults);
       }
 
       setLoader(false);
     };
     getClassNames();
   }, []);
-
   const handleFeedbackEdit = (item) => {
     setEditFeedback(true);
+  
     setDate(formatDateinput(item.startTime));
-    setStartTime(setTimeInInputField(item.startTime));
+    setStartTime(dayjs((item.startTime)));
     setEndTime(setTimeInInputField(item.endTime));
     const startTimeDate = new Date(item.startTime);
     const endTimeDate = new Date(item.endTime);
@@ -129,16 +162,6 @@ const Feedback = ({ setLoader }) => {
     setManageState(0);
   }
 
-  // function checkRepeat ()
-  // {
-  //   for(const itr in  feedback)
-  //   {
-  //     if(selectedSession.session_id==itr.session_id && selectedbranch.id==itr.classtable_id  && selectedUser.id==itr.faculty_id)
-  //     alert('Already Exist')
-  //     return false;
-  //   }
-  //   return true;
-  // }
   function handleUserClick(item) {
     setSelectedUser(item);
     setUserName(item.name);
@@ -150,40 +173,28 @@ const Feedback = ({ setLoader }) => {
     if (!selectedbranch || !selectedSession || !selectedUser || !date) {
       alert("All Feilds are Compulsory");
     } else {
-      const startTimeMillis = new Date(date + " " + startTime).getTime(); // Convert start time to milliseconds
-      const endTimeMillis = startTimeMillis + endTime * 60000; // Calculate end time in milliseconds
-
-      const endTimeDate = new Date(endTimeMillis); // Create a Date object for the end time
-      const formattedEndTime = `${endTimeDate.getFullYear()}-${(
-        endTimeDate.getMonth() + 1
-      )
-        .toString()
-        .padStart(2, "0")}-${endTimeDate
-        .getDate()
-        .toString()
-        .padStart(2, "0")} ${endTimeDate
-        .getHours()
-        .toString()
-        .padStart(2, "0")}:${endTimeDate
-        .getMinutes()
-        .toString()
-        .padStart(2, "0")}`; // Format the end time
+      const startTimeMillis = dayjs(date+startTime).valueOf();  // Convert start time to milliseconds
+      const endTimeMillis = startTimeMillis + (endTime * 60000); // Calculate end time in milliseconds
+      const endTimeDayjs = dayjs(endTimeMillis);   // Create a Date object for the end time
 
       let item = {
         classtable_id: selectedbranch.id,
         session_id: selectedSession.id,
         faculty_id: selectedUser.id,
-        startTime: date + " " + startTime,
-        endTime: formattedEndTime,
+        startTime: dayjs(date+startTime).format('YYYY-MM-DD HH:mm:ss'),
+        endTime: dayjs(endTimeDayjs).format('YYYY-MM-DD HH:mm:ss'),
       };
+   
       const res = await addFeedback(item);
       if (res.message) {
         alert(res.message);
-        setFeedback([...res.results, ...feedback]);
+        const temp = {...res?.results[0],category:0}
+      
+        setFeedback([temp, ...feedback]);
 
         setDate("");
         setStartTime("");
-        setEndTime(10);
+        setEndTime(30);
         setSelectedBranch({});
         setUserName("");
         setSessionString("");
@@ -198,32 +209,20 @@ const Feedback = ({ setLoader }) => {
 
     setLoader(false);
   }
-
   const handleUpdateDataClick = async () => {
     setLoader(true);
-    const startTimeMillis = new Date(date + " " + startTime).getTime(); // Convert start time to milliseconds
-    const endTimeMillis = startTimeMillis + endTime * 60000; // Calculate end time in milliseconds
 
-    const endTimeDate = new Date(endTimeMillis);
-    const formattedEndTime = `${endTimeDate.getFullYear()}-${(
-      endTimeDate.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, "0")}-${endTimeDate
-      .getDate()
-      .toString()
-      .padStart(2, "0")} ${endTimeDate
-      .getHours()
-      .toString()
-      .padStart(2, "0")}:${endTimeDate
-      .getMinutes()
-      .toString()
-      .padStart(2, "0")}`; // Format the end time
+
+
+      const startTimeMillis = dayjs(date+startTime).valueOf(); 
+      // Convert start time to milliseconds
+      const endTimeMillis = startTimeMillis + (endTime * 60000); // Calculate end time in milliseconds (endTime is in minutes)
+      const endTimeDayjs = dayjs(endTimeMillis);    
 
     let anyitem = {
       id: selectedItem.feedback_id,
-      startTime: formatDateSql(date, startTime),
-      endTime: formattedEndTime,
+      startTime: dayjs(date+startTime).format('YYYY-MM-DD HH:mm:ss'),
+      endTime: dayjs(endTimeDayjs).format('YYYY-MM-DD HH:mm:ss'),
     };
     const res = await updateFeedbackDetail(anyitem);
 
@@ -340,6 +339,7 @@ const Feedback = ({ setLoader }) => {
     setLoader(false);
   };
 
+
   const TableComponnet = () => {
     return (
       <div className={styles.tableContainer}>
@@ -383,9 +383,43 @@ const Feedback = ({ setLoader }) => {
           Schedule Feedback
         </div>
       </div>
+      <div className={styles.switchcomponent}>
+          <div
+            className={styles.differentcomponents}
+            onClick={() => setStep(0)}
+            style={
+              step === 0 ? { backgroundColor: "#6c74ca", color: "#ffffff" } : {}
+            }
+          >
+            Pending Feedback
+          </div>
+
+          <div
+            className={styles.differentcomponents}
+            onClick={() => setStep(1)}
+            style={
+              step === 1 ? { backgroundColor: "#6c74ca", color: "#ffffff" } : {}
+            }
+          >
+            Archived Feedback
+          </div>
+          <div
+            className={styles.differentcomponents}
+            onClick={() => setStep(2)}
+            style={
+              step === 2 ? { backgroundColor: "#6c74ca", color: "#ffffff" } : {}
+            }
+          >
+            Expired Feedback
+          </div>
+    
+        </div>
       <div className={styles.feedbackContainer_Card}>
-        {feedback.length > 0 ? (
-          feedback.map((item, index) => (
+        {feedback?.length > 0 ? (
+          feedback.map((item, index) => item?.category===step &&
+          
+          
+          (
             <div className={styles.card_Container}>
               <span className={styles.indexCount}>{index + 1}</span>
               <div className={styles.card_content}>
@@ -467,7 +501,7 @@ const Feedback = ({ setLoader }) => {
                 </div>
               </div>
               <div className={styles.card_container_buttons}>
-                {isPastDate(item.endTime) && (
+                {(isPastDate(item.endTime) ||item?.total_students===0 || item.subjects?.length===0)&& (
                   <button
                     onClick={(e) => {
                       handleFeedbackEdit(item);
@@ -584,11 +618,16 @@ const Feedback = ({ setLoader }) => {
             <div className={styles.inputContainer}>
               <div className={styles.inputheading}>Starting Time</div>
               <div className={styles.inputfeild}>
-                <input
-                  type="time"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+    
+                
+        <TimePicker
+          value={startTime}
+         onChange={(newValue) => setStartTime(dayjs(newValue).format('HH:mm'))}
+         sx={{ width: '100%' }}
+        />
+    </LocalizationProvider>
+  
               </div>
             </div>
 
@@ -603,11 +642,11 @@ const Feedback = ({ setLoader }) => {
                 >
                   <option value={10}>10 Minutes</option>
 
-                  <option value={15}>15 Minutes</option>
+                  <option value={20}>20Minutes</option>
 
                   <option value={30}>30 Minutes</option>
 
-                  <option value={45}>45 Minutes</option>
+                  <option value={40}>40 Minutes</option>
                 </select>
               </div>
             </div>

@@ -27,7 +27,6 @@ export const deleteUserById = (id) => APINotice.get(`/users/deleteuser/${id}`);
 export const updateUserById = (userData) =>
   APINotice.post(`/users/updateuseradmin`, userData);
 
-// Admin Portal Server
 
 export const addUserAdmin = (formData) => APIAdmin.post("/users/", formData);
 export const getAllUsersAdmin = () => APIAdmin.post("/users/fetchall");
@@ -78,3 +77,9 @@ export const sendReminder = (data) =>
 
 export const deleteFeedback = (id) =>
   APIStudent.get(`/feedback/feedback/delete/${id}`);
+
+
+
+
+
+export const downloadpdf = (data)=>APIStudent.post('/feedback/downloadpdf',data,{responseType: 'blob'})

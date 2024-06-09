@@ -66,7 +66,6 @@ export function formatDateSql(date, time) {
   const formattedHours = hours.padStart(2, "0");
   const formattedMinutes = minutes.padStart(2, "0");
 
-  // Constructing the datetime string in MySQL format
   return `${formattedDate.getFullYear()}-${(formattedDate.getMonth() + 1)
     .toString()
     .padStart(2, "0")}-${formattedDate

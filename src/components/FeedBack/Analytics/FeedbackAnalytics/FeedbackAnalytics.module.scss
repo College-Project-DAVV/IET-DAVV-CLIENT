@@ -44,6 +44,8 @@
 }
 .pagebreakStop {
   page-break-inside: avoid;
+  font-weight: 700;
+  
 }
 .yesNoContainer {
   display: flex;
@@ -92,4 +94,28 @@
     border-left: 1px solid #000;
     width: 21%;
   }
+}
+
+.textualContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.questionContainerText{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.textquestion{
+  font-weight: bold;
+  
+  page-break-inside: avoid;
+}
+.textresponse{
+  
+  page-break-inside: avoid;
+  border: 1px solid black;
+  background-color: #fff;
+  padding: 10px 5px;
 }

@@ -42,7 +42,7 @@ const FeedbackComponent = () => {
               step === 2 ? { backgroundColor: "#6c74ca", color: "#ffffff" } : {}
             }
           >
-            Grant Access
+            Assign Role
           </div>
           <div
             className={styles.differentcomponents}
