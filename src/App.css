@@ -7,3 +7,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.pagebreak {
+  page-break-before: always;
+}
